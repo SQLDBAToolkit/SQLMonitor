@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="SQLMonitorServerInfoXML">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="PerformanceStats">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="StatCounter">
+                <xs:complexType>
+                  <xs:attribute name="CurrentServerTime" type="xs:dateTime" use="required" />
+                  <xs:attribute name="PhysicalMemoryKB" type="xs:unsignedInt" use="required" />
+                  <xs:attribute name="VirtualMemoryKB" type="xs:unsignedLong" use="required" />
+                  <xs:attribute name="TotalMemoryUsedKB" type="xs:unsignedInt" use="required" />
+                  <xs:attribute name="TargetMemoryKB" type="xs:unsignedInt" use="required" />
+                  <xs:attribute name="DatabaseCacheMemoryKB" type="xs:unsignedShort" use="required" />
+                  <xs:attribute name="FreeMemoryKB" type="xs:unsignedShort" use="required" />
+                  <xs:attribute name="ReservedServerMemoryKB" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="StolenServerMemoryKB" type="xs:unsignedInt" use="required" />
+                  <xs:attribute name="MemoryGrantsOutstanding" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="MemoryGrantsPending" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="BatchRequestsSec" type="xs:unsignedShort" use="required" />
+                  <xs:attribute name="SqlCompilationsSec" type="xs:unsignedShort" use="required" />
+                  <xs:attribute name="SqlReCompilationsSec" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="CheckPointPagesSec" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="LockWaitsSec" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="BufferCacheHitRatio" type="xs:decimal" use="required" />
+                  <xs:attribute name="PageLifeExpectancy" type="xs:unsignedShort" use="required" />
+                  <xs:attribute name="CPUBusy" type="xs:unsignedInt" use="required" />
+                  <xs:attribute name="CPUIdle" type="xs:unsignedInt" use="required" />
+                  <xs:attribute name="CPUPercentage" type="xs:decimal" use="required" />
+                  <xs:attribute name="NetworkPacketsRecieved" type="xs:unsignedShort" use="required" />
+                  <xs:attribute name="NetworkPacketsSend" type="xs:unsignedShort" use="required" />
+                  <xs:attribute name="NetworkPacketErrors" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="PhysicalIOTotalReads" type="xs:unsignedShort" use="required" />
+                  <xs:attribute name="PhysicalIOTotalWrites" type="xs:unsignedShort" use="required" />
+                  <xs:attribute name="PhysicalIOTotalErrors" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="PhysicalIOBusy" type="xs:unsignedShort" use="required" />
+                  <xs:attribute name="TotalSessions" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="TotalUsers" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="ServerName" type="xs:string" use="required" />
+      <xs:attribute name="ComputerNamePhysicalNetBIOS" type="xs:string" use="required" />
+      <xs:attribute name="Edition" type="xs:string" use="required" />
+      <xs:attribute name="OSVersion" type="xs:string" use="required" />
+      <xs:attribute name="InstanceName" type="xs:string" use="required" />
+      <xs:attribute name="MachineName" type="xs:string" use="required" />
+      <xs:attribute name="ProductVersion" type="xs:string" use="required" />
+      <xs:attribute name="ProductLevel" type="xs:string" use="required" />
+      <xs:attribute name="LicenseType" type="xs:string" use="required" />
+      <xs:attribute name="BuildClrVersion" type="xs:string" use="required" />
+      <xs:attribute name="Collation" type="xs:string" use="required" />
+      <xs:attribute name="ResourceLastUpdateDateTime" type="xs:dateTime" use="required" />
+      <xs:attribute name="ResourceVersion" type="xs:string" use="required" />
+      <xs:attribute name="CPUCount" type="xs:unsignedByte" use="required" />
+      <xs:attribute name="HyperThreadRatio" type="xs:unsignedByte" use="required" />
+      <xs:attribute name="AffinityType" type="xs:string" use="required" />
+      <xs:attribute name="SchedulerCount" type="xs:unsignedByte" use="required" />
+      <xs:attribute name="MaxDegreeOfParallelism" type="xs:unsignedByte" use="required" />
+      <xs:attribute name="CostThresholdOfParallelism" type="xs:unsignedByte" use="required" />
+      <xs:attribute name="StartTime" type="xs:dateTime" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
