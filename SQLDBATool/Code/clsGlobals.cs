@@ -279,6 +279,7 @@ namespace SQLDBATool.Code
         //end
         //";
         //        #endregion
+        //
         public static ConnectionString ConnectionString { get => FConnectionString; set => FConnectionString = value; }
         public static FormSqlDBATool MasterForm { get => FMasterForm; set => FMasterForm = value; }
         //public static string ServerStatRefresh { get => FServerStatRefresh; set => FServerStatRefresh = value; }\
