@@ -18,6 +18,7 @@ namespace SQLDBATool.Code
         public ucDatabaseInformation()
         {
             InitializeComponent();
+            ucDatabaseDetails1.SetDataTable(this.dataSetServerInformation);
         }
 
         public bool ErrorOn { get => FErrorOn; set => FErrorOn = value; }

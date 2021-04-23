@@ -152,6 +152,12 @@
     <Compile Include="Code\ucDatabaeStorageDBGraph.Designer.cs">
       <DependentUpon>ucDatabaeStorageDBGraph.cs</DependentUpon>
     </Compile>
+    <Compile Include="Code\ucDatabaseDetails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Code\ucDatabaseDetails.Designer.cs">
+      <DependentUpon>ucDatabaseDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Code\ucDatabaseInformation.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -206,6 +212,12 @@
     <Compile Include="Code\ucSessionDetails.Designer.cs">
       <DependentUpon>ucSessionDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Code\ucTitleBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Code\ucTitleBar.Designer.cs">
+      <DependentUpon>ucTitleBar.cs</DependentUpon>
+    </Compile>
     <Compile Include="DBTestDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -234,6 +246,9 @@
     <EmbeddedResource Include="Code\ucDatabaeStorageDBGraph.resx">
       <DependentUpon>ucDatabaeStorageDBGraph.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Code\ucDatabaseDetails.resx">
+      <DependentUpon>ucDatabaseDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Code\ucDatabaseInformation.resx">
       <DependentUpon>ucDatabaseInformation.cs</DependentUpon>
     </EmbeddedResource>
@@ -260,6 +275,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Code\ucSessionDetails.resx">
       <DependentUpon>ucSessionDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\ucTitleBar.resx">
+      <DependentUpon>ucTitleBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
