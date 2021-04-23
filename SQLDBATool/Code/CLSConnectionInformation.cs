@@ -107,6 +107,7 @@ namespace SQLDBATool.Code
         private DataTable FDTSessionWaitStates;
         private DataTable FDTSessionStats;
         private DataTable FDTSessionCommands;
+        private DataTable FDTSessionLocking;
 
         private DataTable FDTDatabaseInformation;
         private DataTable FDTDatabaseFileInformation;
@@ -128,6 +129,7 @@ namespace SQLDBATool.Code
         public DataTable DTDatabaseSpaceInformation { get => FDTDatabaseSpaceInformation; set => FDTDatabaseSpaceInformation = value; }
         public DataTable DTDatabaseSpaceByDrive { get => FDTDatabaseSpaceByDrive; set => FDTDatabaseSpaceByDrive = value; }
         public stSessionGraphMaximums SessionGraphMaximums { get => FSessionGraphMaximums; set => FSessionGraphMaximums = value; }
+        public DataTable DTSessionLocking { get => FDTSessionLocking; set => FDTSessionLocking = value; }
 
         public clsServerStats()
         {
@@ -335,7 +337,7 @@ namespace SQLDBATool.Code
             dtSessionCommands.PrimaryKey = new DataColumn[] { dtSessionCommands.Columns["session_id"] };
             FDTSessionCommands.Merge(dtSessionCommands, false, MissingSchemaAction.Add);
             FDTSessionCommands.AcceptChanges();
-
+            BuildLockingTable(FDTSessions, FDTSessionCommands);
         }
         public void UpdateResponseTime(long responseTimeMS)
         {
@@ -416,6 +418,102 @@ namespace SQLDBATool.Code
             FDTDatabaseFileInformation.AcceptChanges();
 
         }
+        private void BuildLockingTable(DataTable dtSessionInformation, DataTable dtSessionCommands)
+        {
+            string searchString = "blocking_session_id > 0";
+            List<stLockingInfomation> lockingInformation = new List<stLockingInfomation>();
+            List<stLockingInfomation> parentLockingInformation = new List<stLockingInfomation>();
+            foreach (DataRow r in dtSessionInformation.Select(searchString))
+            {
+                stLockingInfomation lockInfo = new stLockingInfomation();
+
+                lockInfo.SessionID = (Int16)r["session_id"];
+                lockInfo.BlockingSessionID = (int)r["blocking_session_id"];
+                lockInfo.BlockingLevel = -1;
+                lockingInformation.Add(lockInfo);
+            }
+
+            if (lockingInformation.Count > 0)
+            {
+                foreach (stLockingInfomation li in lockingInformation)
+                {
+                    stLockingInfomation parentLock = FindLockParent(li.BlockingSessionID, ref lockingInformation);
+                    if (parentLock.BlockingSessionID == 0)
+                    {
+                        if (!FindLock(parentLock.SessionID, ref parentLockingInformation))
+                            parentLockingInformation.Add(parentLock);
+                    }
+
+                }
+                foreach (stLockingInfomation li in parentLockingInformation)
+                {
+                    lockingInformation.Add(li);
+                }
+                int locksProcessed = parentLockingInformation.Count;
+                int lockLevel = 0;
+                while (locksProcessed < lockingInformation.Count)
+                {
+                    for (int i = 0; i < lockingInformation.Count; i++)
+                    {
+                        stLockingInfomation li = lockingInformation[i];
+                        if (li.BlockingLevel == lockLevel)
+                            locksProcessed += UpdateLockLevel(li.SessionID, lockLevel, ref lockingInformation);
+                    }
+                    lockLevel++;
+                }
+            }
+
+        }
+        public stLockingInfomation FindLockParent(int parentSessionID, ref List<stLockingInfomation> lockingInfo)
+        {
+            stLockingInfomation ret = new stLockingInfomation();
+
+            foreach (stLockingInfomation li in lockingInfo)
+            {
+                if (li.SessionID == parentSessionID)
+                {
+                    ret = li;
+                    break;
+                }
+            }
+            if (ret.SessionID == 0)
+            {
+                ret.SessionID = parentSessionID;
+                ret.BlockingLevel = 0;
+                ret.BlockingSessionID = 0;
+            }
+            return ret;
+        }
+        public Boolean FindLock(int sessionID, ref List<stLockingInfomation> lockingInfo)
+        {
+            bool ret = false;
+            foreach (stLockingInfomation li in lockingInfo)
+            {
+                if (li.SessionID == sessionID)
+                {
+                    ret = true;
+                    break;
+
+                }
+            }
+            return ret;
+        }
+        public int UpdateLockLevel(int sessionID, int lockLevel, ref List<stLockingInfomation> lockingInfo)
+        {
+            int ret = 0;
+            for (int i = 0; i < lockingInfo.Count; i++)
+            {
+                if (lockingInfo[i].BlockingSessionID == sessionID)
+                {
+                    stLockingInfomation li = lockingInfo[i];
+                    li.BlockingLevel = lockLevel + 1;
+                    lockingInfo[i] = li;
+                    ret++;
+                }
+            }
+
+            return ret;
+        }
         public string ServerIconStats()
         {
             string ret = "";
@@ -464,7 +562,13 @@ namespace SQLDBATool.Code
 
             return ret;
         }
-
+        public struct stLockingInfomation
+        {
+            public int SessionID;
+            public int BlockingSessionID;
+            public int BlockingLevel;
+        }
     }
+    
 
 }

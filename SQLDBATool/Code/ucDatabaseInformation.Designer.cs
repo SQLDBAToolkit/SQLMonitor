@@ -30,6 +30,7 @@ namespace SQLDBATool.Code
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -51,6 +52,7 @@ namespace SQLDBATool.Code
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataSetServerInformation = new System.Data.DataSet();
             this.dataTableDatabaseInformation = new System.Data.DataTable();
             this.dataColumnDIDatabaseId = new System.Data.DataColumn();
@@ -158,8 +160,7 @@ namespace SQLDBATool.Code
             this.ucDatabaseDetails1 = new SQLDBATool.Code.ucDatabaseDetails();
             this.tabPageDatabaseFiles = new System.Windows.Forms.TabPage();
             this.ucDatabaseFiles1 = new SQLDBATool.Code.ucDatabaseFiles();
-            this.tabPageDatabaseTables = new System.Windows.Forms.TabPage();
-            this.tabPageMissingIndexes = new System.Windows.Forms.TabPage();
+            this.tabPageLocking = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetServerInformation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableDatabaseInformation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbDataGridView1)).BeginInit();
@@ -463,6 +464,14 @@ namespace SQLDBATool.Code
             this.dbDataGridView1.AllowUserToResizeRows = false;
             this.dbDataGridView1.AutoGenerateColumns = false;
             this.dbDataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dbDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dbDataGridView1.ColumnHeadersHeight = 20;
             this.dbDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dbDataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -516,6 +525,14 @@ namespace SQLDBATool.Code
             this.sortFileStreamFreePctDataGridViewTextBoxColumn});
             this.dbDataGridView1.DataMember = "DatabaseInformation";
             this.dbDataGridView1.DataSource = this.dataSetServerInformation;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dbDataGridView1.DefaultCellStyle = dataGridViewCellStyle24;
             this.dbDataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dbDataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dbDataGridView1.MultiSelect = false;
@@ -531,9 +548,9 @@ namespace SQLDBATool.Code
             // 
             this.databaseidDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.databaseidDataGridViewTextBoxColumn.DataPropertyName = "database_id";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.databaseidDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.databaseidDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.databaseidDataGridViewTextBoxColumn.HeaderText = "Database ID";
             this.databaseidDataGridViewTextBoxColumn.Name = "databaseidDataGridViewTextBoxColumn";
             this.databaseidDataGridViewTextBoxColumn.ReadOnly = true;
@@ -561,9 +578,9 @@ namespace SQLDBATool.Code
             // 
             this.createdateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.createdateDataGridViewTextBoxColumn.DataPropertyName = "create_date";
-            dataGridViewCellStyle2.Format = "G";
-            dataGridViewCellStyle2.NullValue = null;
-            this.createdateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Format = "G";
+            dataGridViewCellStyle3.NullValue = null;
+            this.createdateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.createdateDataGridViewTextBoxColumn.HeaderText = "Date Created";
             this.createdateDataGridViewTextBoxColumn.Name = "createdateDataGridViewTextBoxColumn";
             this.createdateDataGridViewTextBoxColumn.ReadOnly = true;
@@ -627,8 +644,8 @@ namespace SQLDBATool.Code
             // 
             this.dBSizeMbDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dBSizeMbDataGridViewTextBoxColumn.DataPropertyName = "DB_Size_Mb";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dBSizeMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dBSizeMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.dBSizeMbDataGridViewTextBoxColumn.HeaderText = "DB Size (Mb)";
             this.dBSizeMbDataGridViewTextBoxColumn.Name = "dBSizeMbDataGridViewTextBoxColumn";
             this.dBSizeMbDataGridViewTextBoxColumn.ReadOnly = true;
@@ -637,8 +654,8 @@ namespace SQLDBATool.Code
             // dBUsedMbDataGridViewTextBoxColumn
             // 
             this.dBUsedMbDataGridViewTextBoxColumn.DataPropertyName = "DB_Used_Mb";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dBUsedMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dBUsedMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.dBUsedMbDataGridViewTextBoxColumn.HeaderText = "DB Used (Mb)";
             this.dBUsedMbDataGridViewTextBoxColumn.Name = "dBUsedMbDataGridViewTextBoxColumn";
             this.dBUsedMbDataGridViewTextBoxColumn.ReadOnly = true;
@@ -647,8 +664,8 @@ namespace SQLDBATool.Code
             // dBFreeMbDataGridViewTextBoxColumn
             // 
             this.dBFreeMbDataGridViewTextBoxColumn.DataPropertyName = "DB_Free_Mb";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dBFreeMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dBFreeMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
             this.dBFreeMbDataGridViewTextBoxColumn.HeaderText = "DB Free (Mb)";
             this.dBFreeMbDataGridViewTextBoxColumn.Name = "dBFreeMbDataGridViewTextBoxColumn";
             this.dBFreeMbDataGridViewTextBoxColumn.ReadOnly = true;
@@ -657,8 +674,8 @@ namespace SQLDBATool.Code
             // dataSizeMbDataGridViewTextBoxColumn
             // 
             this.dataSizeMbDataGridViewTextBoxColumn.DataPropertyName = "Data_Size_Mb";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataSizeMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataSizeMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataSizeMbDataGridViewTextBoxColumn.HeaderText = "Data Size (Mb)";
             this.dataSizeMbDataGridViewTextBoxColumn.Name = "dataSizeMbDataGridViewTextBoxColumn";
             this.dataSizeMbDataGridViewTextBoxColumn.ReadOnly = true;
@@ -667,8 +684,8 @@ namespace SQLDBATool.Code
             // dataUsedMbDataGridViewTextBoxColumn
             // 
             this.dataUsedMbDataGridViewTextBoxColumn.DataPropertyName = "Data_Used_Mb";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataUsedMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataUsedMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataUsedMbDataGridViewTextBoxColumn.HeaderText = "Data Used (Mb)";
             this.dataUsedMbDataGridViewTextBoxColumn.Name = "dataUsedMbDataGridViewTextBoxColumn";
             this.dataUsedMbDataGridViewTextBoxColumn.ReadOnly = true;
@@ -677,8 +694,8 @@ namespace SQLDBATool.Code
             // dataFreeMbDataGridViewTextBoxColumn
             // 
             this.dataFreeMbDataGridViewTextBoxColumn.DataPropertyName = "Data_Free_Mb";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataFreeMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataFreeMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle9;
             this.dataFreeMbDataGridViewTextBoxColumn.HeaderText = "Data Free (Mb)";
             this.dataFreeMbDataGridViewTextBoxColumn.Name = "dataFreeMbDataGridViewTextBoxColumn";
             this.dataFreeMbDataGridViewTextBoxColumn.ReadOnly = true;
@@ -687,9 +704,9 @@ namespace SQLDBATool.Code
             // dataFreePctDataGridViewTextBoxColumn
             // 
             this.dataFreePctDataGridViewTextBoxColumn.DataPropertyName = "Data_Free_Pct";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle9.Format = "#,##0.00%";
-            this.dataFreePctDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.Format = "#,##0.00%";
+            this.dataFreePctDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle10;
             this.dataFreePctDataGridViewTextBoxColumn.HeaderText = "Data Free %";
             this.dataFreePctDataGridViewTextBoxColumn.Name = "dataFreePctDataGridViewTextBoxColumn";
             this.dataFreePctDataGridViewTextBoxColumn.ReadOnly = true;
@@ -698,8 +715,8 @@ namespace SQLDBATool.Code
             // logSizeMbDataGridViewTextBoxColumn
             // 
             this.logSizeMbDataGridViewTextBoxColumn.DataPropertyName = "Log_Size_Mb";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.logSizeMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.logSizeMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
             this.logSizeMbDataGridViewTextBoxColumn.HeaderText = "Log Size (Mb)";
             this.logSizeMbDataGridViewTextBoxColumn.Name = "logSizeMbDataGridViewTextBoxColumn";
             this.logSizeMbDataGridViewTextBoxColumn.ReadOnly = true;
@@ -708,8 +725,8 @@ namespace SQLDBATool.Code
             // logUsedMbDataGridViewTextBoxColumn
             // 
             this.logUsedMbDataGridViewTextBoxColumn.DataPropertyName = "Log_Used_Mb";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.logUsedMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.logUsedMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle12;
             this.logUsedMbDataGridViewTextBoxColumn.HeaderText = "Log Used (Mb)";
             this.logUsedMbDataGridViewTextBoxColumn.Name = "logUsedMbDataGridViewTextBoxColumn";
             this.logUsedMbDataGridViewTextBoxColumn.ReadOnly = true;
@@ -718,8 +735,8 @@ namespace SQLDBATool.Code
             // logFreeMbDataGridViewTextBoxColumn
             // 
             this.logFreeMbDataGridViewTextBoxColumn.DataPropertyName = "Log_Free_Mb";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.logFreeMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.logFreeMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle13;
             this.logFreeMbDataGridViewTextBoxColumn.HeaderText = "Log Free (Mb)";
             this.logFreeMbDataGridViewTextBoxColumn.Name = "logFreeMbDataGridViewTextBoxColumn";
             this.logFreeMbDataGridViewTextBoxColumn.ReadOnly = true;
@@ -728,8 +745,8 @@ namespace SQLDBATool.Code
             // logFreePctDataGridViewTextBoxColumn
             // 
             this.logFreePctDataGridViewTextBoxColumn.DataPropertyName = "Log_Free_Pct";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.logFreePctDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.logFreePctDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle14;
             this.logFreePctDataGridViewTextBoxColumn.HeaderText = "Log Free %";
             this.logFreePctDataGridViewTextBoxColumn.Name = "logFreePctDataGridViewTextBoxColumn";
             this.logFreePctDataGridViewTextBoxColumn.ReadOnly = true;
@@ -738,8 +755,8 @@ namespace SQLDBATool.Code
             // fileStreamMbDataGridViewTextBoxColumn
             // 
             this.fileStreamMbDataGridViewTextBoxColumn.DataPropertyName = "FileStream_Mb";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.fileStreamMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.fileStreamMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle15;
             this.fileStreamMbDataGridViewTextBoxColumn.HeaderText = "FileStream (Mb)";
             this.fileStreamMbDataGridViewTextBoxColumn.Name = "fileStreamMbDataGridViewTextBoxColumn";
             this.fileStreamMbDataGridViewTextBoxColumn.ReadOnly = true;
@@ -748,8 +765,8 @@ namespace SQLDBATool.Code
             // fileStreamUsedMbDataGridViewTextBoxColumn
             // 
             this.fileStreamUsedMbDataGridViewTextBoxColumn.DataPropertyName = "FileStream_Used_Mb";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.fileStreamUsedMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.fileStreamUsedMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle16;
             this.fileStreamUsedMbDataGridViewTextBoxColumn.HeaderText = "FileStream Used (Mb)";
             this.fileStreamUsedMbDataGridViewTextBoxColumn.Name = "fileStreamUsedMbDataGridViewTextBoxColumn";
             this.fileStreamUsedMbDataGridViewTextBoxColumn.ReadOnly = true;
@@ -758,8 +775,8 @@ namespace SQLDBATool.Code
             // fileStreamFreeMbDataGridViewTextBoxColumn
             // 
             this.fileStreamFreeMbDataGridViewTextBoxColumn.DataPropertyName = "FileStream_Free_Mb";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.fileStreamFreeMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.fileStreamFreeMbDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle17;
             this.fileStreamFreeMbDataGridViewTextBoxColumn.HeaderText = "FileStream Free (Mb)";
             this.fileStreamFreeMbDataGridViewTextBoxColumn.Name = "fileStreamFreeMbDataGridViewTextBoxColumn";
             this.fileStreamFreeMbDataGridViewTextBoxColumn.ReadOnly = true;
@@ -768,8 +785,8 @@ namespace SQLDBATool.Code
             // fileStreamFreePctDataGridViewTextBoxColumn
             // 
             this.fileStreamFreePctDataGridViewTextBoxColumn.DataPropertyName = "FileStream_Free_Pct";
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.fileStreamFreePctDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.fileStreamFreePctDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle18;
             this.fileStreamFreePctDataGridViewTextBoxColumn.HeaderText = "FileStream Free %";
             this.fileStreamFreePctDataGridViewTextBoxColumn.Name = "fileStreamFreePctDataGridViewTextBoxColumn";
             this.fileStreamFreePctDataGridViewTextBoxColumn.ReadOnly = true;
@@ -779,9 +796,9 @@ namespace SQLDBATool.Code
             // 
             this.restoredateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.restoredateDataGridViewTextBoxColumn.DataPropertyName = "restore_date";
-            dataGridViewCellStyle18.Format = "G";
-            dataGridViewCellStyle18.NullValue = null;
-            this.restoredateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle19.Format = "G";
+            dataGridViewCellStyle19.NullValue = null;
+            this.restoredateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle19;
             this.restoredateDataGridViewTextBoxColumn.HeaderText = "Restored";
             this.restoredateDataGridViewTextBoxColumn.Name = "restoredateDataGridViewTextBoxColumn";
             this.restoredateDataGridViewTextBoxColumn.ReadOnly = true;
@@ -798,9 +815,9 @@ namespace SQLDBATool.Code
             // lastfullbackupsizeDataGridViewTextBoxColumn
             // 
             this.lastfullbackupsizeDataGridViewTextBoxColumn.DataPropertyName = "last_full_backup_size";
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle19.Format = "#,##0";
-            this.lastfullbackupsizeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle20.Format = "#,##0";
+            this.lastfullbackupsizeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle20;
             this.lastfullbackupsizeDataGridViewTextBoxColumn.HeaderText = "Backup Size (Mb)";
             this.lastfullbackupsizeDataGridViewTextBoxColumn.Name = "lastfullbackupsizeDataGridViewTextBoxColumn";
             this.lastfullbackupsizeDataGridViewTextBoxColumn.ReadOnly = true;
@@ -809,9 +826,9 @@ namespace SQLDBATool.Code
             // lastfullbackupcompressedsizeDataGridViewTextBoxColumn
             // 
             this.lastfullbackupcompressedsizeDataGridViewTextBoxColumn.DataPropertyName = "last_full_backup_compressed_size";
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle20.Format = "#,##0";
-            this.lastfullbackupcompressedsizeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle21.Format = "#,##0";
+            this.lastfullbackupcompressedsizeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle21;
             this.lastfullbackupcompressedsizeDataGridViewTextBoxColumn.HeaderText = "Backup Compressed (Mb)";
             this.lastfullbackupcompressedsizeDataGridViewTextBoxColumn.Name = "lastfullbackupcompressedsizeDataGridViewTextBoxColumn";
             this.lastfullbackupcompressedsizeDataGridViewTextBoxColumn.ReadOnly = true;
@@ -836,8 +853,8 @@ namespace SQLDBATool.Code
             // lastotherbackupsizeDataGridViewTextBoxColumn
             // 
             this.lastotherbackupsizeDataGridViewTextBoxColumn.DataPropertyName = "last_other_backup_size";
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.lastotherbackupsizeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.lastotherbackupsizeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle22;
             this.lastotherbackupsizeDataGridViewTextBoxColumn.HeaderText = "Backup Size (Mb)";
             this.lastotherbackupsizeDataGridViewTextBoxColumn.Name = "lastotherbackupsizeDataGridViewTextBoxColumn";
             this.lastotherbackupsizeDataGridViewTextBoxColumn.ReadOnly = true;
@@ -846,8 +863,8 @@ namespace SQLDBATool.Code
             // lastotherbackupcompressedsizeDataGridViewTextBoxColumn
             // 
             this.lastotherbackupcompressedsizeDataGridViewTextBoxColumn.DataPropertyName = "last_other_backup_compressed_size";
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.lastotherbackupcompressedsizeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.lastotherbackupcompressedsizeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle23;
             this.lastotherbackupcompressedsizeDataGridViewTextBoxColumn.HeaderText = "Backup Compressed (Mb)";
             this.lastotherbackupcompressedsizeDataGridViewTextBoxColumn.Name = "lastotherbackupcompressedsizeDataGridViewTextBoxColumn";
             this.lastotherbackupcompressedsizeDataGridViewTextBoxColumn.ReadOnly = true;
@@ -995,8 +1012,7 @@ namespace SQLDBATool.Code
             this.tabControlDatabaseInfo.Controls.Add(this.tabPageDatabaseSpace);
             this.tabControlDatabaseInfo.Controls.Add(this.tabPageDatabaseInfo);
             this.tabControlDatabaseInfo.Controls.Add(this.tabPageDatabaseFiles);
-            this.tabControlDatabaseInfo.Controls.Add(this.tabPageDatabaseTables);
-            this.tabControlDatabaseInfo.Controls.Add(this.tabPageMissingIndexes);
+            this.tabControlDatabaseInfo.Controls.Add(this.tabPageLocking);
             this.tabControlDatabaseInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlDatabaseInfo.Location = new System.Drawing.Point(0, 0);
             this.tabControlDatabaseInfo.Name = "tabControlDatabaseInfo";
@@ -1061,23 +1077,14 @@ namespace SQLDBATool.Code
             this.ucDatabaseFiles1.Size = new System.Drawing.Size(1459, 258);
             this.ucDatabaseFiles1.TabIndex = 0;
             // 
-            // tabPageDatabaseTables
+            // tabPageLocking
             // 
-            this.tabPageDatabaseTables.Location = new System.Drawing.Point(4, 4);
-            this.tabPageDatabaseTables.Name = "tabPageDatabaseTables";
-            this.tabPageDatabaseTables.Size = new System.Drawing.Size(1459, 258);
-            this.tabPageDatabaseTables.TabIndex = 2;
-            this.tabPageDatabaseTables.Text = "Tables";
-            this.tabPageDatabaseTables.UseVisualStyleBackColor = true;
-            // 
-            // tabPageMissingIndexes
-            // 
-            this.tabPageMissingIndexes.Location = new System.Drawing.Point(4, 4);
-            this.tabPageMissingIndexes.Name = "tabPageMissingIndexes";
-            this.tabPageMissingIndexes.Size = new System.Drawing.Size(1459, 258);
-            this.tabPageMissingIndexes.TabIndex = 3;
-            this.tabPageMissingIndexes.Text = "Missing Indexes";
-            this.tabPageMissingIndexes.UseVisualStyleBackColor = true;
+            this.tabPageLocking.Location = new System.Drawing.Point(4, 4);
+            this.tabPageLocking.Name = "tabPageLocking";
+            this.tabPageLocking.Size = new System.Drawing.Size(1459, 258);
+            this.tabPageLocking.TabIndex = 5;
+            this.tabPageLocking.Text = "Locking";
+            this.tabPageLocking.UseVisualStyleBackColor = true;
             // 
             // ucDatabaseInformation
             // 
@@ -1157,8 +1164,6 @@ namespace SQLDBATool.Code
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TabControl tabControlDatabaseInfo;
         private System.Windows.Forms.TabPage tabPageDatabaseInfo;
-        private System.Windows.Forms.TabPage tabPageDatabaseTables;
-        private System.Windows.Forms.TabPage tabPageMissingIndexes;
         private System.Windows.Forms.DataGridViewTextBoxColumn databaseidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn databaseNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ownerDataGridViewTextBoxColumn;
@@ -1212,5 +1217,6 @@ namespace SQLDBATool.Code
         private ucDatabaseDetails ucDatabaseDetails1;
         private System.Windows.Forms.TabPage tabPageDatabaseFiles;
         private ucDatabaseFiles ucDatabaseFiles1;
+        private System.Windows.Forms.TabPage tabPageLocking;
     }
 }
