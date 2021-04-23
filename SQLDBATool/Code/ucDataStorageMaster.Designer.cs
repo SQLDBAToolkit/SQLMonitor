@@ -34,6 +34,7 @@ namespace SQLDBATool.Code
             // 
             // ucDatabaseStorageMain
             // 
+            this.ucDatabaseStorageMain.DisplaySize = 0;
             this.ucDatabaseStorageMain.Dock = System.Windows.Forms.DockStyle.Top;
             this.ucDatabaseStorageMain.HeaderTitle = "Database Storage";
             this.ucDatabaseStorageMain.Location = new System.Drawing.Point(0, 0);
@@ -48,6 +49,7 @@ namespace SQLDBATool.Code
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.Controls.Add(this.ucDatabaseStorageMain);
             this.Name = "ucDataStorageMaster";
             this.Size = new System.Drawing.Size(931, 390);

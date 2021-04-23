@@ -27,7 +27,7 @@ namespace SQLDBATool.Code
 
         public string DatabaseName { get => FDatabaseName; set => FDatabaseName = value; }
         public int TotalSize { get => FTotalSize; set => FTotalSize = value; }
-        public int UsedSize { get => FUsedSize; set => FUsedSize = value; }
+        public int UsedSize { get => (FScanningMsg.Length > 0 ? FTotalSize : FUsedSize); set => FUsedSize = value; }
         public int DatabaseID { get => FDatabaseID; set => FDatabaseID = value; }
         public string PopupText
         {

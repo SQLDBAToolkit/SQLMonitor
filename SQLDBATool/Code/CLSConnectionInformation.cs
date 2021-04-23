@@ -124,6 +124,7 @@ namespace SQLDBATool.Code
         public DataTable DTSessionCommands { get => FDTSessionCommands; set => FDTSessionCommands = value; }
         public DataTable DTDatabaseInformation { get => FDTDatabaseInformation; set => FDTDatabaseInformation = value; }
         public DataTable DTDatabaseFileInformation { get => FDTDatabaseFileInformation; set => FDTDatabaseFileInformation = value; }
+        public DataTable DTDatabaseSpaceInformation { get => FDTDatabaseSpaceInformation; set => FDTDatabaseSpaceInformation = value; }
         public DataTable DTDatabaseSpaceByDrive { get => FDTDatabaseSpaceByDrive; set => FDTDatabaseSpaceByDrive = value; }
         public stSessionGraphMaximums SessionGraphMaximums { get => FSessionGraphMaximums; set => FSessionGraphMaximums = value; }
 
@@ -141,6 +142,7 @@ namespace SQLDBATool.Code
             FDTDatabaseInformation = new DataTable();
             FDTDatabaseFileInformation = new DataTable();
             FDTDatabaseSpaceInformation = new DataTable();
+            FDTDatabaseSpaceByDrive = new DataTable();
             FSessionGraphMaximums = new stSessionGraphMaximums();
             FSessionGraphMaximums.cpuTime = 0;
             FDTResponseTime.Columns.Add("ResponseTimeMS", typeof(long));

@@ -39,8 +39,8 @@ namespace SQLDBATool.Code
                             r.Delete();
                     }
 
-                    
                     ucDataStorageMasterGraphs.PopulateMainGraph(treeInformation.ConnectionInformation.ServerStats.DTDatabaseSpaceInformation, treeInformation.ConnectionInformation.ServerStats.DTDatabaseInformation);
+                    ucDataStorageMasterGraphs.PopulateDriveGraphs(treeInformation.ConnectionInformation.ServerStats.DTDatabaseSpaceInformation, treeInformation.ConnectionInformation.ServerStats.DTDatabaseSpaceByDrive);
                 }
             }
             catch (Exception ex)

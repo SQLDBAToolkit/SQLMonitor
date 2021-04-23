@@ -8,18 +8,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace SQLDBATool.Code
 {
     public partial class ucDatabaseStorage : UserControl
     {
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, Int32 wMsg, bool wParam, Int32 lParam);
+
+        private const int WM_SETREDRAW = 11;
+
         private string FHeaderTitle = "Header Text";
         private int FTotalSizeData = 0;
         private int FTotalSizeLog = 0;
         private int FTotalSizeFileStream = 0;
-        private int FLeftData = 0;
-        private int FLeftLogs = 0;
-        private int FLeftFileStream = 0;
+        private int FDisplaySize = 0;
+        private bool FRefreshingData = false;
         private List<clsDBGraphs> FDBGraphs;
         public ucDatabaseStorage()
         {
@@ -28,7 +33,6 @@ namespace SQLDBATool.Code
             if (dataTableSizes.Rows.Count == 0)
                 dataTableSizes.Rows.Add();
         }
-
         public string HeaderTitle { get => FHeaderTitle; set => FHeaderTitle = value; }
         public int TotalSizeData
         {
@@ -57,6 +61,8 @@ namespace SQLDBATool.Code
                 dataTableSizes.Rows[0]["filestream_size_mb"] = value;
             }
         }
+
+        public int DisplaySize { get => FDisplaySize; set => FDisplaySize = value; }
 
         private void DrawHeaderBackground(PaintEventArgs e)
         {
@@ -88,12 +94,12 @@ namespace SQLDBATool.Code
         }
         public void PreRefresh()
         {
+            DrawingControl.SuspendDrawing(this);
+            FRefreshingData = true;
             foreach (clsDBGraphs grph in FDBGraphs)
             {
                 grph.Refreshed = false;
             }
-            FLeftData = 0;
-            FLeftLogs = 0;
         }
         public void PostRefresh()
         {
@@ -121,6 +127,8 @@ namespace SQLDBATool.Code
             {
                 MessageBox.Show(ex.Message);
             }
+            DrawingControl.ResumeDrawing(this);
+            FRefreshingData = false;
         }
         public void AddDatabase(int databaseID, string databaseName, int totalSizeData, int usedSizeData, int totalSizeLogs, int usedSizeLogs, int totalSizeFileStream, int usedSizeFileStream, string scanningMsg)
         {
@@ -132,7 +140,6 @@ namespace SQLDBATool.Code
                 SetUpGraph(panelDataGraph, dbGraphs.DataGraph, "Data", databaseID, databaseName, totalSizeData, usedSizeData, scanningMsg);
                 SetUpGraph(panelLogGraph, dbGraphs.LogGraph, "Logs", databaseID, databaseName, totalSizeLogs, usedSizeLogs, scanningMsg);
                 SetUpGraph(panelFileStreamGraph, dbGraphs.FileStreamGraph, "FileStream", databaseID, databaseName, totalSizeFileStream, usedSizeFileStream, scanningMsg);
-                FLeftData += dbGraphs.DataGraph.Width;
                 dbGraphs.Refreshed = true;
             }
             catch (Exception ex)
@@ -162,40 +169,80 @@ namespace SQLDBATool.Code
 
 
         }
-        private int GetMaxSize()
+        public  int GetMaxSize()
         {
             int ret = TotalSizeData;
             if (ret < TotalSizeLog)
                 ret = TotalSizeLog;
             if (ret < TotalSizeFileStream)
                 ret = TotalSizeFileStream;
+            if (ret < FDisplaySize)
+                ret = FDisplaySize;
             return ret;
 
         }
         public void SpaceGraphs()
         {
-            int leftData = 0;
-            int leftLog = 0;
-            int leftFileStream = 0;
-            int maxSize = GetMaxSize();
-            foreach (clsDBGraphs grph in FDBGraphs)
+            if (!FRefreshingData)
+                DrawingControl.SuspendDrawing(this);
+            if (FDBGraphs.Count > 0)
             {
-                grph.DataGraph.Left = leftData;
-                grph.DataGraph.Width = (int)Math.Round(((float)(panelDataGraph.Width - 1) * ((float)grph.DataGraph.TotalSize / maxSize)),0);
-                leftData += grph.DataGraph.Width;
-                grph.DataGraph.DrawUsed();
+                int leftData = 0;
+                int leftLog = 0;
+                int leftFileStream = 0;
+                int maxSize = GetMaxSize();
+                int leftDataCheck = 0;
+                int leftLogCheck = 0;
+                int leftFileStreamCheck = 0;
+                foreach (clsDBGraphs grph in FDBGraphs)
+                {
+                    int newLeft;
+                    int newWidth;
+                    newLeft = (int)Math.Round(((float)(panelDataGraph.ClientRectangle.Width) * ((float)leftData / maxSize)), 0);
+                    newWidth = (int)Math.Round(((float)(panelDataGraph.ClientRectangle.Width) * ((float)grph.DataGraph.TotalSize / maxSize)), 0);
+                    if (newLeft > leftDataCheck)
+                    {
+                        newLeft = leftDataCheck;
+                        newWidth++;
+                    }
+                    grph.DataGraph.Left = newLeft;
+                    grph.DataGraph.Width = newWidth;
+                    grph.DataGraph.Height = panelDataGraph.ClientRectangle.Height;
+                    leftData += grph.DataGraph.TotalSize;
+                    leftDataCheck = newLeft + newWidth;
+                    grph.DataGraph.DrawUsed();
 
-                grph.LogGraph.Left = leftLog;
-                grph.LogGraph.Width = (int)Math.Round(((float)(panelLogGraph.Width - 1) * ((float)grph.LogGraph.TotalSize / maxSize)),0);
-                leftLog += grph.LogGraph.Width;
-                grph.LogGraph.DrawUsed();
+                    newLeft = (int)Math.Round(((float)(panelLogGraph.ClientRectangle.Width) * ((float)leftLog / maxSize)), 0);
+                    newWidth = (int)Math.Round(((float)(panelLogGraph.ClientRectangle.Width) * ((float)grph.LogGraph.TotalSize / maxSize)), 0);
+                    if (newLeft > leftLogCheck)
+                    {
+                        newLeft = leftLogCheck;
+                        newWidth++;
+                    }
+                    grph.LogGraph.Left = newLeft;
+                    grph.LogGraph.Width = newWidth;
+                    grph.LogGraph.Height = panelLogGraph.ClientRectangle.Height;
+                    leftLog += grph.LogGraph.TotalSize;
+                    leftLogCheck = newLeft + newWidth;
+                    grph.LogGraph.DrawUsed();
 
-                grph.FileStreamGraph.Left = leftFileStream;
-                grph.FileStreamGraph.Width = (int)Math.Round(((float)(panelFileStreamGraph.Width - 1) * ((float)grph.FileStreamGraph.TotalSize / maxSize)),0);
-                leftFileStream += grph.FileStreamGraph.Width;
-                grph.FileStreamGraph.DrawUsed();
+                    newLeft = (int)Math.Round(((float)(panelFileStreamGraph.ClientRectangle.Width) * ((float)leftFileStream / maxSize)), 0);
+                    newWidth = (int)Math.Round(((float)(panelFileStreamGraph.ClientRectangle.Width) * ((float)grph.FileStreamGraph.TotalSize / maxSize)), 0);
+                    if (newLeft > leftFileStreamCheck)
+                    {
+                        newLeft = leftFileStreamCheck;
+                        newWidth++;
+                    }
+                    grph.FileStreamGraph.Left = newLeft;
+                    grph.FileStreamGraph.Width = newWidth;
+                    grph.FileStreamGraph.Height = panelFileStreamGraph.ClientRectangle.Height;
+                    leftLog += grph.FileStreamGraph.TotalSize;
+                    leftFileStreamCheck = newLeft + newWidth;
+                    grph.FileStreamGraph.DrawUsed();
+                }
             }
-
+            if (!FRefreshingData)
+                DrawingControl.ResumeDrawing(this);
         }
         private clsDBGraphs GetDBGraph(int databaseID, string databaseName)
         {
@@ -247,7 +294,7 @@ namespace SQLDBATool.Code
     public class clsDBGraphs : IDisposable
     {
         private bool disposed = false;
-        private IntPtr handle;
+
         private string FDatabaseName;
         private int FDatabaseID;
         private bool FRefreshed;

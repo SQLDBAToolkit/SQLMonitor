@@ -352,7 +352,7 @@ namespace SQLDBATool.Code
                     }
                     else
                     {
-                        Thread.Sleep(12000);
+                        Thread.Sleep(360000);
                     }
                 }
             }
@@ -1332,6 +1332,7 @@ DROP TABLE if exists #Results
 create table #Results(
 [database_id] int,
 [Database_Name] sysname, 
+[File_id] int,
 [File Name] sysname, 
 [Physical Name] NVARCHAR(260),
 [File Type] VARCHAR(20), 
@@ -1345,10 +1346,11 @@ begin
 	SELECT @SQL =    
 'USE [?] 
 insert into #Results
-([database_id], [Database_Name], [File Name], [Physical Name], [File Type], [Total Size in Mb], [Available Space in Mb], [Growth Units], [Max File Size in Mb])
+([database_id], [Database_Name], [File_id], [File Name], [Physical Name], [File Type], [Total Size in Mb], [Available Space in Mb], [Growth Units], [Max File Size in Mb])
 SELECT 
     DB_ID() database_id
    ,DB_NAME() DatabaseName   
+   ,[file_id]
    ,[name] AS [FileName]    
    ,physical_name AS [PhysicalName]    
    ,type_desc AS [FileType]
@@ -1375,10 +1377,11 @@ ORDER BY [Type], [file_id]'
 	EXEC sp_MSforeachdb @SQL   
 
 	insert into #Results
-	([database_id], [Database_Name], [File Name], [Physical Name], [File Type], [Total Size in Mb], [Available Space in Mb], [Growth Units], [Max File Size in Mb])
+	([database_id], [Database_Name], [file_id], [File Name], [Physical Name], [File Type], [Total Size in Mb], [Available Space in Mb], [Growth Units], [Max File Size in Mb])
 	SELECT 
 	    database_id
 	   ,DB_NAME(database_id) DatabaseName   
+	   ,[file_id]
 	   ,[name] AS [FileName]    
 	   ,physical_name AS [PhysicalName]    
 	   ,type_desc AS [FileType]
@@ -1454,10 +1457,11 @@ end
 else
 begin
 	insert into #Results
-	([database_id], [Database_Name], [File Name], [Physical Name], [File Type], [Total Size in Mb], [Available Space in Mb], [Growth Units], [Max File Size in Mb])
+	([database_id], [Database_Name], [File_id], [File Name], [Physical Name], [File Type], [Total Size in Mb], [Available Space in Mb], [Growth Units], [Max File Size in Mb])
 	SELECT 
 	    database_id
 	   ,DB_NAME(database_id) DatabaseName   
+	   ,[file_id]
 	   ,[name] AS [FileName]    
 	   ,physical_name AS [PhysicalName]    
 	   ,type_desc AS [FileType]
@@ -1618,7 +1622,10 @@ from outpt
 		on outpt.database_id = backupResults.database_id
 ORDER BY [Database_Name]   
 
-SELECT [Database_Name],   
+SELECT 
+	[database_id],
+	[Database_Name],   
+	[file_id]
     [File Name],   
     [Physical Name],   
     [File Type],   
@@ -1633,6 +1640,7 @@ SELECT [Database_Name],
     case when [Available Space in Mb] >= 0 then [Total Size in Mb] - [Available Space in Mb] else -1 end AS [Sort_DB_Used_Mb],  
     case when [Available Space in Mb] >= 0 then (1.0 *[Available Space in Mb]) / [Total Size in Mb] else case when @QuickScan = 1 then 0 else 0 end end  AS [Sort Free Space %] 
 FROM #Results    
+order by Database_name, [File Type] desc, file_id
 
 SELECT
     0 as DriveType
@@ -1652,6 +1660,7 @@ SELECT
    ,sum(case when [File Type] = 'FILESTREAM' then [Total Size in Mb] else 0 end) as filestream_size_mb
 FROM #Results   
 group by left([Physical Name],1)
+order by DriveType, Drive
 
 ;with outpt as
 (
@@ -1661,7 +1670,7 @@ group by left([Physical Name],1)
 SELECT    
     t.database_id
    ,t.database_name
-   ,t.Drive
+   ,Upper(t.Drive) Drive
    ,isnull(sum(D.[Total Size in Mb]),0) as db_size_mb
    ,isnull(sum(case when D.[Available Space in Mb] >= 0 then D.[Consumed Space in Mb] else case when @QuickScan = 1 then 0 else 0 end end),0) AS [Data_Used_Mb]
    ,isnull(sum(L.[Total Size in Mb]),0) as log_size_mb
@@ -1699,11 +1708,10 @@ FROM outpt  T
 	GROUP BY database_id  
 	) AS FS ON T.[database_id] = FS.[database_id]  
 group by t.database_id, t.database_name, t.drive
-
+order by Drive, Database_Name
 
 DROP TABLE #Results   
 end
-
 ";
             using (SqlCommand cmd = new SqlCommand())
             {
