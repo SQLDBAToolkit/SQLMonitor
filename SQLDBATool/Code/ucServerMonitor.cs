@@ -12,6 +12,8 @@ namespace SQLDBATool.Code
         private Guid FSessionServerID;
         public Guid ServerID { get => FServerID; set => FServerID = value; }
         public Guid SessionServerID { get => FSessionServerID; set => FSessionServerID = value; }
+        public CLSTreeInformation TreeInformation { get => FTreeInformation; set => FTreeInformation = value; }
+
         private DataTable FDTSessionsTable;
         private int FFirstDisplayedRowIndex = 0;
         private Code.CLSTreeInformation FTreeInformation;

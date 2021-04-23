@@ -20,7 +20,15 @@ namespace SQLDBATool.Code
             InitializeComponent();
         }
 
-        public string TitleText { get => FTitleText; set => FTitleText = value; }
+        public string TitleText
+        {
+            get => FTitleText;
+            set
+            {
+                FTitleText = value;
+                this.Refresh();
+            }
+        }
 
         private void DrawHeaderBackground(PaintEventArgs e)
         {

@@ -96,9 +96,8 @@ namespace SQLDBATool.Code
             this.panelLogGraph = new System.Windows.Forms.Panel();
             this.panelDataGraph = new System.Windows.Forms.Panel();
             this.labelPopup = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.labelHeaderText = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.ucTitleBarText = new SQLDBATool.Code.ucTitleBar();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetServerInformation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableDatabaseInformation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableSizes)).BeginInit();
@@ -111,7 +110,6 @@ namespace SQLDBATool.Code
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel6.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -426,7 +424,7 @@ namespace SQLDBATool.Code
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 20);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 21);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -436,7 +434,7 @@ namespace SQLDBATool.Code
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel6);
-            this.splitContainer1.Size = new System.Drawing.Size(697, 73);
+            this.splitContainer1.Size = new System.Drawing.Size(697, 72);
             this.splitContainer1.SplitterDistance = 232;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -449,7 +447,7 @@ namespace SQLDBATool.Code
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(232, 73);
+            this.panel1.Size = new System.Drawing.Size(232, 72);
             this.panel1.TabIndex = 0;
             // 
             // panel5
@@ -528,7 +526,7 @@ namespace SQLDBATool.Code
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(461, 73);
+            this.panel6.Size = new System.Drawing.Size(461, 72);
             this.panel6.TabIndex = 4;
             // 
             // panelFileStreamGraph
@@ -561,41 +559,27 @@ namespace SQLDBATool.Code
             this.labelPopup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelPopup.Location = new System.Drawing.Point(0, 0);
             this.labelPopup.Name = "labelPopup";
-            this.labelPopup.Size = new System.Drawing.Size(166, 73);
+            this.labelPopup.Size = new System.Drawing.Size(162, 68);
             this.labelPopup.TabIndex = 4;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.Black;
-            this.panel2.Controls.Add(this.labelHeaderText);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(863, 20);
-            this.panel2.TabIndex = 1;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
-            // 
-            // labelHeaderText
-            // 
-            this.labelHeaderText.AutoSize = true;
-            this.labelHeaderText.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelHeaderText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelHeaderText.ForeColor = System.Drawing.Color.Black;
-            this.labelHeaderText.Location = new System.Drawing.Point(0, 0);
-            this.labelHeaderText.Name = "labelHeaderText";
-            this.labelHeaderText.Size = new System.Drawing.Size(41, 13);
-            this.labelHeaderText.TabIndex = 0;
-            this.labelHeaderText.Text = "label1";
-            this.labelHeaderText.Visible = false;
             // 
             // panel7
             // 
+            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel7.Controls.Add(this.labelPopup);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel7.Location = new System.Drawing.Point(697, 20);
+            this.panel7.Location = new System.Drawing.Point(697, 21);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(166, 73);
+            this.panel7.Size = new System.Drawing.Size(166, 72);
             this.panel7.TabIndex = 5;
+            // 
+            // ucTitleBarText
+            // 
+            this.ucTitleBarText.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucTitleBarText.Location = new System.Drawing.Point(0, 0);
+            this.ucTitleBarText.Name = "ucTitleBarText";
+            this.ucTitleBarText.Size = new System.Drawing.Size(863, 21);
+            this.ucTitleBarText.TabIndex = 1;
+            this.ucTitleBarText.TitleText = null;
             // 
             // ucDatabaseStorage
             // 
@@ -603,7 +587,7 @@ namespace SQLDBATool.Code
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.panel7);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.ucTitleBarText);
             this.Name = "ucDatabaseStorage";
             this.Size = new System.Drawing.Size(863, 93);
             ((System.ComponentModel.ISupportInitialize)(this.dataSetServerInformation)).EndInit();
@@ -618,8 +602,6 @@ namespace SQLDBATool.Code
             this.panel4.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -679,8 +661,6 @@ namespace SQLDBATool.Code
         private System.Data.DataColumn dataColumnDISortFileStreamFreePct;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label labelHeaderText;
         private System.Windows.Forms.Panel panel5;
         private UCDataLabel ucDataLabel3;
         private System.Windows.Forms.Panel panel4;
@@ -697,5 +677,6 @@ namespace SQLDBATool.Code
         private System.Data.DataColumn dataColumn3;
         private System.Windows.Forms.Label labelPopup;
         private System.Windows.Forms.Panel panel7;
+        private ucTitleBar ucTitleBarText;
     }
 }

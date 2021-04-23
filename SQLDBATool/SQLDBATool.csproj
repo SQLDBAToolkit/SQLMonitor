@@ -218,6 +218,12 @@
     <Compile Include="Code\ucTitleBar.Designer.cs">
       <DependentUpon>ucTitleBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Code\ucDatabaseFiles.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Code\ucDatabaseFiles.Designer.cs">
+      <DependentUpon>ucDatabaseFiles.cs</DependentUpon>
+    </Compile>
     <Compile Include="DBTestDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -278,6 +284,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Code\ucTitleBar.resx">
       <DependentUpon>ucTitleBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\ucDatabaseFiles.resx">
+      <DependentUpon>ucDatabaseFiles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

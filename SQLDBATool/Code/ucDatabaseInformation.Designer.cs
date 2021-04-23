@@ -156,9 +156,10 @@ namespace SQLDBATool.Code
             this.ucDataStorageMasterGraphs = new SQLDBATool.Code.ucDataStorageMaster();
             this.tabPageDatabaseInfo = new System.Windows.Forms.TabPage();
             this.ucDatabaseDetails1 = new SQLDBATool.Code.ucDatabaseDetails();
+            this.tabPageDatabaseFiles = new System.Windows.Forms.TabPage();
+            this.ucDatabaseFiles1 = new SQLDBATool.Code.ucDatabaseFiles();
             this.tabPageDatabaseTables = new System.Windows.Forms.TabPage();
             this.tabPageMissingIndexes = new System.Windows.Forms.TabPage();
-            this.tabPageDatabaseFiles = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetServerInformation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableDatabaseInformation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbDataGridView1)).BeginInit();
@@ -169,6 +170,7 @@ namespace SQLDBATool.Code
             this.tabControlDatabaseInfo.SuspendLayout();
             this.tabPageDatabaseSpace.SuspendLayout();
             this.tabPageDatabaseInfo.SuspendLayout();
+            this.tabPageDatabaseFiles.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataSetServerInformation
@@ -522,6 +524,8 @@ namespace SQLDBATool.Code
             this.dbDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dbDataGridView1.Size = new System.Drawing.Size(1467, 289);
             this.dbDataGridView1.TabIndex = 1;
+            this.dbDataGridView1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dbDataGridView1_RowEnter);
+            this.dbDataGridView1.SelectionChanged += new System.EventHandler(this.dbDataGridView1_SelectionChanged);
             // 
             // databaseidDataGridViewTextBoxColumn
             // 
@@ -1039,6 +1043,24 @@ namespace SQLDBATool.Code
             this.ucDatabaseDetails1.Size = new System.Drawing.Size(1453, 252);
             this.ucDatabaseDetails1.TabIndex = 0;
             // 
+            // tabPageDatabaseFiles
+            // 
+            this.tabPageDatabaseFiles.Controls.Add(this.ucDatabaseFiles1);
+            this.tabPageDatabaseFiles.Location = new System.Drawing.Point(4, 4);
+            this.tabPageDatabaseFiles.Name = "tabPageDatabaseFiles";
+            this.tabPageDatabaseFiles.Size = new System.Drawing.Size(1459, 258);
+            this.tabPageDatabaseFiles.TabIndex = 4;
+            this.tabPageDatabaseFiles.Text = "Database Files";
+            this.tabPageDatabaseFiles.UseVisualStyleBackColor = true;
+            // 
+            // ucDatabaseFiles1
+            // 
+            this.ucDatabaseFiles1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucDatabaseFiles1.Location = new System.Drawing.Point(0, 0);
+            this.ucDatabaseFiles1.Name = "ucDatabaseFiles1";
+            this.ucDatabaseFiles1.Size = new System.Drawing.Size(1459, 258);
+            this.ucDatabaseFiles1.TabIndex = 0;
+            // 
             // tabPageDatabaseTables
             // 
             this.tabPageDatabaseTables.Location = new System.Drawing.Point(4, 4);
@@ -1057,15 +1079,6 @@ namespace SQLDBATool.Code
             this.tabPageMissingIndexes.Text = "Missing Indexes";
             this.tabPageMissingIndexes.UseVisualStyleBackColor = true;
             // 
-            // tabPageDatabaseFiles
-            // 
-            this.tabPageDatabaseFiles.Location = new System.Drawing.Point(4, 4);
-            this.tabPageDatabaseFiles.Name = "tabPageDatabaseFiles";
-            this.tabPageDatabaseFiles.Size = new System.Drawing.Size(1459, 258);
-            this.tabPageDatabaseFiles.TabIndex = 4;
-            this.tabPageDatabaseFiles.Text = "Database Files";
-            this.tabPageDatabaseFiles.UseVisualStyleBackColor = true;
-            // 
             // ucDatabaseInformation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1083,6 +1096,7 @@ namespace SQLDBATool.Code
             this.tabControlDatabaseInfo.ResumeLayout(false);
             this.tabPageDatabaseSpace.ResumeLayout(false);
             this.tabPageDatabaseInfo.ResumeLayout(false);
+            this.tabPageDatabaseFiles.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1197,5 +1211,6 @@ namespace SQLDBATool.Code
         private ucDataStorageMaster ucDataStorageMasterGraphs;
         private ucDatabaseDetails ucDatabaseDetails1;
         private System.Windows.Forms.TabPage tabPageDatabaseFiles;
+        private ucDatabaseFiles ucDatabaseFiles1;
     }
 }

@@ -37,7 +37,7 @@ namespace SQLDBATool.Code
             // labelFont
             // 
             this.labelFont.AutoSize = true;
-            this.labelFont.Location = new System.Drawing.Point(88, 10);
+            this.labelFont.Location = new System.Drawing.Point(3, 0);
             this.labelFont.Name = "labelFont";
             this.labelFont.Size = new System.Drawing.Size(35, 13);
             this.labelFont.TabIndex = 0;
@@ -50,7 +50,7 @@ namespace SQLDBATool.Code
             this.panelBackground.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelBackground.Location = new System.Drawing.Point(0, 0);
             this.panelBackground.Name = "panelBackground";
-            this.panelBackground.Size = new System.Drawing.Size(826, 24);
+            this.panelBackground.Size = new System.Drawing.Size(826, 20);
             this.panelBackground.TabIndex = 1;
             this.panelBackground.Paint += new System.Windows.Forms.PaintEventHandler(this.panelBackground_Paint);
             // 
@@ -60,7 +60,7 @@ namespace SQLDBATool.Code
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panelBackground);
             this.Name = "ucTitleBar";
-            this.Size = new System.Drawing.Size(826, 24);
+            this.Size = new System.Drawing.Size(826, 20);
             this.panelBackground.ResumeLayout(false);
             this.panelBackground.PerformLayout();
             this.ResumeLayout(false);

@@ -87,6 +87,7 @@ namespace SQLDBATool.Code
             FServerStats.UpdateDatabaseInformation(e.DatabaseInformation);
             FServerStats.UpdateDatabaseSize(e.DatabaseSpaceOverview);
             FServerStats.UpdateDatabaseSizeByDrive(e.DatabaseSpaceByDrive);
+            FServerStats.UpdateDatabaseFileInformation(e.DatabaseFileInformation);
             Code.Globals.MasterForm.ShowDatabaseMonitor(FParentTreeInformation, false);
             
         }
@@ -397,7 +398,24 @@ namespace SQLDBATool.Code
             FDTDatabaseSpaceByDrive.AcceptChanges();
 
         }
+        public void UpdateDatabaseFileInformation(DataTable dtDatabaseFileInformation)
+        {
+            if (FDTDatabaseFileInformation.Columns.Count == 0)
+            {
+                FDTDatabaseFileInformation = dtDatabaseFileInformation.Clone();
+                FDTDatabaseFileInformation.PrimaryKey = new DataColumn[] { FDTDatabaseFileInformation.Columns["database_id"], FDTDatabaseFileInformation.Columns["file_id"] };
+                foreach (DataColumn col in FDTDatabaseFileInformation.Columns)
+                {
+                    col.ReadOnly = false;
+                }
+            }
 
+            dtDatabaseFileInformation.PrimaryKey = new DataColumn[] { dtDatabaseFileInformation.Columns["database_id"], dtDatabaseFileInformation.Columns["file_id"] };
+            FDTDatabaseFileInformation.Rows.Clear();
+            FDTDatabaseFileInformation.Merge(dtDatabaseFileInformation, false, MissingSchemaAction.Add);
+            FDTDatabaseFileInformation.AcceptChanges();
+
+        }
         public string ServerIconStats()
         {
             string ret = "";

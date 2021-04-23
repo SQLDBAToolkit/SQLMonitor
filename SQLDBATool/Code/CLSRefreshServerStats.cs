@@ -1625,20 +1625,20 @@ ORDER BY [Database_Name]
 SELECT 
 	[database_id],
 	[Database_Name],   
-	[file_id]
-    [File Name],   
-    [Physical Name],   
-    [File Type],   
-    format([Total Size in Mb], '#,##0') AS [db_size_mb],   
-    case when [Available Space in Mb] >= 0 then format([Total Size in Mb] - [Available Space in Mb], '#,##0') else case when @QuickScan = 1 then 'Scanning...' else 'No Access' end end AS [DB_Used_Mb],   
-    case when [Available Space in Mb] >= 0 then format([Available Space in Mb], '#,##0') else case when @QuickScan = 1 then 'Scanning...' else 'No Access' end end AS [DB_Free_Mb],   
-    case when [Available Space in Mb] >= 0 then format((1.0 *[Available Space in Mb]) / [Total Size in Mb], '#,##0.00%') else case when @QuickScan = 1 then 'Scanning...' else 'No Access' end end  AS [Free Space %],   
-    [Growth Units],   
-    isnull(format([Max File Size in Mb], '#,##0'), 'Unlimited') AS [Grow Max Size (Mb)],
-    case when [Total Size in Mb] >= 0 then [Total Size in Mb] else -1 end AS [Sort Total Size in Mb],  
-    case when [Available Space in Mb] >= 0 then [Available Space in Mb] else -1 end AS [Sort_DB_Free_Mb],  
-    case when [Available Space in Mb] >= 0 then [Total Size in Mb] - [Available Space in Mb] else -1 end AS [Sort_DB_Used_Mb],  
-    case when [Available Space in Mb] >= 0 then (1.0 *[Available Space in Mb]) / [Total Size in Mb] else case when @QuickScan = 1 then 0 else 0 end end  AS [Sort Free Space %] 
+	[file_id],
+    [File Name] as [file_name],   
+    [Physical Name] as [physical_name],   
+    [File Type] as [file_type],   
+    format([Total Size in Mb], '#,##0') AS [file_size_mb],   
+    case when [Available Space in Mb] >= 0 then format([Total Size in Mb] - [Available Space in Mb], '#,##0') else case when @QuickScan = 1 then 'Scanning...' else 'No Access' end end AS [file_used_mb],   
+    case when [Available Space in Mb] >= 0 then format([Available Space in Mb], '#,##0') else case when @QuickScan = 1 then 'Scanning...' else 'No Access' end end AS [file_free_mb],   
+    case when [Available Space in Mb] >= 0 then format((1.0 *[Available Space in Mb]) / [Total Size in Mb], '#,##0.00%') else case when @QuickScan = 1 then 'Scanning...' else 'No Access' end end  AS [file_free_pct],   
+    [Growth Units] as [growth_units],   
+    isnull(format([Max File Size in Mb], '#,##0'), 'Unlimited') AS [max_size_mb],
+    case when [Total Size in Mb] >= 0 then [Total Size in Mb] else -1 end AS [sort_file_size_mb],  
+    case when [Available Space in Mb] >= 0 then [Available Space in Mb] else -1 end AS [sort_file_free_mb],  
+    case when [Available Space in Mb] >= 0 then [Total Size in Mb] - [Available Space in Mb] else -1 end AS [sort_file_used_mb],  
+    case when [Available Space in Mb] >= 0 then (1.0 *[Available Space in Mb]) / [Total Size in Mb] else case when @QuickScan = 1 then 0 else 0 end end  AS [sort_file_free_pct] 
 FROM #Results    
 order by Database_name, [File Type] desc, file_id
 
