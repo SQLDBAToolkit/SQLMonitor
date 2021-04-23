@@ -61,7 +61,7 @@ namespace SQLDBATool.Code
 
         private void ucDatabaseStorageDBGraph_MouseEnter(object sender, EventArgs e)
         {
-            ParentGraph.ShowPopup(this.PopupText);
+            ParentGraph.ShowPopup(this);
         }
     }
 }

@@ -26,9 +26,11 @@ namespace SQLDBATool.Code
         private int FDisplaySize = 0;
         private bool FRefreshingData = false;
         private List<clsDBGraphs> FDBGraphs;
+        private ucDatabaseStorageDBGraph FPopupGraph;
         public ucDatabaseStorage()
         {
             InitializeComponent();
+            FPopupGraph = null;
             FDBGraphs = new List<clsDBGraphs>();
             if (dataTableSizes.Rows.Count == 0)
                 dataTableSizes.Rows.Add();
@@ -183,6 +185,7 @@ namespace SQLDBATool.Code
         }
         public void SpaceGraphs()
         {
+            string popupText = "";
             if (!FRefreshingData)
                 DrawingControl.SuspendDrawing(this);
             if (FDBGraphs.Count > 0)
@@ -239,8 +242,16 @@ namespace SQLDBATool.Code
                     leftLog += grph.FileStreamGraph.TotalSize;
                     leftFileStreamCheck = newLeft + newWidth;
                     grph.FileStreamGraph.DrawUsed();
+
+                    if (FPopupGraph != null)
+                        if (FPopupGraph == grph.DataGraph || FPopupGraph == grph.LogGraph || FPopupGraph == grph.FileStreamGraph)
+                            popupText = FPopupGraph.PopupText;
                 }
             }
+            if (popupText.Length == 0)
+                FPopupGraph = null;
+            else
+                labelPopup.Text = popupText;
             if (!FRefreshingData)
                 DrawingControl.ResumeDrawing(this);
         }
@@ -276,10 +287,11 @@ namespace SQLDBATool.Code
             DrawHeaderBackground(e);
         }
 
-        public void ShowPopup(string text)
+        public void ShowPopup(ucDatabaseStorageDBGraph graph)
         {
+            string text = graph.PopupText;
             labelPopup.Text = text;
-            //labelPopup.Left 
+            FPopupGraph = graph;
 
         }
         public void HidePopup()
