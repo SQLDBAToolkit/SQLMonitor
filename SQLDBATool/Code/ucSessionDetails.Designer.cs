@@ -496,6 +496,7 @@ namespace SQLDBATool.Code
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.Location = new System.Drawing.Point(0, 20);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -2344,6 +2345,7 @@ namespace SQLDBATool.Code
             // splitContainer3
             // 
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer3.Location = new System.Drawing.Point(0, 0);
             this.splitContainer3.Name = "splitContainer3";
             // 
@@ -2893,6 +2895,7 @@ namespace SQLDBATool.Code
             // splitContainer4
             // 
             this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer4.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer4.Location = new System.Drawing.Point(0, 0);
             this.splitContainer4.Name = "splitContainer4";
             this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -2924,7 +2927,7 @@ namespace SQLDBATool.Code
             this.splitContainer4.Panel2.Controls.Add(this.ucDataLabel46);
             this.splitContainer4.Panel2.Controls.Add(this.ucDataLabel45);
             this.splitContainer4.Size = new System.Drawing.Size(597, 317);
-            this.splitContainer4.SplitterDistance = 36;
+            this.splitContainer4.SplitterDistance = 74;
             this.splitContainer4.TabIndex = 0;
             // 
             // dbDataGridView2
@@ -2981,7 +2984,7 @@ namespace SQLDBATool.Code
             this.dbDataGridView2.ReadOnly = true;
             this.dbDataGridView2.RowHeadersVisible = false;
             this.dbDataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dbDataGridView2.Size = new System.Drawing.Size(597, 36);
+            this.dbDataGridView2.Size = new System.Drawing.Size(597, 74);
             this.dbDataGridView2.TabIndex = 1;
             // 
             // sessionidDataGridViewTextBoxColumn

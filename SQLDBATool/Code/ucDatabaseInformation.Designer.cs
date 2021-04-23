@@ -155,9 +155,10 @@ namespace SQLDBATool.Code
             this.tabPageDatabaseSpace = new System.Windows.Forms.TabPage();
             this.ucDataStorageMasterGraphs = new SQLDBATool.Code.ucDataStorageMaster();
             this.tabPageDatabaseInfo = new System.Windows.Forms.TabPage();
+            this.ucDatabaseDetails1 = new SQLDBATool.Code.ucDatabaseDetails();
             this.tabPageDatabaseTables = new System.Windows.Forms.TabPage();
             this.tabPageMissingIndexes = new System.Windows.Forms.TabPage();
-            this.ucDatabaseDetails1 = new SQLDBATool.Code.ucDatabaseDetails();
+            this.tabPageDatabaseFiles = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetServerInformation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableDatabaseInformation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbDataGridView1)).BeginInit();
@@ -989,6 +990,7 @@ namespace SQLDBATool.Code
             this.tabControlDatabaseInfo.Alignment = System.Windows.Forms.TabAlignment.Bottom;
             this.tabControlDatabaseInfo.Controls.Add(this.tabPageDatabaseSpace);
             this.tabControlDatabaseInfo.Controls.Add(this.tabPageDatabaseInfo);
+            this.tabControlDatabaseInfo.Controls.Add(this.tabPageDatabaseFiles);
             this.tabControlDatabaseInfo.Controls.Add(this.tabPageDatabaseTables);
             this.tabControlDatabaseInfo.Controls.Add(this.tabPageMissingIndexes);
             this.tabControlDatabaseInfo.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1029,6 +1031,14 @@ namespace SQLDBATool.Code
             this.tabPageDatabaseInfo.Text = "Database Information";
             this.tabPageDatabaseInfo.UseVisualStyleBackColor = true;
             // 
+            // ucDatabaseDetails1
+            // 
+            this.ucDatabaseDetails1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucDatabaseDetails1.Location = new System.Drawing.Point(3, 3);
+            this.ucDatabaseDetails1.Name = "ucDatabaseDetails1";
+            this.ucDatabaseDetails1.Size = new System.Drawing.Size(1453, 252);
+            this.ucDatabaseDetails1.TabIndex = 0;
+            // 
             // tabPageDatabaseTables
             // 
             this.tabPageDatabaseTables.Location = new System.Drawing.Point(4, 4);
@@ -1047,13 +1057,14 @@ namespace SQLDBATool.Code
             this.tabPageMissingIndexes.Text = "Missing Indexes";
             this.tabPageMissingIndexes.UseVisualStyleBackColor = true;
             // 
-            // ucDatabaseDetails1
+            // tabPageDatabaseFiles
             // 
-            this.ucDatabaseDetails1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucDatabaseDetails1.Location = new System.Drawing.Point(3, 3);
-            this.ucDatabaseDetails1.Name = "ucDatabaseDetails1";
-            this.ucDatabaseDetails1.Size = new System.Drawing.Size(1453, 252);
-            this.ucDatabaseDetails1.TabIndex = 0;
+            this.tabPageDatabaseFiles.Location = new System.Drawing.Point(4, 4);
+            this.tabPageDatabaseFiles.Name = "tabPageDatabaseFiles";
+            this.tabPageDatabaseFiles.Size = new System.Drawing.Size(1459, 258);
+            this.tabPageDatabaseFiles.TabIndex = 4;
+            this.tabPageDatabaseFiles.Text = "Database Files";
+            this.tabPageDatabaseFiles.UseVisualStyleBackColor = true;
             // 
             // ucDatabaseInformation
             // 
@@ -1185,5 +1196,6 @@ namespace SQLDBATool.Code
         private System.Windows.Forms.TabPage tabPageDatabaseSpace;
         private ucDataStorageMaster ucDataStorageMasterGraphs;
         private ucDatabaseDetails ucDatabaseDetails1;
+        private System.Windows.Forms.TabPage tabPageDatabaseFiles;
     }
 }
