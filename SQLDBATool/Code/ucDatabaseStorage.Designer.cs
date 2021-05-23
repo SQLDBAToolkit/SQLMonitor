@@ -579,6 +579,7 @@ namespace SQLDBATool.Code
             this.ucTitleBarText.Name = "ucTitleBarText";
             this.ucTitleBarText.Size = new System.Drawing.Size(863, 21);
             this.ucTitleBarText.TabIndex = 1;
+            this.ucTitleBarText.TitleBold = false;
             this.ucTitleBarText.TitleText = null;
             // 
             // ucDatabaseStorage
@@ -590,6 +591,8 @@ namespace SQLDBATool.Code
             this.Controls.Add(this.ucTitleBarText);
             this.Name = "ucDatabaseStorage";
             this.Size = new System.Drawing.Size(863, 93);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.ucDatabaseStorage_Paint);
+            this.Resize += new System.EventHandler(this.ucDatabaseStorage_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.dataSetServerInformation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableDatabaseInformation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableSizes)).EndInit();

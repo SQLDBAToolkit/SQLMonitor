@@ -276,7 +276,18 @@ namespace SQLDBATool.Code
         }
         private void ucDataLabel3_Resize(object sender, EventArgs e)
         {
+          
+        }
 
+        private void ucDatabaseStorage_Paint(object sender, PaintEventArgs e)
+        {
+            
+        }
+
+        private void ucDatabaseStorage_Resize(object sender, EventArgs e)
+        {
+            if (!FRefreshingData)
+                SpaceGraphs();
         }
     }
     public class clsDBGraphs : IDisposable

@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using System.Drawing;
 
 namespace SQLDBATool.Code
 {
@@ -28,6 +29,11 @@ namespace SQLDBATool.Code
             //labelServerStats.Text = String.Format("CPU: {0}\r\nIO: {1}\r\nBHR: {2}", FTreeInformation.ConnectionInformation.ServerStats.CPU, FTreeInformation.ConnectionInformation.ServerStats.IO, FTreeInformation.ConnectionInformation.ServerStats.BHR);
         }
 
+        public void SetTitleColor(Color fg, Color bg)
+        {
+            labelServerName.BackColor = bg;
+            labelServerName.ForeColor = fg;
+        }
         public void setText(string cpuUsage, string bhr, string upTime)
         {
             labelCPUUsage.Text = cpuUsage;

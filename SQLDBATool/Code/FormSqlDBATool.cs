@@ -50,36 +50,41 @@ namespace SQLDBATool
         public void ShowServerMonitor(Code.CLSTreeInformation serverConnection, bool forceChange)
         {
 
-            if (forceChange)
+            if (serverConnection != null)
             {
-                ucServerMonitor1.ServerID = serverConnection.ConnectionInformation.MonitoredServer.ServerID;
-                if (FActiveDiagram != null)
+                if (forceChange)
                 {
-                    FActiveDiagram.Hide();
-                    FActiveDiagram = null;
-                    ucServerMonitor1.Show();
+                    ucServerMonitor1.ServerID = serverConnection.ConnectionInformation.MonitoredServer.ServerID;
+                    if (FActiveDiagram != null)
+                    {
+                        FActiveDiagram.Hide();
+                        FActiveDiagram = null;
+                        ucServerMonitor1.Show();
+                    }
+                    ucServerMonitor1.ChangeSessionDataTable(serverConnection);
+                    ShowDatabaseMonitor(serverConnection, false);
+
+
                 }
-                ucServerMonitor1.ChangeSessionDataTable(serverConnection);
-                ShowDatabaseMonitor(serverConnection, false);
-
-
+                ucServerMonitor1.ShowServerDetails(serverConnection);
             }
-            ucServerMonitor1.ShowServerDetails(serverConnection);
         }
         public void ShowDatabaseMonitor(Code.CLSTreeInformation serverConnection, bool forceChange)
         {
-
-            if (forceChange)
+            if (serverConnection != null)
             {
-                ucServerMonitor1.ServerID = serverConnection.ConnectionInformation.MonitoredServer.ServerID;
-                if (FActiveDiagram != null)
+                if (forceChange)
                 {
-                    FActiveDiagram.Hide();
-                    FActiveDiagram = null;
-                    ucServerMonitor1.Show();
+                    ucServerMonitor1.ServerID = serverConnection.ConnectionInformation.MonitoredServer.ServerID;
+                    if (FActiveDiagram != null)
+                    {
+                        FActiveDiagram.Hide();
+                        FActiveDiagram = null;
+                        ucServerMonitor1.Show();
+                    }
                 }
+                ucServerMonitor1.ShowDatabaseDetails(serverConnection);
             }
-            ucServerMonitor1.ShowDatabaseDetails(serverConnection);
         }
 
     }

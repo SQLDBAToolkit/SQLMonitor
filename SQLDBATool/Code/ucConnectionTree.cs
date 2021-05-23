@@ -10,10 +10,11 @@ namespace SQLDBATool.Code
     public partial class ucConnectionTree : UserControl
     {
         private List<CLSTreeInformation> FTreeInformation = new List<CLSTreeInformation>();
-        private CLSTreeInformation TestTreeInformation;
+        private CLSTreeInformation FThisTreeInformation;
         private FormSqlDBATool FParentSqlToolsForm;
 
         public FormSqlDBATool ParentSqlToolsForm { get => FParentSqlToolsForm; set => FParentSqlToolsForm = value; }
+        public CLSTreeInformation ThisTreeInformation { get => FThisTreeInformation; set => FThisTreeInformation = value; }
 
         public ucConnectionTree()
         {
@@ -63,7 +64,7 @@ namespace SQLDBATool.Code
                 PopulateSubTreeItem(treeInformation);
             }
             ParentSqlToolsForm.AddServerDiagram(treeInformation.ServerDiagram);
-
+            FThisTreeInformation = treeInformation;
         }
         public void PopulateSubTreeItem(CLSTreeInformation parentNode)
         {
@@ -112,7 +113,6 @@ namespace SQLDBATool.Code
                             connectionInformation.ServerStats = new clsServerStats();
                             connectionInformation.ServerIcon = new List<ucServerIcon>();
                             treeInformation.ConnectionInformation = connectionInformation;
-                            TestTreeInformation = treeInformation;
                             treeInformation.ParentTreeInformation = parentNode;
                             CLSTreeInformation treeLoop = parentNode;
                             bool masterFound = false;
@@ -171,7 +171,6 @@ namespace SQLDBATool.Code
                 connectionInformation.ServerStats = new clsServerStats();
                 connectionInformation.ServerIcon = new List<ucServerIcon>();
                 treeInformation.ConnectionInformation = connectionInformation;
-                TestTreeInformation = treeInformation;
                 treeInformation.ParentTreeInformation = parentNode;
                 CLSTreeInformation treeLoop = parentNode;
                 bool masterFound = false;

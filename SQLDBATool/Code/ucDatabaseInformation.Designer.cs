@@ -160,7 +160,6 @@ namespace SQLDBATool.Code
             this.ucDatabaseDetails1 = new SQLDBATool.Code.ucDatabaseDetails();
             this.tabPageDatabaseFiles = new System.Windows.Forms.TabPage();
             this.ucDatabaseFiles1 = new SQLDBATool.Code.ucDatabaseFiles();
-            this.tabPageLocking = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetServerInformation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableDatabaseInformation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbDataGridView1)).BeginInit();
@@ -1012,7 +1011,6 @@ namespace SQLDBATool.Code
             this.tabControlDatabaseInfo.Controls.Add(this.tabPageDatabaseSpace);
             this.tabControlDatabaseInfo.Controls.Add(this.tabPageDatabaseInfo);
             this.tabControlDatabaseInfo.Controls.Add(this.tabPageDatabaseFiles);
-            this.tabControlDatabaseInfo.Controls.Add(this.tabPageLocking);
             this.tabControlDatabaseInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlDatabaseInfo.Location = new System.Drawing.Point(0, 0);
             this.tabControlDatabaseInfo.Name = "tabControlDatabaseInfo";
@@ -1076,15 +1074,6 @@ namespace SQLDBATool.Code
             this.ucDatabaseFiles1.Name = "ucDatabaseFiles1";
             this.ucDatabaseFiles1.Size = new System.Drawing.Size(1459, 258);
             this.ucDatabaseFiles1.TabIndex = 0;
-            // 
-            // tabPageLocking
-            // 
-            this.tabPageLocking.Location = new System.Drawing.Point(4, 4);
-            this.tabPageLocking.Name = "tabPageLocking";
-            this.tabPageLocking.Size = new System.Drawing.Size(1459, 258);
-            this.tabPageLocking.TabIndex = 5;
-            this.tabPageLocking.Text = "Locking";
-            this.tabPageLocking.UseVisualStyleBackColor = true;
             // 
             // ucDatabaseInformation
             // 
@@ -1217,6 +1206,5 @@ namespace SQLDBATool.Code
         private ucDatabaseDetails ucDatabaseDetails1;
         private System.Windows.Forms.TabPage tabPageDatabaseFiles;
         private ucDatabaseFiles ucDatabaseFiles1;
-        private System.Windows.Forms.TabPage tabPageLocking;
     }
 }

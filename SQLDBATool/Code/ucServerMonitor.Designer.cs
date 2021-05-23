@@ -29,9 +29,9 @@ namespace SQLDBATool.Code
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataSetServerInformation = new System.Data.DataSet();
             this.dataTableServerInformation = new System.Data.DataTable();
             this.dataColumn1 = new System.Data.DataColumn();
@@ -241,9 +241,8 @@ namespace SQLDBATool.Code
             this.tabControlServerMonitor = new System.Windows.Forms.TabControl();
             this.tabPagePerformanceMonitor = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.labelServerHeaderName = new System.Windows.Forms.Label();
             this.tabPageSessionInformation = new System.Windows.Forms.TabPage();
+            this.ucTitleBar2 = new SQLDBATool.Code.ucTitleBar();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new SQLDBATool.Code.DBDataGridView();
             this.session_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -272,9 +271,11 @@ namespace SQLDBATool.Code
             this.SessionBackColor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColoumBlank = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ucCurrentSessionDetails = new SQLDBATool.Code.ucSessionDetails();
-            this.ucSeries1 = new SQLDBATool.Code.ucSeries();
             this.tabPageDatabaseInformation = new System.Windows.Forms.TabPage();
             this.ucDatabaseInformation1 = new SQLDBATool.Code.ucDatabaseInformation();
+            this.ucSeries1 = new SQLDBATool.Code.ucSeries();
+            this.ucTitleBar1 = new SQLDBATool.Code.ucTitleBar();
+            this.ucDataLabelLastConnectionError = new SQLDBATool.Code.UCDataLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetServerInformation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableServerInformation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTablePerformanceCounters)).BeginInit();
@@ -292,7 +293,6 @@ namespace SQLDBATool.Code
             this.tabControlServerMonitor.SuspendLayout();
             this.tabPagePerformanceMonitor.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.tabPageSessionInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
@@ -1411,7 +1411,7 @@ namespace SQLDBATool.Code
             this.panelSystemInformation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelSystemInformation.Location = new System.Drawing.Point(0, 0);
             this.panelSystemInformation.Name = "panelSystemInformation";
-            this.panelSystemInformation.Size = new System.Drawing.Size(476, 799);
+            this.panelSystemInformation.Size = new System.Drawing.Size(476, 809);
             this.panelSystemInformation.TabIndex = 7;
             this.panelSystemInformation.Paint += new System.Windows.Forms.PaintEventHandler(this.panelSystemInformation_Paint);
             // 
@@ -1422,11 +1422,12 @@ namespace SQLDBATool.Code
             this.panelMemoryInformation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMemoryInformation.Location = new System.Drawing.Point(0, 312);
             this.panelMemoryInformation.Name = "panelMemoryInformation";
-            this.panelMemoryInformation.Size = new System.Drawing.Size(474, 485);
+            this.panelMemoryInformation.Size = new System.Drawing.Size(474, 495);
             this.panelMemoryInformation.TabIndex = 7;
             // 
             // panelMemoryInformationData
             // 
+            this.panelMemoryInformationData.Controls.Add(this.ucDataLabelLastConnectionError);
             this.panelMemoryInformationData.Controls.Add(this.ucDataMemoryGrantsPending);
             this.panelMemoryInformationData.Controls.Add(this.ucDataMemoryGrantsOutstanding);
             this.panelMemoryInformationData.Controls.Add(this.ucDataReservedMemory);
@@ -1439,7 +1440,7 @@ namespace SQLDBATool.Code
             this.panelMemoryInformationData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMemoryInformationData.Location = new System.Drawing.Point(0, 22);
             this.panelMemoryInformationData.Name = "panelMemoryInformationData";
-            this.panelMemoryInformationData.Size = new System.Drawing.Size(474, 463);
+            this.panelMemoryInformationData.Size = new System.Drawing.Size(474, 473);
             this.panelMemoryInformationData.TabIndex = 5;
             // 
             // ucDataMemoryGrantsPending
@@ -1608,7 +1609,7 @@ namespace SQLDBATool.Code
             this.splitContainer1.Panel2.Controls.Add(this.ucChartBufferCacheHitRatio);
             this.splitContainer1.Panel2.Controls.Add(this.ucChartCPUUsage);
             this.splitContainer1.Panel2.Resize += new System.EventHandler(this.splitContainer1_Panel2_Resize);
-            this.splitContainer1.Size = new System.Drawing.Size(1423, 799);
+            this.splitContainer1.Size = new System.Drawing.Size(1423, 809);
             this.splitContainer1.SplitterDistance = 476;
             this.splitContainer1.TabIndex = 8;
             // 
@@ -2069,10 +2070,10 @@ namespace SQLDBATool.Code
             this.tabControlServerMonitor.Controls.Add(this.tabPageSessionInformation);
             this.tabControlServerMonitor.Controls.Add(this.tabPageDatabaseInformation);
             this.tabControlServerMonitor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlServerMonitor.Location = new System.Drawing.Point(0, 0);
+            this.tabControlServerMonitor.Location = new System.Drawing.Point(0, 20);
             this.tabControlServerMonitor.Name = "tabControlServerMonitor";
             this.tabControlServerMonitor.SelectedIndex = 0;
-            this.tabControlServerMonitor.Size = new System.Drawing.Size(1437, 864);
+            this.tabControlServerMonitor.Size = new System.Drawing.Size(1437, 844);
             this.tabControlServerMonitor.TabIndex = 1;
             this.tabControlServerMonitor.SelectedIndexChanged += new System.EventHandler(this.tabControlServerMonitor_SelectedIndexChanged);
             // 
@@ -2080,11 +2081,10 @@ namespace SQLDBATool.Code
             // 
             this.tabPagePerformanceMonitor.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.tabPagePerformanceMonitor.Controls.Add(this.panel1);
-            this.tabPagePerformanceMonitor.Controls.Add(this.panel2);
             this.tabPagePerformanceMonitor.Location = new System.Drawing.Point(4, 25);
             this.tabPagePerformanceMonitor.Name = "tabPagePerformanceMonitor";
             this.tabPagePerformanceMonitor.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPagePerformanceMonitor.Size = new System.Drawing.Size(1429, 835);
+            this.tabPagePerformanceMonitor.Size = new System.Drawing.Size(1429, 815);
             this.tabPagePerformanceMonitor.TabIndex = 0;
             this.tabPagePerformanceMonitor.Text = "Performance Monitor";
             // 
@@ -2092,48 +2092,32 @@ namespace SQLDBATool.Code
             // 
             this.panel1.Controls.Add(this.splitContainer1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 33);
+            this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1423, 799);
+            this.panel1.Size = new System.Drawing.Size(1423, 809);
             this.panel1.TabIndex = 9;
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.labelServerHeaderName);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(3, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1423, 30);
-            this.panel2.TabIndex = 9;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
-            // 
-            // labelServerHeaderName
-            // 
-            this.labelServerHeaderName.BackColor = System.Drawing.Color.Transparent;
-            this.labelServerHeaderName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dataSetServerInformation, "ServerInformation.ServerName", true));
-            this.labelServerHeaderName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelServerHeaderName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelServerHeaderName.Location = new System.Drawing.Point(0, 0);
-            this.labelServerHeaderName.Name = "labelServerHeaderName";
-            this.labelServerHeaderName.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.labelServerHeaderName.Size = new System.Drawing.Size(1419, 26);
-            this.labelServerHeaderName.TabIndex = 2;
-            this.labelServerHeaderName.Tag = "  Server Information";
-            this.labelServerHeaderName.Text = "label1";
-            this.labelServerHeaderName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelServerHeaderName.Visible = false;
             // 
             // tabPageSessionInformation
             // 
+            this.tabPageSessionInformation.Controls.Add(this.ucTitleBar2);
             this.tabPageSessionInformation.Controls.Add(this.splitContainer2);
             this.tabPageSessionInformation.Location = new System.Drawing.Point(4, 25);
             this.tabPageSessionInformation.Name = "tabPageSessionInformation";
             this.tabPageSessionInformation.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageSessionInformation.Size = new System.Drawing.Size(1429, 835);
+            this.tabPageSessionInformation.Size = new System.Drawing.Size(1429, 815);
             this.tabPageSessionInformation.TabIndex = 1;
             this.tabPageSessionInformation.Text = "Session Informaion";
             this.tabPageSessionInformation.UseVisualStyleBackColor = true;
+            // 
+            // ucTitleBar2
+            // 
+            this.ucTitleBar2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucTitleBar2.Location = new System.Drawing.Point(3, 3);
+            this.ucTitleBar2.Name = "ucTitleBar2";
+            this.ucTitleBar2.Size = new System.Drawing.Size(1423, 20);
+            this.ucTitleBar2.TabIndex = 4;
+            this.ucTitleBar2.TitleBold = true;
+            this.ucTitleBar2.TitleText = null;
             // 
             // splitContainer2
             // 
@@ -2149,8 +2133,8 @@ namespace SQLDBATool.Code
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.ucCurrentSessionDetails);
-            this.splitContainer2.Size = new System.Drawing.Size(1423, 829);
-            this.splitContainer2.SplitterDistance = 474;
+            this.splitContainer2.Size = new System.Drawing.Size(1423, 809);
+            this.splitContainer2.SplitterDistance = 462;
             this.splitContainer2.TabIndex = 1;
             // 
             // dataGridView1
@@ -2191,7 +2175,7 @@ namespace SQLDBATool.Code
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1423, 474);
+            this.dataGridView1.Size = new System.Drawing.Size(1423, 462);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             this.dataGridView1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowEnter);
@@ -2213,9 +2197,9 @@ namespace SQLDBATool.Code
             // 
             this.login_time.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.login_time.DataPropertyName = "login_time";
-            dataGridViewCellStyle4.Format = "G";
-            dataGridViewCellStyle4.NullValue = null;
-            this.login_time.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Format = "G";
+            dataGridViewCellStyle1.NullValue = null;
+            this.login_time.DefaultCellStyle = dataGridViewCellStyle1;
             this.login_time.HeaderText = "LoginTime";
             this.login_time.Name = "login_time";
             this.login_time.ReadOnly = true;
@@ -2259,9 +2243,9 @@ namespace SQLDBATool.Code
             // 
             this.last_request_start_time.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.last_request_start_time.DataPropertyName = "last_request_start_time";
-            dataGridViewCellStyle5.Format = "G";
-            dataGridViewCellStyle5.NullValue = null;
-            this.last_request_start_time.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Format = "G";
+            dataGridViewCellStyle2.NullValue = null;
+            this.last_request_start_time.DefaultCellStyle = dataGridViewCellStyle2;
             this.last_request_start_time.HeaderText = "LastReqStart";
             this.last_request_start_time.Name = "last_request_start_time";
             this.last_request_start_time.ReadOnly = true;
@@ -2271,9 +2255,9 @@ namespace SQLDBATool.Code
             // 
             this.last_request_end_time.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.last_request_end_time.DataPropertyName = "last_request_end_time";
-            dataGridViewCellStyle6.Format = "G";
-            dataGridViewCellStyle6.NullValue = null;
-            this.last_request_end_time.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Format = "G";
+            dataGridViewCellStyle3.NullValue = null;
+            this.last_request_end_time.DefaultCellStyle = dataGridViewCellStyle3;
             this.last_request_end_time.HeaderText = "LastReqEnd";
             this.last_request_end_time.Name = "last_request_end_time";
             this.last_request_end_time.ReadOnly = true;
@@ -2417,10 +2401,11 @@ namespace SQLDBATool.Code
             this.SessionBackColor.HeaderText = "SessionBackColor";
             this.SessionBackColor.Name = "SessionBackColor";
             this.SessionBackColor.Visible = false;
+            this.SessionBackColor.Width = 5;
             // 
             // ColoumBlank
             // 
-            this.ColoumBlank.HeaderText = "";
+            this.ColoumBlank.HeaderText = "bfvnvfbnv";
             this.ColoumBlank.Name = "ColoumBlank";
             // 
             // ucCurrentSessionDetails
@@ -2428,8 +2413,29 @@ namespace SQLDBATool.Code
             this.ucCurrentSessionDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucCurrentSessionDetails.Location = new System.Drawing.Point(0, 0);
             this.ucCurrentSessionDetails.Name = "ucCurrentSessionDetails";
-            this.ucCurrentSessionDetails.Size = new System.Drawing.Size(1423, 351);
+            this.ucCurrentSessionDetails.Size = new System.Drawing.Size(1423, 343);
             this.ucCurrentSessionDetails.TabIndex = 0;
+            // 
+            // tabPageDatabaseInformation
+            // 
+            this.tabPageDatabaseInformation.Controls.Add(this.ucDatabaseInformation1);
+            this.tabPageDatabaseInformation.Location = new System.Drawing.Point(4, 25);
+            this.tabPageDatabaseInformation.Name = "tabPageDatabaseInformation";
+            this.tabPageDatabaseInformation.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageDatabaseInformation.Size = new System.Drawing.Size(1429, 815);
+            this.tabPageDatabaseInformation.TabIndex = 2;
+            this.tabPageDatabaseInformation.Text = "Databases";
+            this.tabPageDatabaseInformation.UseVisualStyleBackColor = true;
+            // 
+            // ucDatabaseInformation1
+            // 
+            this.ucDatabaseInformation1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucDatabaseInformation1.ErrorOn = false;
+            this.ucDatabaseInformation1.Location = new System.Drawing.Point(3, 3);
+            this.ucDatabaseInformation1.Name = "ucDatabaseInformation1";
+            this.ucDatabaseInformation1.ParentMonitor = null;
+            this.ucDatabaseInformation1.Size = new System.Drawing.Size(1423, 809);
+            this.ucDatabaseInformation1.TabIndex = 0;
             // 
             // ucSeries1
             // 
@@ -2446,24 +2452,28 @@ namespace SQLDBATool.Code
             this.ucSeries1.Text = "ucSeries1";
             this.ucSeries1.TopColor = System.Drawing.Color.Crimson;
             // 
-            // tabPageDatabaseInformation
+            // ucTitleBar1
             // 
-            this.tabPageDatabaseInformation.Controls.Add(this.ucDatabaseInformation1);
-            this.tabPageDatabaseInformation.Location = new System.Drawing.Point(4, 25);
-            this.tabPageDatabaseInformation.Name = "tabPageDatabaseInformation";
-            this.tabPageDatabaseInformation.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageDatabaseInformation.Size = new System.Drawing.Size(1429, 835);
-            this.tabPageDatabaseInformation.TabIndex = 2;
-            this.tabPageDatabaseInformation.Text = "Databases";
-            this.tabPageDatabaseInformation.UseVisualStyleBackColor = true;
+            this.ucTitleBar1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucTitleBar1.Location = new System.Drawing.Point(0, 0);
+            this.ucTitleBar1.Name = "ucTitleBar1";
+            this.ucTitleBar1.Size = new System.Drawing.Size(1437, 20);
+            this.ucTitleBar1.TabIndex = 3;
+            this.ucTitleBar1.TitleBold = true;
+            this.ucTitleBar1.TitleText = "Database Server";
             // 
-            // ucDatabaseInformation1
+            // ucDataLabelLastConnectionError
             // 
-            this.ucDatabaseInformation1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucDatabaseInformation1.Location = new System.Drawing.Point(3, 3);
-            this.ucDatabaseInformation1.Name = "ucDatabaseInformation1";
-            this.ucDatabaseInformation1.Size = new System.Drawing.Size(1423, 829);
-            this.ucDatabaseInformation1.TabIndex = 0;
+            this.ucDataLabelLastConnectionError.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ucDataLabelLastConnectionError.DataBindings.Add(new System.Windows.Forms.Binding("LabelData", this.dataSetServerInformation, "ServerInformation.MemoryGrantsPending", true));
+            this.ucDataLabelLastConnectionError.DataTitle = "Last Connection Error";
+            this.ucDataLabelLastConnectionError.DataTitleWidth = 134;
+            this.ucDataLabelLastConnectionError.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabelLastConnectionError.LabelData = "";
+            this.ucDataLabelLastConnectionError.Location = new System.Drawing.Point(0, 162);
+            this.ucDataLabelLastConnectionError.Name = "ucDataLabelLastConnectionError";
+            this.ucDataLabelLastConnectionError.Size = new System.Drawing.Size(474, 18);
+            this.ucDataLabelLastConnectionError.TabIndex = 9;
             // 
             // ucServerMonitor
             // 
@@ -2471,6 +2481,7 @@ namespace SQLDBATool.Code
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.Controls.Add(this.tabControlServerMonitor);
+            this.Controls.Add(this.ucTitleBar1);
             this.Name = "ucServerMonitor";
             this.Size = new System.Drawing.Size(1437, 864);
             ((System.ComponentModel.ISupportInitialize)(this.dataSetServerInformation)).EndInit();
@@ -2490,7 +2501,6 @@ namespace SQLDBATool.Code
             this.tabControlServerMonitor.ResumeLayout(false);
             this.tabPagePerformanceMonitor.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.tabPageSessionInformation.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
@@ -2638,8 +2648,6 @@ namespace SQLDBATool.Code
         private ucSeries ucSeriesNetworkPacketsRecievedDelta;
         private ucSeries ucSeriesNetworkPacketsSentDelta;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label labelServerHeaderName;
         private System.Data.DataColumn dataColumn94;
         private System.Data.DataColumn dataColumn95;
         private DBDataGridView dataGridView1;
@@ -2670,31 +2678,6 @@ namespace SQLDBATool.Code
         private UCDataLabel ucDataTargetSQLMelory;
         private UCDataLabel ucDataTotalPhysicalMemory;
         private ucSessionDetails ucCurrentSessionDetails;
-        private System.Windows.Forms.DataGridViewTextBoxColumn session_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn login_time;
-        private System.Windows.Forms.DataGridViewTextBoxColumn status;
-        private System.Windows.Forms.DataGridViewTextBoxColumn login_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn host_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DatabaseName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn last_request_start_time;
-        private System.Windows.Forms.DataGridViewTextBoxColumn last_request_end_time;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CPUTimeDisplay;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MemoryUsageDisplay;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalScheduledTimeDisplay;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalElapsedTimeDisplay;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReadsDisplay;
-        private System.Windows.Forms.DataGridViewTextBoxColumn WritesDisplay;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NetReadsDisplay;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NetWritesDisplay;
-        private System.Windows.Forms.DataGridViewTextBoxColumn open_transaction_count;
-        private System.Windows.Forms.DataGridViewTextBoxColumn net_transport;
-        private System.Windows.Forms.DataGridViewTextBoxColumn protocol_type;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TDSVersion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn client_net_address;
-        private System.Windows.Forms.DataGridViewTextBoxColumn client_tcp_port;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IsConnected;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SessionBackColor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColoumBlank;
         private System.Data.DataTable dataTableDatabaseInformation;
         private System.Data.DataColumn dataColumnDIDatabaseId;
         private System.Data.DataColumn dataColumnDIDatabaseName;
@@ -2746,5 +2729,33 @@ namespace SQLDBATool.Code
         private System.Data.DataColumn dataColumnDISortFileStreamFreePct;
         private System.Windows.Forms.TabPage tabPageDatabaseInformation;
         private ucDatabaseInformation ucDatabaseInformation1;
+        private ucTitleBar ucTitleBar2;
+        private ucTitleBar ucTitleBar1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn session_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn login_time;
+        private System.Windows.Forms.DataGridViewTextBoxColumn status;
+        private System.Windows.Forms.DataGridViewTextBoxColumn login_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn host_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DatabaseName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn last_request_start_time;
+        private System.Windows.Forms.DataGridViewTextBoxColumn last_request_end_time;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CPUTimeDisplay;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MemoryUsageDisplay;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalScheduledTimeDisplay;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalElapsedTimeDisplay;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReadsDisplay;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WritesDisplay;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NetReadsDisplay;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NetWritesDisplay;
+        private System.Windows.Forms.DataGridViewTextBoxColumn open_transaction_count;
+        private System.Windows.Forms.DataGridViewTextBoxColumn net_transport;
+        private System.Windows.Forms.DataGridViewTextBoxColumn protocol_type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TDSVersion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn client_net_address;
+        private System.Windows.Forms.DataGridViewTextBoxColumn client_tcp_port;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IsConnected;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SessionBackColor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColoumBlank;
+        private UCDataLabel ucDataLabelLastConnectionError;
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Data;
-
+using System.Drawing;
 
 namespace SQLDBATool.Code
 {
@@ -15,7 +15,8 @@ namespace SQLDBATool.Code
         private List<Code.ucServerIcon> FServerIcons;
         private CLSRefreshServerStats FRefreshBackgroundProcess;
         private CLSTreeInformation FParentTreeInformation;
-
+        private bool FIsOnError = false;
+        private string FLastCOnnectionError = "";
         public List<Code.ucServerIcon> ServerIcon { get => FServerIcons; set => FServerIcons = value; }
         public ServerTree ServerTree { get => FServerTree; set => FServerTree = value; }
         public MonitoredServer MonitoredServer { get => FMonitoredServer; set => FMonitoredServer = value; }
@@ -59,28 +60,40 @@ namespace SQLDBATool.Code
             string cpuUsage;
             string bhr;
             string upTime;
-            FServerStats.UpdatePerformanceStatistics(e.PerformanceStatistics);
-            FServerStats.UpdateServerInformation(e.ServerInformation);
-            FServerStats.UpdateResponseTime(e.RefreshMS);
-            FServerStats.UpdateSessionInformation(e.SessionInformation);
-            FServerStats.UpdateSessionRequests(e.RequestInformation);
-            FServerStats.UpdateSessionConnections(e.ConnectionInformation);
-            FServerStats.UpdateSessionWaitStates(e.WaitStateInformation);
-            FServerStats.UpdateSessionStats(e.SessionStatistics);
-            FServerStats.UpdateSessionCommands(e.SessionCommands);
 
-            performanceStats = FServerStats.ServerIconStats();
-            cpuUsage = FServerStats.ServerIconCPUUsage();
-            bhr = FServerStats.ServerIconBufferCacheHitRatio();
-            upTime = FServerStats.ServerIconUpTime();
-            foreach (Code.ucServerIcon icon in FServerIcons)
+            if (e.IsOnError)
             {
-                //icon.setText(performanceStats);
-                icon.setText(cpuUsage, bhr, upTime);
+                foreach (Code.ucServerIcon icon in FServerIcons)
+                {
+                    icon.SetTitleColor(Color.Yellow, Color.Red);
+                }
             }
+            else
+            {
+                FServerStats.UpdatePerformanceStatistics(e.PerformanceStatistics);
+                FServerStats.UpdateServerInformation(e.ServerInformation);
+                FServerStats.UpdateResponseTime(e.RefreshMS);
+                FServerStats.UpdateSessionInformation(e.SessionInformation);
+                FServerStats.UpdateSessionRequests(e.RequestInformation);
+                FServerStats.UpdateSessionConnections(e.ConnectionInformation);
+                FServerStats.UpdateSessionWaitStates(e.WaitStateInformation);
+                FServerStats.UpdateSessionStats(e.SessionStatistics);
+                FServerStats.UpdateSessionCommands(e.SessionCommands);
 
-            Code.Globals.MasterForm.ShowServerMonitor(FParentTreeInformation, false);
+                performanceStats = FServerStats.ServerIconStats();
+                cpuUsage = FServerStats.ServerIconCPUUsage();
+                bhr = FServerStats.ServerIconBufferCacheHitRatio();
+                upTime = FServerStats.ServerIconUpTime();
+                foreach (Code.ucServerIcon icon in FServerIcons)
+                {
+                    //icon.setText(performanceStats);
+                    icon.setText(cpuUsage, bhr, upTime);
+                    icon.SetTitleColor(Color.Black, Color.LimeGreen);
 
+                }
+
+                Code.Globals.MasterForm.ShowServerMonitor(FParentTreeInformation, false);
+            }
         }
         public void UpdateDatabaseInformation(ServerStatsDBSizesArgs e)
         {
@@ -234,7 +247,7 @@ namespace SQLDBATool.Code
             if (FDTSessionConnections.Columns.Count == 0)
             {
                 FDTSessionConnections = dtSessionConnectionsInformation.Clone();
-                FDTSessionConnections.PrimaryKey = new DataColumn[] { FDTSessionConnections.Columns["session_id"], FDTSessionConnections.Columns["Connections_id"] };
+                FDTSessionConnections.PrimaryKey = new DataColumn[] { FDTSessionConnections.Columns["session_id"], FDTSessionConnections.Columns["connection_id"] };
                 foreach (DataColumn col in FDTSessionConnections.Columns)
                 {
                     col.ReadOnly = false;
@@ -252,7 +265,7 @@ namespace SQLDBATool.Code
                 }
             }
 
-            dtSessionConnectionsInformation.PrimaryKey = new DataColumn[] { dtSessionConnectionsInformation.Columns["session_id"], dtSessionConnectionsInformation.Columns["Connections_id"] };
+            dtSessionConnectionsInformation.PrimaryKey = new DataColumn[] { dtSessionConnectionsInformation.Columns["session_id"], dtSessionConnectionsInformation.Columns["connection_id"] };
             FDTSessionConnections.Merge(dtSessionConnectionsInformation, false, MissingSchemaAction.Add);
             FDTSessionConnections.AcceptChanges();
 
@@ -523,21 +536,25 @@ namespace SQLDBATool.Code
             string serverUpTime;
             int totalSessions;
             int row = FDTPerformanceStatistics.Rows.Count;
-            cpuPercentage = (decimal)FDTPerformanceStatistics.Rows[row - 1]["CPUPercentage"];
-            bufferHitRatio = (decimal)FDTPerformanceStatistics.Rows[row - 1]["BufferCacheHitRatio"];
-            totalSessions = (int)FDTPerformanceStatistics.Rows[row - 1]["TotalSessions"];
-            serverUpTime = (string)FDTServerInformation.Rows[0]["RunningDurationSmall"];
-            ret = "CPU: " + cpuPercentage.ToString("0.00%") + "\r\n" + "BHR: " + bufferHitRatio.ToString() + "\r\n" + serverUpTime;
-
+            if (row > 0)
+            {
+                cpuPercentage = (decimal)FDTPerformanceStatistics.Rows[row - 1]["CPUPercentage"];
+                bufferHitRatio = (decimal)FDTPerformanceStatistics.Rows[row - 1]["BufferCacheHitRatio"];
+                totalSessions = (int)FDTPerformanceStatistics.Rows[row - 1]["TotalSessions"];
+                serverUpTime = (string)FDTServerInformation.Rows[0]["RunningDurationSmall"];
+                ret = "CPU: " + cpuPercentage.ToString("0.00%") + "\r\n" + "BHR: " + bufferHitRatio.ToString() + "\r\n" + serverUpTime;
+            }
 
             return ret;
         }
         public string ServerIconCPUUsage()
         {
             string ret = "";
-            decimal cpuPercentage;
+            decimal cpuPercentage = 0;
             int row = FDTPerformanceStatistics.Rows.Count;
-            cpuPercentage = (decimal)FDTPerformanceStatistics.Rows[row - 1]["CPUPercentage"];
+            if (row > 0)
+                cpuPercentage = (decimal)FDTPerformanceStatistics.Rows[row - 1]["CPUPercentage"];
+            
             ret = cpuPercentage.ToString("0.00") + "%";
 
             return ret;
@@ -545,9 +562,10 @@ namespace SQLDBATool.Code
         public string ServerIconBufferCacheHitRatio()
         {
             string ret = "";
-            decimal bufferHitRatio;
+            decimal bufferHitRatio = 100;
             int row = FDTPerformanceStatistics.Rows.Count;
-            bufferHitRatio = (decimal)FDTPerformanceStatistics.Rows[row - 1]["BufferCacheHitRatio"];
+            if (row > 0)
+                bufferHitRatio = (decimal)FDTPerformanceStatistics.Rows[row - 1]["BufferCacheHitRatio"];
             ret = bufferHitRatio.ToString();
 
             return ret;
@@ -555,9 +573,10 @@ namespace SQLDBATool.Code
         public string ServerIconUpTime()
         {
             string ret = "";
-            string serverUpTime;
+            string serverUpTime = "";
             int row = FDTPerformanceStatistics.Rows.Count;
-            serverUpTime = (string)FDTServerInformation.Rows[0]["RunningDurationSmall"];
+            if (row > 0)
+                serverUpTime = (string)FDTServerInformation.Rows[0]["RunningDurationSmall"];
             ret = serverUpTime;
 
             return ret;

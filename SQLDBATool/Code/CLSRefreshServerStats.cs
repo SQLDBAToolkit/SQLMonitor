@@ -143,132 +143,141 @@ namespace SQLDBATool.Code
                     }
                 }
 
-                if (!args.IsOnError)
+                try
                 {
-                    #region Get Server Information
-                    using (SqlCommand cmd = new SqlCommand())
+                    if (!args.IsOnError)
                     {
-                        cmd.Connection = FConnection;
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.CommandText = "#GetServerInfo";
+                        #region Get Server Information
+                        using (SqlCommand cmd = new SqlCommand())
+                        {
+                            cmd.Connection = FConnection;
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.CommandText = "#GetServerInfo";
 
-                        SqlDataReader dr = cmd.ExecuteReader();
-                        if (args.ServerInformation.Rows.Count > 0)
-                            args.ServerInformation.Clear();
-                        args.ServerInformation.Load(dr);
-                    }
-                    #endregion
-
-                    #region Get Server Statistics
-                    using (SqlCommand cmd = new SqlCommand())
-                    {
-                        cmd.Connection = FConnection;
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.CommandText = "#GetPerformanceStats";
-
-                        cmd.Parameters.Add("@inPrevCPUIdle", SqlDbType.BigInt);
-                        cmd.Parameters.Add("@inPrevCPUBusy", SqlDbType.BigInt);
-                        cmd.Parameters.Add("@inPrevNetworkPacketsSent", SqlDbType.Int);
-                        cmd.Parameters.Add("@inPrevNetworkPacketsReceived", SqlDbType.Int);
-                        cmd.Parameters.Add("@inPrevPhysicalIOReads", SqlDbType.Int);
-                        cmd.Parameters.Add("@inPrevBatchRecSec", SqlDbType.BigInt);
-                        cmd.Parameters.Add("@inPrevSqlCompilationSec", SqlDbType.BigInt);
-                        cmd.Parameters.Add("@inPrevSqlReCompilationSec", SqlDbType.BigInt);
-                        cmd.Parameters.Add("@inPrevCheckPointsSec", SqlDbType.BigInt);
-                        cmd.Parameters.Add("@inPrevLockWaitsSec", SqlDbType.BigInt);
-                        cmd.Parameters.Add("@inPrevTime", SqlDbType.DateTime);
-                        cmd.Parameters["@inPrevCPUIdle"].Value = FPrevCPUIdle;
-                        cmd.Parameters["@inPrevCPUBusy"].Value = FPrevCPUBusy;
-                        cmd.Parameters["@inPrevNetworkPacketsSent"].Value = FPrevNetworkPacketsSent;
-                        cmd.Parameters["@inPrevNetworkPacketsReceived"].Value = FPrevNetworkPacketsReceived;
-                        cmd.Parameters["@inPrevPhysicalIOReads"].Value = FPrevPhysicalIOReads;
-                        cmd.Parameters["@inPrevBatchRecSec"].Value = FPrevBatchRecSec;
-                        cmd.Parameters["@inPrevSqlCompilationSec"].Value = FPrevSqlCompilationSec;
-                        cmd.Parameters["@inPrevSqlReCompilationSec"].Value = FPrevSqlReCompilationSec;
-                        cmd.Parameters["@inPrevCheckPointsSec"].Value = FPrevCheckPointsSec;
-                        cmd.Parameters["@inPrevLockWaitsSec"].Value = FPrevLockWaitsSec;
-                        cmd.Parameters["@inPrevTime"].Value = FPrevTime;
-
-                        SqlDataReader dr = cmd.ExecuteReader();
-                        if (args.PerformanceStatistics.Rows.Count > 0)
-                            args.PerformanceStatistics.Clear();
-                        args.PerformanceStatistics.Load(dr);
-
-                        FPrevCPUIdle = (long)args.PerformanceStatistics.Rows[0]["CPU_Idle"];
-                        FPrevCPUBusy = (long)args.PerformanceStatistics.Rows[0]["CPU_Busy"];
-                        FPrevNetworkPacketsSent = (int)args.PerformanceStatistics.Rows[0]["pack_sent"];
-                        FPrevNetworkPacketsReceived = (int)args.PerformanceStatistics.Rows[0]["pack_received"];
-                        FPrevPhysicalIOReads = (int)args.PerformanceStatistics.Rows[0]["total_read"];
-                        FPrevPhysicalIOWrites = (int)args.PerformanceStatistics.Rows[0]["total_write"];
-                        FPrevBatchRecSec = (Int64)args.PerformanceStatistics.Rows[0]["batch_requests_sec"];
-                        FPrevSqlCompilationSec = (Int64)args.PerformanceStatistics.Rows[0]["sql_compilations_sec"];
-                        FPrevSqlReCompilationSec = (Int64)args.PerformanceStatistics.Rows[0]["sql_recompilations_sec"];
-                        FPrevCheckPointsSec = (Int64)args.PerformanceStatistics.Rows[0]["checkpoint_pages_sec"];
-                        FPrevLockWaitsSec = (Int64)args.PerformanceStatistics.Rows[0]["lock_waits_sec"];
-                        FPrevTime = (DateTime)args.PerformanceStatistics.Rows[0]["CurrentServerTime"];
-                    }
-                    #endregion
-
-                    #region Get Server Response Time
-                    using (SqlCommand cmd = new SqlCommand())
-                    {
-                        cmd.Connection = FConnection;
-                        cmd.CommandText = "SELECT 1";
-                        cmd.CommandType = CommandType.Text;
-                        Stopwatch sw = Stopwatch.StartNew();
-                        SqlDataReader dr = cmd.ExecuteReader();
-                        sw.Stop();
-                        dr.Close();
-                        args.RefreshMS = sw.ElapsedMilliseconds;
-                    }
-                    #endregion
-
-                    #region Get Session Information
-                    using (SqlCommand cmd = new SqlCommand())
-                    {
-                        cmd.Connection = FConnection;
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.CommandText = "#GetSessionInfomation";
-
-                        #region Get Sessions
-                        SqlDataReader dr = cmd.ExecuteReader();
-                        if (args.SessionInformation.Rows.Count > 0)
-                            args.SessionInformation.Clear();
-                        args.SessionInformation.Load(dr);
+                            SqlDataReader dr = cmd.ExecuteReader();
+                            if (args.ServerInformation.Rows.Count > 0)
+                                args.ServerInformation.Clear();
+                            args.ServerInformation.Load(dr);
+                        }
                         #endregion
-                        #region Session Stats
+
+                        #region Get Server Statistics
+                        using (SqlCommand cmd = new SqlCommand())
+                        {
+                            cmd.Connection = FConnection;
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.CommandText = "#GetPerformanceStats";
+
+                            cmd.Parameters.Add("@inPrevCPUIdle", SqlDbType.BigInt);
+                            cmd.Parameters.Add("@inPrevCPUBusy", SqlDbType.BigInt);
+                            cmd.Parameters.Add("@inPrevNetworkPacketsSent", SqlDbType.Int);
+                            cmd.Parameters.Add("@inPrevNetworkPacketsReceived", SqlDbType.Int);
+                            cmd.Parameters.Add("@inPrevPhysicalIOReads", SqlDbType.Int);
+                            cmd.Parameters.Add("@inPrevBatchRecSec", SqlDbType.BigInt);
+                            cmd.Parameters.Add("@inPrevSqlCompilationSec", SqlDbType.BigInt);
+                            cmd.Parameters.Add("@inPrevSqlReCompilationSec", SqlDbType.BigInt);
+                            cmd.Parameters.Add("@inPrevCheckPointsSec", SqlDbType.BigInt);
+                            cmd.Parameters.Add("@inPrevLockWaitsSec", SqlDbType.BigInt);
+                            cmd.Parameters.Add("@inPrevTime", SqlDbType.DateTime);
+                            cmd.Parameters["@inPrevCPUIdle"].Value = FPrevCPUIdle;
+                            cmd.Parameters["@inPrevCPUBusy"].Value = FPrevCPUBusy;
+                            cmd.Parameters["@inPrevNetworkPacketsSent"].Value = FPrevNetworkPacketsSent;
+                            cmd.Parameters["@inPrevNetworkPacketsReceived"].Value = FPrevNetworkPacketsReceived;
+                            cmd.Parameters["@inPrevPhysicalIOReads"].Value = FPrevPhysicalIOReads;
+                            cmd.Parameters["@inPrevBatchRecSec"].Value = FPrevBatchRecSec;
+                            cmd.Parameters["@inPrevSqlCompilationSec"].Value = FPrevSqlCompilationSec;
+                            cmd.Parameters["@inPrevSqlReCompilationSec"].Value = FPrevSqlReCompilationSec;
+                            cmd.Parameters["@inPrevCheckPointsSec"].Value = FPrevCheckPointsSec;
+                            cmd.Parameters["@inPrevLockWaitsSec"].Value = FPrevLockWaitsSec;
+                            cmd.Parameters["@inPrevTime"].Value = FPrevTime;
+
+                            SqlDataReader dr = cmd.ExecuteReader();
+                            if (args.PerformanceStatistics.Rows.Count > 0)
+                                args.PerformanceStatistics.Clear();
+                            args.PerformanceStatistics.Load(dr);
+
+                            FPrevCPUIdle = (long)args.PerformanceStatistics.Rows[0]["CPU_Idle"];
+                            FPrevCPUBusy = (long)args.PerformanceStatistics.Rows[0]["CPU_Busy"];
+                            FPrevNetworkPacketsSent = (int)args.PerformanceStatistics.Rows[0]["pack_sent"];
+                            FPrevNetworkPacketsReceived = (int)args.PerformanceStatistics.Rows[0]["pack_received"];
+                            FPrevPhysicalIOReads = (int)args.PerformanceStatistics.Rows[0]["total_read"];
+                            FPrevPhysicalIOWrites = (int)args.PerformanceStatistics.Rows[0]["total_write"];
+                            FPrevBatchRecSec = (Int64)args.PerformanceStatistics.Rows[0]["batch_requests_sec"];
+                            FPrevSqlCompilationSec = (Int64)args.PerformanceStatistics.Rows[0]["sql_compilations_sec"];
+                            FPrevSqlReCompilationSec = (Int64)args.PerformanceStatistics.Rows[0]["sql_recompilations_sec"];
+                            FPrevCheckPointsSec = (Int64)args.PerformanceStatistics.Rows[0]["checkpoint_pages_sec"];
+                            FPrevLockWaitsSec = (Int64)args.PerformanceStatistics.Rows[0]["lock_waits_sec"];
+                            FPrevTime = (DateTime)args.PerformanceStatistics.Rows[0]["CurrentServerTime"];
+                        }
+                        #endregion
+
+                        #region Get Server Response Time
+                        using (SqlCommand cmd = new SqlCommand())
+                        {
+                            cmd.Connection = FConnection;
+                            cmd.CommandText = "SELECT 1";
+                            cmd.CommandType = CommandType.Text;
+                            Stopwatch sw = Stopwatch.StartNew();
+                            SqlDataReader dr = cmd.ExecuteReader();
+                            sw.Stop();
+                            dr.Close();
+                            args.RefreshMS = sw.ElapsedMilliseconds;
+                        }
+                        #endregion
+
+                        #region Get Session Information
+                        using (SqlCommand cmd = new SqlCommand())
+                        {
+                            cmd.Connection = FConnection;
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.CommandText = "#GetSessionInfomation";
+
+                            #region Get Sessions
+                            SqlDataReader dr = cmd.ExecuteReader();
+                            if (args.SessionInformation.Rows.Count > 0)
+                                args.SessionInformation.Clear();
+                            args.SessionInformation.Load(dr);
+                            #endregion
+                            #region Session Stats
                             args.SessionStatistics.Clear();
-                        args.SessionStatistics.Load(dr);
-                        #endregion
-                        #region Requests
-                        if (args.RequestInformation.Rows.Count > 0)
-                            args.RequestInformation.Clear();
-                        args.RequestInformation.Load(dr);
-                        #endregion
-                        #region Connections
-                        if (args.ConnectionInformation.Rows.Count > 0)
-                            args.ConnectionInformation.Clear();
-                        args.ConnectionInformation.Load(dr);
-                        #endregion
-                        #region WaitStates
-                        if (args.WaitStateInformation.Rows.Count > 0)
-                            args.WaitStateInformation.Clear();
-                        args.WaitStateInformation.Load(dr);
-                        #endregion
-                        //#region Cursors
-                        //if (args.CursorInformaiton.Rows.Count > 0)
-                        //    args.CursorInformaiton.Clear();
-                        //args.CursorInformaiton.Load(dr);
-                        //#endregion
-                        #region Session Commands
-                        if (args.SessionCommands.Rows.Count > 0)
-                            args.SessionCommands.Clear();
-                        args.SessionCommands.Load(dr);
-                        #endregion
+                            args.SessionStatistics.Load(dr);
+                            #endregion
+                            #region Requests
+                            if (args.RequestInformation.Rows.Count > 0)
+                                args.RequestInformation.Clear();
+                            args.RequestInformation.Load(dr);
+                            #endregion
+                            #region Connections
+                            if (args.ConnectionInformation.Rows.Count > 0)
+                                args.ConnectionInformation.Clear();
+                            args.ConnectionInformation.Load(dr);
+                            #endregion
+                            #region WaitStates
+                            if (args.WaitStateInformation.Rows.Count > 0)
+                                args.WaitStateInformation.Clear();
+                            args.WaitStateInformation.Load(dr);
+                            #endregion
+                            //#region Cursors
+                            //if (args.CursorInformaiton.Rows.Count > 0)
+                            //    args.CursorInformaiton.Clear();
+                            //args.CursorInformaiton.Load(dr);
+                            //#endregion
+                            #region Session Commands
+                            if (args.SessionCommands.Rows.Count > 0)
+                                args.SessionCommands.Clear();
+                            args.SessionCommands.Load(dr);
+                            #endregion
 
+                        }
+                        #endregion
                     }
-                    #endregion
                 }
+                catch (SqlException ex)
+                {
+                    args.IsOnError = true;
+                    args.LastError = ex.Message;
+                }
+
                 this.OnProcessRefreshed(args);
 
                 Thread.Sleep(5000);

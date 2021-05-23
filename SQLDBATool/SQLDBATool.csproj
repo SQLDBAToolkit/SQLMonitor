@@ -194,6 +194,12 @@
     <Compile Include="Code\ucServerDiagram.Designer.cs">
       <DependentUpon>ucServerDiagram.cs</DependentUpon>
     </Compile>
+    <Compile Include="Code\ucServerGroupDiagrams.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Code\ucServerGroupDiagrams.Designer.cs">
+      <DependentUpon>ucServerGroupDiagrams.cs</DependentUpon>
+    </Compile>
     <Compile Include="Code\ucServerIcon.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -272,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Code\ucServerDiagram.resx">
       <DependentUpon>ucServerDiagram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\ucServerGroupDiagrams.resx">
+      <DependentUpon>ucServerGroupDiagrams.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Code\ucServerIcon.resx">
       <DependentUpon>ucServerIcon.cs</DependentUpon>

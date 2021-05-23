@@ -425,6 +425,7 @@ namespace SQLDBATool.Code
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBoxWaitTypeInformation = new System.Windows.Forms.TextBox();
             this.ucSeries1 = new SQLDBATool.Code.ucSeries();
+            this.dataColumn3 = new System.Data.DataColumn();
             this.panelTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -1393,7 +1394,8 @@ namespace SQLDBATool.Code
             this.dataColumnSCLocalNetAddress,
             this.dataColumnSCLocalTcpPort,
             this.dataColumnSCConnectionId,
-            this.dataColumnSCParentConnectionId});
+            this.dataColumnSCParentConnectionId,
+            this.dataColumn3});
             this.dataTableSessionConnections.TableName = "SessionConnections";
             // 
             // dataColumnSCSessionId
@@ -3879,6 +3881,7 @@ namespace SQLDBATool.Code
             // 
             this.dbDataGridView3.AllowUserToAddRows = false;
             this.dbDataGridView3.AllowUserToDeleteRows = false;
+            this.dbDataGridView3.AllowUserToResizeRows = false;
             this.dbDataGridView3.AutoGenerateColumns = false;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
@@ -4003,6 +4006,10 @@ namespace SQLDBATool.Code
             this.ucSeries1.TabIndex = 0;
             this.ucSeries1.Text = "CPU Usage";
             this.ucSeries1.TopColor = System.Drawing.Color.Red;
+            // 
+            // dataColumn3
+            // 
+            this.dataColumn3.ColumnName = "Column1";
             // 
             // ucSessionDetails
             // 
@@ -4453,5 +4460,6 @@ namespace SQLDBATool.Code
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.RichTextBox richTextBoxSqlText;
         private System.Windows.Forms.TextBox textBoxWaitTypeInformation;
+        private System.Data.DataColumn dataColumn3;
     }
 }

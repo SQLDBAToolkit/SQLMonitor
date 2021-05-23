@@ -65,6 +65,7 @@
             this.ucConnectionTree1.ParentSqlToolsForm = null;
             this.ucConnectionTree1.Size = new System.Drawing.Size(302, 769);
             this.ucConnectionTree1.TabIndex = 0;
+            this.ucConnectionTree1.ThisTreeInformation = null;
             // 
             // ucServerMonitor1
             // 
@@ -76,13 +77,14 @@
             this.ucServerMonitor1.SessionServerID = new System.Guid("545bf3f1-33ad-4061-9fde-ff9628966183");
             this.ucServerMonitor1.Size = new System.Drawing.Size(1129, 769);
             this.ucServerMonitor1.TabIndex = 0;
+            this.ucServerMonitor1.TreeInformation = null;
             this.ucServerMonitor1.Visible = false;
             // 
             // FormSqlDBATool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1443, 773);
+            this.ClientSize = new System.Drawing.Size(2164, 1159);
             this.Controls.Add(this.splitContainerLayout);
             this.DoubleBuffered = true;
             this.Name = "FormSqlDBATool";

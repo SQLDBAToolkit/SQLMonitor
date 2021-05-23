@@ -23,11 +23,12 @@ namespace SQLDBATool.Code
         {
             InitializeComponent();
             ucDatabaseInformation1.ParentMonitor = this;
+            
             dataGridView1.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
             FServerID = Guid.NewGuid();
             SessionServerID = Guid.NewGuid();
             DoubleBuffered = true;
-
+            dataGridView1.AutoGenerateColumns = false;
             FDTSessionsTable = new DataTable();
 
 
@@ -64,7 +65,10 @@ namespace SQLDBATool.Code
             FUpdatingData = false;
 
         }
-
+        public void ChangeDatabaseServerName(string serverName)
+        {
+            ucTitleBar1.TitleText = serverName;
+        }
         // Change backgroup color
         public void ChangeRowBackgroundColors()
         {
@@ -104,6 +108,7 @@ namespace SQLDBATool.Code
                     Decimal maxRequests = 9;
                     int maxSessions = 10;
 
+                    ucTitleBar1.TitleText = (string)(treeInformation.ConnectionInformation.ServerStats.DTServerInformation.Rows[0]["ServerName"]);
                     foreach (DataRow row in treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows)
                     {
                         if ((Int32)row["NetworkPacketsRecievedDelta"] > maxNetwork)
@@ -294,39 +299,9 @@ namespace SQLDBATool.Code
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
-            DrawHeaderBackground(e);
+            
         }
-        private void DrawHeaderBackground(PaintEventArgs e)
-        {
-            // Is there something to draw
-            if (e.ClipRectangle.Width + e.ClipRectangle.Height > 0)
-            {
-                // We should draw the whole graph and clip what we want
-                using (Bitmap bmGraph = new Bitmap(this.ClientRectangle.Width, this.ClientRectangle.Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb))
-                {
-                    Graphics grGraph = Graphics.FromImage(bmGraph);
-
-                    #region Draw the graph background
-                    using (LinearGradientBrush lgBrush = new LinearGradientBrush(e.ClipRectangle, Color.LightCyan, Color.LightSkyBlue, LinearGradientMode.Vertical))
-                    {
-                        grGraph.FillRectangle(lgBrush, this.ClientRectangle);
-                    }
-                    if (dataTableServerInformation.Rows.Count > 0)
-                    {
-                        using (SolidBrush myBrush = new SolidBrush(Color.Black))
-                        using (SolidBrush myBrushShadow = new SolidBrush(Color.White))
-                        {
-                            grGraph.DrawString((string)dataTableServerInformation.Rows[0]["ServerName"], labelServerHeaderName.Font, myBrushShadow, ClientRectangle.X + 4, ClientRectangle.Y + 4);
-                            grGraph.DrawString((string)dataTableServerInformation.Rows[0]["ServerName"], labelServerHeaderName.Font, myBrush, ClientRectangle.X + 3, ClientRectangle.Y + 3);
-                        }
-                    }
-                    #endregion
-
-                    e.Graphics.DrawImage(bmGraph, e.ClipRectangle.X, e.ClipRectangle.Y);
-                }
-            }
-        }
-
+ 
         private void panelSystemInformation_Paint(object sender, PaintEventArgs e)
         {
             Panel s = (Panel)sender;

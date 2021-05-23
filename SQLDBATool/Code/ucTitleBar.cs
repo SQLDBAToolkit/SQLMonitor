@@ -14,7 +14,6 @@ namespace SQLDBATool.Code
     public partial class ucTitleBar : UserControl
     {
         private string FTitleText;
-
         public ucTitleBar()
         {
             InitializeComponent();
@@ -27,6 +26,22 @@ namespace SQLDBATool.Code
             {
                 FTitleText = value;
                 this.Refresh();
+            }
+        }
+
+        public bool TitleBold
+        {
+            get => labelFont.Font.Bold;
+            set
+            {
+                if (value)
+                {
+                    labelFont.Font = new Font(labelFont.Font, FontStyle.Bold);
+                }
+                else
+                {
+                    labelFont.Font = new Font(labelFont.Font, FontStyle.Regular);
+                }
             }
         }
 

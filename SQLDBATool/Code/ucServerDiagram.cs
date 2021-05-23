@@ -10,7 +10,16 @@ namespace SQLDBATool.Code
         private CLSTreeInformation FLinkedTree;
         private List<clsDiagramServers> FLinkedServers;
         private Point FMaxPoint;
-        public CLSTreeInformation LinkedTree { get => FLinkedTree; set => FLinkedTree = value; }
+        public CLSTreeInformation LinkedTree
+        {
+            get => FLinkedTree;
+            set
+            {
+                FLinkedTree = value;
+                ucTitleBarServerDiagraph.TitleText = FLinkedTree.ConnectionTreeNode.Text;
+
+            }
+        }
         public List<clsDiagramServers> LinkedServers { get => FLinkedServers; set => FLinkedServers = value; }
         public ucServerDiagram(CLSTreeInformation linkedTree)
         {
@@ -36,7 +45,7 @@ namespace SQLDBATool.Code
                     newIcon.Left = location.X;
                     newIcon.Top = location.Y;
                     server.ServerIcon = newIcon;
-                    this.Controls.Add(newIcon);
+                    this.flowLayoutPanelServerIcons.Controls.Add(newIcon);
                     newIcon.Show();
                 }
             }

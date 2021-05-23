@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grapher", "Grapher\Grapher.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaitStateEditor", "WaitStateEditor\WaitStateEditor.csproj", "{DDDEF0A3-17B8-4201-B253-54B22E390CE3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlDBAToolWebSite", "SqlDBAToolWebSite\SqlDBAToolWebSite.csproj", "{052B94C4-DC31-4AE5-AC38-6EAFC27A6DA3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{DDDEF0A3-17B8-4201-B253-54B22E390CE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDDEF0A3-17B8-4201-B253-54B22E390CE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDDEF0A3-17B8-4201-B253-54B22E390CE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{052B94C4-DC31-4AE5-AC38-6EAFC27A6DA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{052B94C4-DC31-4AE5-AC38-6EAFC27A6DA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{052B94C4-DC31-4AE5-AC38-6EAFC27A6DA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{052B94C4-DC31-4AE5-AC38-6EAFC27A6DA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

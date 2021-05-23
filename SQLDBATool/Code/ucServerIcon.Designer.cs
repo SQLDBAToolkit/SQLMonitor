@@ -33,6 +33,7 @@ namespace SQLDBATool.Code
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucServerIcon));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelServerName = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -42,7 +43,6 @@ namespace SQLDBATool.Code
             this.labelUpTime = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.labelServerName = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -65,6 +65,17 @@ namespace SQLDBATool.Code
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(185, 34);
             this.panel1.TabIndex = 4;
+            // 
+            // labelServerName
+            // 
+            this.labelServerName.BackColor = System.Drawing.Color.LightSlateGray;
+            this.labelServerName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelServerName.Location = new System.Drawing.Point(0, 0);
+            this.labelServerName.Name = "labelServerName";
+            this.labelServerName.Size = new System.Drawing.Size(185, 34);
+            this.labelServerName.TabIndex = 0;
+            this.labelServerName.Text = "label4";
+            this.labelServerName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
             // 
@@ -147,17 +158,6 @@ namespace SQLDBATool.Code
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 13;
             this.pictureBox2.TabStop = false;
-            // 
-            // labelServerName
-            // 
-            this.labelServerName.BackColor = System.Drawing.Color.LimeGreen;
-            this.labelServerName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelServerName.Location = new System.Drawing.Point(0, 0);
-            this.labelServerName.Name = "labelServerName";
-            this.labelServerName.Size = new System.Drawing.Size(185, 34);
-            this.labelServerName.TabIndex = 0;
-            this.labelServerName.Text = "label4";
-            this.labelServerName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ucServerIcon
             // 
