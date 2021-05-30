@@ -177,11 +177,14 @@ namespace SQLDBATool.Code
         }
         public void UpdatePerformanceStatistics(DataTable dtPerformanceStatistics)
         {
-            if (FDTPerformanceStatistics.Columns.Count == 0)
+            if (FDTPerformanceStatistics.Columns.Count == 0 && dtPerformanceStatistics.Columns.Count > 0)
                 FDTPerformanceStatistics = dtPerformanceStatistics.Clone();
-            if (FDTPerformanceStatistics.Rows.Count == 300)
-                FDTPerformanceStatistics.Rows[0].Delete();
-            FDTPerformanceStatistics.Rows.Add(dtPerformanceStatistics.Rows[0].ItemArray);
+            if (dtPerformanceStatistics.Rows.Count > 0)
+            {
+                if (FDTPerformanceStatistics.Rows.Count == 300)
+                    FDTPerformanceStatistics.Rows[0].Delete();
+                FDTPerformanceStatistics.Rows.Add(dtPerformanceStatistics.Rows[0].ItemArray);
+            }
         }
         public void UpdateSessionInformation(DataTable dtSessionInformation)
         {

@@ -21,10 +21,10 @@ namespace SQLDBATool.Code
             InitializeComponent();
             string dbPath = Application.StartupPath;
 
-            if (dbPath.StartsWith(@"F:\Projects\SQLDBATool\SQLDBATool") ||
+            if (dbPath.StartsWith(@"E:\Projects\SQLDBATool\SQLDBATool") ||
                 dbPath.Contains(@"Visual Studio"))
             {
-                dbPath = @"F:\Projects\SQLDBATool\SQLDBATool";
+                dbPath = @"E:\Projects\SQLDBATool\SQLDBATool";
             }
             if (!dbPath.EndsWith(@"\"))
                 dbPath += @"\";
