@@ -58,10 +58,19 @@
             this.toolStripMenuItemRemoveServerDisabled = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItemServerPropertiesDisabled = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStripDisconnectedConnection = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemConnectToServer = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripFolder.SuspendLayout();
             this.contextMenuStripRootMenu.SuspendLayout();
             this.contextMenuStripServerConnection.SuspendLayout();
             this.contextMenuStripServerDisabledConnection.SuspendLayout();
+            this.contextMenuStripDisconnectedConnection.SuspendLayout();
             this.SuspendLayout();
             // 
             // treeViewConnections
@@ -170,6 +179,7 @@
             // 
             // toolStripMenuItemConnect
             // 
+            this.toolStripMenuItemConnect.Enabled = false;
             this.toolStripMenuItemConnect.Name = "toolStripMenuItemConnect";
             this.toolStripMenuItemConnect.Size = new System.Drawing.Size(197, 22);
             this.toolStripMenuItemConnect.Text = "Connect to Server";
@@ -179,6 +189,7 @@
             this.toolStripMenuItemDisconnect.Name = "toolStripMenuItemDisconnect";
             this.toolStripMenuItemDisconnect.Size = new System.Drawing.Size(197, 22);
             this.toolStripMenuItemDisconnect.Text = "Disconnect from Server";
+            this.toolStripMenuItemDisconnect.Click += new System.EventHandler(this.toolStripMenuItemDisconnect_Click);
             // 
             // toolStripSeparator1
             // 
@@ -208,6 +219,7 @@
             this.toolStripMenuItemProperties.Name = "toolStripMenuItemProperties";
             this.toolStripMenuItemProperties.Size = new System.Drawing.Size(197, 22);
             this.toolStripMenuItemProperties.Text = "Properties";
+            this.toolStripMenuItemProperties.Click += new System.EventHandler(this.toolStripMenuItemProperties_Click);
             // 
             // contextMenuStripServerDisabledConnection
             // 
@@ -220,7 +232,7 @@
             this.toolStripSeparator6,
             this.toolStripMenuItemServerPropertiesDisabled});
             this.contextMenuStripServerDisabledConnection.Name = "contextMenuStrip1";
-            this.contextMenuStripServerDisabledConnection.Size = new System.Drawing.Size(198, 148);
+            this.contextMenuStripServerDisabledConnection.Size = new System.Drawing.Size(198, 126);
             // 
             // toolStripMenuItem1
             // 
@@ -264,6 +276,65 @@
             this.toolStripMenuItemServerPropertiesDisabled.Name = "toolStripMenuItemServerPropertiesDisabled";
             this.toolStripMenuItemServerPropertiesDisabled.Size = new System.Drawing.Size(197, 22);
             this.toolStripMenuItemServerPropertiesDisabled.Text = "Properties";
+            this.toolStripMenuItemServerPropertiesDisabled.Click += new System.EventHandler(this.toolStripMenuItemProperties_Click);
+            // 
+            // contextMenuStripDisconnectedConnection
+            // 
+            this.contextMenuStripDisconnectedConnection.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemConnectToServer,
+            this.toolStripMenuItem4,
+            this.toolStripSeparator7,
+            this.toolStripMenuItem5,
+            this.toolStripMenuItem6,
+            this.toolStripSeparator8,
+            this.toolStripMenuItem7});
+            this.contextMenuStripDisconnectedConnection.Name = "contextMenuStrip1";
+            this.contextMenuStripDisconnectedConnection.Size = new System.Drawing.Size(198, 126);
+            this.contextMenuStripDisconnectedConnection.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // toolStripMenuItemConnectToServer
+            // 
+            this.toolStripMenuItemConnectToServer.Name = "toolStripMenuItemConnectToServer";
+            this.toolStripMenuItemConnectToServer.Size = new System.Drawing.Size(197, 22);
+            this.toolStripMenuItemConnectToServer.Text = "Connect to Server";
+            this.toolStripMenuItemConnectToServer.Click += new System.EventHandler(this.toolStripMenuItemConnect_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Enabled = false;
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(197, 22);
+            this.toolStripMenuItem4.Text = "Disconnect from Server";
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(194, 6);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(197, 22);
+            this.toolStripMenuItem5.Text = "Disable Server";
+            this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItemDisable_Click);
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(197, 22);
+            this.toolStripMenuItem6.Text = "Remove Server";
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(194, 6);
+            // 
+            // toolStripMenuItem7
+            // 
+            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(197, 22);
+            this.toolStripMenuItem7.Text = "Properties";
+            this.toolStripMenuItem7.Click += new System.EventHandler(this.toolStripMenuItemProperties_Click);
             // 
             // ucConnectionTree
             // 
@@ -277,6 +348,7 @@
             this.contextMenuStripRootMenu.ResumeLayout(false);
             this.contextMenuStripServerConnection.ResumeLayout(false);
             this.contextMenuStripServerDisabledConnection.ResumeLayout(false);
+            this.contextMenuStripDisconnectedConnection.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -311,5 +383,13 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRemoveServerDisabled;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemServerPropertiesDisabled;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripDisconnectedConnection;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemConnectToServer;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
     }
 }

@@ -28,8 +28,14 @@ namespace SQLDBATool.Code
         private DateTime FPrevTime = DateTime.Now;
         private SqlConnection FConnection;
         private SqlConnection FDBSizeConnection;
+        private bool FConnectionRunning = false;
+        private bool FServerStatsOpen = false;
+        private bool FDatabaseInfoOpen = false;
         public MonitoredServer MonitoredServer { get => FMonitoredServer; set => FMonitoredServer = value; }
         public bool CancelRefresh { get => FCancelRefresh; set => FCancelRefresh = value; }
+        public bool ConnectionRunning { get => FConnectionRunning; set => FConnectionRunning = value; }
+        public bool ServerStatsOpen { get => FServerStatsOpen; set => FServerStatsOpen = value; }
+        public bool DatabaseInfoOpen { get => FDatabaseInfoOpen; set => FDatabaseInfoOpen = value; }
 
         public CLSRefreshServerStats()
         {
@@ -41,6 +47,7 @@ namespace SQLDBATool.Code
         }
         public event EventHandler<ServerStatsRefreshArgs> ProcessRefreshed;
         public event EventHandler<ServerStatsDBSizesArgs> ProcessDBSizesRefreshed;
+        public event EventHandler<ServerStatsRefreshStoppedArgs> ProcessRefreshStopped;
         protected virtual void OnProcessRefreshed(ServerStatsRefreshArgs e)
         {
             EventHandler<ServerStatsRefreshArgs> handler = ProcessRefreshed;
@@ -59,8 +66,22 @@ namespace SQLDBATool.Code
             }
         }
 
+        protected virtual void OnProcessRefreshStopped(ServerStatsRefreshStoppedArgs e)
+        {
+            if (!FDatabaseInfoOpen && !FServerStatsOpen)
+            {
+                EventHandler<ServerStatsRefreshStoppedArgs> handler = ProcessRefreshStopped;
+                if (handler != null)
+                {
+                    handler(this, e);
+                }
+            }
+        }
+
         public void StartRefreshBW()
         {
+            FConnectionRunning = true;
+            CancelRefresh = false;
             FBWServerStats = new BackgroundWorker();
             FBWServerStats.DoWork += ProcessRefresh;
             FBWServerStats.WorkerSupportsCancellation = true;
@@ -73,7 +94,11 @@ namespace SQLDBATool.Code
             FBWDBSpace.RunWorkerCompleted += RefreshProcessComplete_BW;
             FBWDBSpace.RunWorkerAsync();
        }
-
+        public void FStopRefreshBW()
+        {
+            if (FConnectionRunning)
+                CancelRefresh = true;
+        }
         public string BuildConnectionString()
         {
             SqlConnectionStringBuilder connString = new SqlConnectionStringBuilder();
@@ -108,6 +133,8 @@ namespace SQLDBATool.Code
         }
         private void ProcessRefresh(object sender, DoWorkEventArgs e)
         {
+            FServerStatsOpen = true;
+
             ServerStatsRefreshArgs args = new ServerStatsRefreshArgs();
             args.ConnectionID = FMonitoredServer.ServerID;
             args.ServerInformation = new DataTable();
@@ -280,12 +307,26 @@ namespace SQLDBATool.Code
 
                 this.OnProcessRefreshed(args);
 
-                Thread.Sleep(5000);
+                int timeLoop = 500;
+                while (timeLoop < 5000 && !CancelRefresh)
+                {
+                    Thread.Sleep(500);
+                    timeLoop += 500;
+                }
             }
+
+            FServerStatsOpen = false;
+
+            ServerStatsRefreshStoppedArgs stoppedArgs = new ServerStatsRefreshStoppedArgs();
+
+            stoppedArgs.ConnectionID = FMonitoredServer.ServerID;
+            this.OnProcessRefreshStopped(stoppedArgs);
+
 
         }
         private void ProcessDBSpaceRefresh(object sender, DoWorkEventArgs e)
         {
+            FDatabaseInfoOpen = true;
             try
             {
                 ServerStatsDBSizesArgs args = new ServerStatsDBSizesArgs();
@@ -356,12 +397,23 @@ namespace SQLDBATool.Code
                     this.OnProcessDBSpaceRefreshed(args);
                     if (FDBSpaceQuickScan)
                     {
-                        Thread.Sleep(5000);
+                        int timeLoop = 500;
+                        while (timeLoop < 5000 && !CancelRefresh)
+                        {
+                            Thread.Sleep(500);
+                            timeLoop += 500;
+                        }
                         FDBSpaceQuickScan = false;
                     }
                     else
                     {
-                        Thread.Sleep(360000);
+                        int timeLoop = 500;
+                        while (timeLoop < 360000 && !CancelRefresh)
+                        {
+                            Thread.Sleep(500);
+                            timeLoop += 500;
+                        }
+
                     }
                 }
             }
@@ -373,6 +425,10 @@ namespace SQLDBATool.Code
             {
                 string msg = ex.Message;
             }
+            FDatabaseInfoOpen = false;
+            ServerStatsRefreshStoppedArgs stoppedArgs = new ServerStatsRefreshStoppedArgs();
+            stoppedArgs.ConnectionID = FMonitoredServer.ServerID;
+            this.OnProcessRefreshStopped(stoppedArgs);
 
         }
         private void RefreshProcessComplete_BW(object sender, RunWorkerCompletedEventArgs e)
@@ -1762,6 +1818,9 @@ end
         public DataTable DatabaseFileInformation;
         public DataTable DatabaseSpaceOverview;
         public DataTable DatabaseSpaceByDrive;
-
+    }
+    public class ServerStatsRefreshStoppedArgs : EventArgs
+    {
+        public Guid ConnectionID;
     }
 }

@@ -110,6 +110,12 @@
     <Compile Include="Code\CLSRefreshServerStats.cs" />
     <Compile Include="Code\CLSSqlServerRefresh.cs" />
     <Compile Include="Code\CLSSqlDBToolsDB.cs" />
+    <Compile Include="Code\FormConnectionProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Code\FormConnectionProperties.Designer.cs">
+      <DependentUpon>FormConnectionProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Code\FormNewConnection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,6 +243,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Code\FormConnectionProperties.resx">
+      <DependentUpon>FormConnectionProperties.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Code\FormNewConnection.resx">
       <DependentUpon>FormNewConnection.cs</DependentUpon>
     </EmbeddedResource>

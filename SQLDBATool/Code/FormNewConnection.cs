@@ -10,7 +10,7 @@ namespace SQLDBATool.Code
     {
         private CLSTreeInformation FParentTreeInformation;
         private ucConnectionTree FConnTree;
-
+        private Boolean FModifyConnection;
         public FormNewConnection(CLSTreeInformation parentTreeInformation, ucConnectionTree connTree)
         {
             InitializeComponent();
@@ -145,6 +145,11 @@ namespace SQLDBATool.Code
             connString.TrustServerCertificate = checkBoxTrustServerCertificate.Checked;
             connString.ApplicationName = "SQL Server Assistance Connection Test";
             return connString.ConnectionString;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

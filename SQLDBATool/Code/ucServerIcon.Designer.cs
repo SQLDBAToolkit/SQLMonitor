@@ -74,7 +74,7 @@ namespace SQLDBATool.Code
             this.labelServerName.Name = "labelServerName";
             this.labelServerName.Size = new System.Drawing.Size(185, 34);
             this.labelServerName.TabIndex = 0;
-            this.labelServerName.Text = "label4";
+            this.labelServerName.Text = "Server";
             this.labelServerName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
@@ -118,7 +118,7 @@ namespace SQLDBATool.Code
             this.labelCPUUsage.Name = "labelCPUUsage";
             this.labelCPUUsage.Size = new System.Drawing.Size(56, 20);
             this.labelCPUUsage.TabIndex = 9;
-            this.labelCPUUsage.Text = "label4";
+            this.labelCPUUsage.Text = "0";
             this.labelCPUUsage.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // labelBHR
@@ -127,7 +127,7 @@ namespace SQLDBATool.Code
             this.labelBHR.Name = "labelBHR";
             this.labelBHR.Size = new System.Drawing.Size(56, 20);
             this.labelBHR.TabIndex = 10;
-            this.labelBHR.Text = "label4";
+            this.labelBHR.Text = "0";
             this.labelBHR.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // labelUpTime
@@ -136,7 +136,6 @@ namespace SQLDBATool.Code
             this.labelUpTime.Name = "labelUpTime";
             this.labelUpTime.Size = new System.Drawing.Size(56, 29);
             this.labelUpTime.TabIndex = 11;
-            this.labelUpTime.Text = "label4";
             this.labelUpTime.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // pictureBox1

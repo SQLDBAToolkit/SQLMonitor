@@ -15,6 +15,7 @@ namespace SQLDBATool.Code
         private List<Code.ucServerIcon> FServerIcons;
         private CLSRefreshServerStats FRefreshBackgroundProcess;
         private CLSTreeInformation FParentTreeInformation;
+        private bool FIsConnectionOpen = false;
         private bool FIsOnError = false;
         private string FLastCOnnectionError = "";
         public List<Code.ucServerIcon> ServerIcon { get => FServerIcons; set => FServerIcons = value; }
@@ -22,6 +23,8 @@ namespace SQLDBATool.Code
         public MonitoredServer MonitoredServer { get => FMonitoredServer; set => FMonitoredServer = value; }
         public clsServerStats ServerStats { get => FServerStats; set => FServerStats = value; }
         public CLSTreeInformation ParentTreeInformation { get => FParentTreeInformation; set => FParentTreeInformation = value; }
+        public bool IsConnectionOpen { get => FIsConnectionOpen; set => FIsConnectionOpen = value; }
+        internal CLSRefreshServerStats RefreshBackgroundProcess { get => FRefreshBackgroundProcess; set => FRefreshBackgroundProcess = value; }
 
         public CLSConnectionInformation()
         {
@@ -37,14 +40,25 @@ namespace SQLDBATool.Code
 
         public void StartRefreshProcess()
         {
-            FRefreshBackgroundProcess = new CLSRefreshServerStats();
+            FIsConnectionOpen = true;
+            if (FRefreshBackgroundProcess == null)
+                FRefreshBackgroundProcess = new CLSRefreshServerStats();
             FRefreshBackgroundProcess.MonitoredServer = FMonitoredServer;
             FRefreshBackgroundProcess.ProcessRefreshed += ProcessRefreshed;
+            FRefreshBackgroundProcess.ProcessRefreshStopped += ProcessRefreshStopped;
             FRefreshBackgroundProcess.ProcessDBSizesRefreshed += ProcessDBSizesRefreshed;
 
             FRefreshBackgroundProcess.StartRefreshBW();
         }
 
+        public void StopRefreshProcess()
+        {
+            if (FIsConnectionOpen)
+            {
+                FRefreshBackgroundProcess.CancelRefresh = true;
+            }
+
+        }
         public void ProcessRefreshed(object sender, ServerStatsRefreshArgs e)
         {
             _syncContext.Post(o => UpdateIcons(e), null);
@@ -54,6 +68,33 @@ namespace SQLDBATool.Code
             _syncContext.Post(o => UpdateDatabaseInformation(e), null);
         }
 
+        public void ProcessRefreshStopped(object sender, ServerStatsRefreshStoppedArgs e)
+        {
+            _syncContext.Post(o => SetOpenConnectionToClose(e), null);
+        }
+
+        public void SetOpenConnectionToClose(ServerStatsRefreshStoppedArgs e)
+        {
+            FIsConnectionOpen = false;
+
+            if (!this.MonitoredServer.IsDisabled)
+            {
+                FParentTreeInformation.ConnectionTreeNode.ContextMenuStrip = FParentTreeInformation.ParentTree.GetContextMenu("DISCONNECT");
+                FParentTreeInformation.ConnectionTreeNode.ImageIndex = 2;
+                foreach (Code.ucServerIcon icon in FParentTreeInformation.ConnectionInformation.ServerIcon)
+                {
+                    icon.SetTitleColor(Color.Black, Color.Gray);
+                }
+            }
+
+        }
+        public void UpdateIconTitle(string newTitle)
+        {
+            foreach (Code.ucServerIcon icon in FServerIcons)
+            {
+                icon.SetTitleText(newTitle);
+            }
+        }
         public void UpdateIcons(ServerStatsRefreshArgs e)
         {
             string performanceStats;
@@ -171,9 +212,11 @@ namespace SQLDBATool.Code
         public void UpdateServerInformation(DataTable dtServerInformation)
         {
             if (FDTServerInformation.Columns.Count == 0)
+            {
                 FDTServerInformation = dtServerInformation.Clone();
-            FDTServerInformation.Rows.Clear();
-            FDTServerInformation.Rows.Add(dtServerInformation.Rows[0].ItemArray);
+                FDTServerInformation.Rows.Clear();
+                FDTServerInformation.Rows.Add(dtServerInformation.Rows[0].ItemArray);
+            }
         }
         public void UpdatePerformanceStatistics(DataTable dtPerformanceStatistics)
         {

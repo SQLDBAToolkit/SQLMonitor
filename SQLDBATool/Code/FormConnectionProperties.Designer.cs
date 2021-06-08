@@ -1,6 +1,7 @@
-﻿namespace SQLDBATool.Code
+﻿
+namespace SQLDBATool.Code
 {
-    partial class FormNewConnection
+    partial class FormConnectionProperties
     {
         /// <summary>
         /// Required designer variable.
@@ -28,26 +29,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.checkBoxWinAuth = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBoxConnectionName = new System.Windows.Forms.TextBox();
-            this.textBoxServerName = new System.Windows.Forms.TextBox();
-            this.textBoxPassword = new System.Windows.Forms.TextBox();
-            this.textBoxUserID = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.labelConnectionFailed = new System.Windows.Forms.Label();
+            this.labelConnectionSuccessful = new System.Windows.Forms.Label();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.buttonAccept = new System.Windows.Forms.Button();
+            this.buttonDisconnect = new System.Windows.Forms.Button();
+            this.buttonTestConnection = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageLogin = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.checkBoxWinAuth = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBoxUserID = new System.Windows.Forms.TextBox();
+            this.textBoxConnectionName = new System.Windows.Forms.TextBox();
+            this.textBoxServerName = new System.Windows.Forms.TextBox();
             this.tabPageConnectionProperties = new System.Windows.Forms.TabPage();
             this.label16 = new System.Windows.Forms.Label();
             this.numericUpDownExecutionTimeOut = new System.Windows.Forms.NumericUpDown();
@@ -60,21 +66,19 @@
             this.checkBoxEncryptConnection = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.labelConnectionFailed = new System.Windows.Forms.Label();
-            this.labelConnectionSuccessful = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -84,9 +88,187 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNetworkPacketSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.panel3.SuspendLayout();
-            this.panel8.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(467, 76);
+            this.panel1.TabIndex = 10;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.LightSalmon;
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 71);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(467, 5);
+            this.panel2.TabIndex = 9;
+            // 
+            // label6
+            // 
+            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(0, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(467, 76);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "SQL  Server\r\nDatabase Administrator Assistance Tool";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.labelConnectionFailed);
+            this.panel8.Controls.Add(this.labelConnectionSuccessful);
+            this.panel8.Controls.Add(this.buttonCancel);
+            this.panel8.Controls.Add(this.buttonAccept);
+            this.panel8.Controls.Add(this.buttonDisconnect);
+            this.panel8.Controls.Add(this.buttonTestConnection);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel8.Location = new System.Drawing.Point(0, 356);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(467, 34);
+            this.panel8.TabIndex = 11;
+            // 
+            // labelConnectionFailed
+            // 
+            this.labelConnectionFailed.AutoSize = true;
+            this.labelConnectionFailed.ForeColor = System.Drawing.Color.Tomato;
+            this.labelConnectionFailed.Location = new System.Drawing.Point(90, 12);
+            this.labelConnectionFailed.Name = "labelConnectionFailed";
+            this.labelConnectionFailed.Size = new System.Drawing.Size(92, 13);
+            this.labelConnectionFailed.TabIndex = 9;
+            this.labelConnectionFailed.Text = "Connection Failed";
+            this.labelConnectionFailed.Visible = false;
+            // 
+            // labelConnectionSuccessful
+            // 
+            this.labelConnectionSuccessful.AutoSize = true;
+            this.labelConnectionSuccessful.ForeColor = System.Drawing.Color.SeaGreen;
+            this.labelConnectionSuccessful.Location = new System.Drawing.Point(69, 12);
+            this.labelConnectionSuccessful.Name = "labelConnectionSuccessful";
+            this.labelConnectionSuccessful.Size = new System.Drawing.Size(116, 13);
+            this.labelConnectionSuccessful.TabIndex = 8;
+            this.labelConnectionSuccessful.Text = "Connection Successful";
+            this.labelConnectionSuccessful.Visible = false;
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonCancel.Location = new System.Drawing.Point(375, 6);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.TabIndex = 6;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            // 
+            // buttonAccept
+            // 
+            this.buttonAccept.Location = new System.Drawing.Point(294, 6);
+            this.buttonAccept.Name = "buttonAccept";
+            this.buttonAccept.Size = new System.Drawing.Size(75, 23);
+            this.buttonAccept.TabIndex = 5;
+            this.buttonAccept.Text = "Accept";
+            this.buttonAccept.UseVisualStyleBackColor = true;
+            this.buttonAccept.Click += new System.EventHandler(this.buttonAccept_Click);
+            // 
+            // buttonDisconnect
+            // 
+            this.buttonDisconnect.Location = new System.Drawing.Point(192, 6);
+            this.buttonDisconnect.Name = "buttonDisconnect";
+            this.buttonDisconnect.Size = new System.Drawing.Size(97, 23);
+            this.buttonDisconnect.TabIndex = 10;
+            this.buttonDisconnect.Text = "Disconnect";
+            this.buttonDisconnect.UseVisualStyleBackColor = true;
+            this.buttonDisconnect.Click += new System.EventHandler(this.buttonDisconnect_Click);
+            // 
+            // buttonTestConnection
+            // 
+            this.buttonTestConnection.Location = new System.Drawing.Point(191, 6);
+            this.buttonTestConnection.Name = "buttonTestConnection";
+            this.buttonTestConnection.Size = new System.Drawing.Size(97, 23);
+            this.buttonTestConnection.TabIndex = 7;
+            this.buttonTestConnection.Text = "Test Connection";
+            this.buttonTestConnection.UseVisualStyleBackColor = true;
+            this.buttonTestConnection.Click += new System.EventHandler(this.buttonTestConnection_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.tabControl1);
+            this.panel3.Controls.Add(this.panel7);
+            this.panel3.Controls.Add(this.panel6);
+            this.panel3.Controls.Add(this.panel5);
+            this.panel3.Controls.Add(this.panel4);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 76);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(467, 280);
+            this.panel3.TabIndex = 12;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPageLogin);
+            this.tabControl1.Controls.Add(this.tabPageConnectionProperties);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(10, 10);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(447, 260);
+            this.tabControl1.TabIndex = 1;
+            // 
+            // tabPageLogin
+            // 
+            this.tabPageLogin.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.tabPageLogin.Controls.Add(this.pictureBox1);
+            this.tabPageLogin.Controls.Add(this.label7);
+            this.tabPageLogin.Controls.Add(this.label4);
+            this.tabPageLogin.Controls.Add(this.label1);
+            this.tabPageLogin.Controls.Add(this.label2);
+            this.tabPageLogin.Controls.Add(this.checkBoxWinAuth);
+            this.tabPageLogin.Controls.Add(this.label3);
+            this.tabPageLogin.Controls.Add(this.textBoxPassword);
+            this.tabPageLogin.Controls.Add(this.label5);
+            this.tabPageLogin.Controls.Add(this.textBoxUserID);
+            this.tabPageLogin.Controls.Add(this.textBoxConnectionName);
+            this.tabPageLogin.Controls.Add(this.textBoxServerName);
+            this.tabPageLogin.Location = new System.Drawing.Point(4, 22);
+            this.tabPageLogin.Name = "tabPageLogin";
+            this.tabPageLogin.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageLogin.Size = new System.Drawing.Size(439, 234);
+            this.tabPageLogin.TabIndex = 0;
+            this.tabPageLogin.Text = "Login";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SQLDBATool.Properties.Resources.ShadowHorizontalLine;
+            this.pictureBox1.Location = new System.Drawing.Point(56, 30);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(366, 2);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(15, 24);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(38, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Server";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(48, 166);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 13);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Password:";
             // 
             // label1
             // 
@@ -129,39 +311,6 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "User ID:";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(48, 166);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 13);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Password:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(36, 52);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(232, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Specify the Database Server connection details";
-            // 
-            // textBoxConnectionName
-            // 
-            this.textBoxConnectionName.Location = new System.Drawing.Point(149, 75);
-            this.textBoxConnectionName.Name = "textBoxConnectionName";
-            this.textBoxConnectionName.Size = new System.Drawing.Size(258, 20);
-            this.textBoxConnectionName.TabIndex = 0;
-            this.textBoxConnectionName.TextChanged += new System.EventHandler(this.textBoxConnectionName_TextChanged);
-            // 
-            // textBoxServerName
-            // 
-            this.textBoxServerName.Location = new System.Drawing.Point(149, 96);
-            this.textBoxServerName.Name = "textBoxServerName";
-            this.textBoxServerName.Size = new System.Drawing.Size(258, 20);
-            this.textBoxServerName.TabIndex = 1;
-            // 
             // textBoxPassword
             // 
             this.textBoxPassword.Enabled = false;
@@ -172,6 +321,15 @@
             this.textBoxPassword.Size = new System.Drawing.Size(258, 20);
             this.textBoxPassword.TabIndex = 6;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(36, 52);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(232, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Specify the Database Server connection details";
+            // 
             // textBoxUserID
             // 
             this.textBoxUserID.Enabled = false;
@@ -181,117 +339,19 @@
             this.textBoxUserID.Size = new System.Drawing.Size(258, 20);
             this.textBoxUserID.TabIndex = 5;
             // 
-            // button1
+            // textBoxConnectionName
             // 
-            this.button1.Location = new System.Drawing.Point(294, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Accept";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.textBoxConnectionName.Location = new System.Drawing.Point(149, 75);
+            this.textBoxConnectionName.Name = "textBoxConnectionName";
+            this.textBoxConnectionName.Size = new System.Drawing.Size(258, 20);
+            this.textBoxConnectionName.TabIndex = 0;
             // 
-            // button2
+            // textBoxServerName
             // 
-            this.button2.Location = new System.Drawing.Point(375, 6);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(191, 6);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(97, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Test Connection";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // label6
-            // 
-            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(0, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(464, 76);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "SQL  Server\r\nDatabase Administrator Assistance Tool";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(464, 76);
-            this.panel1.TabIndex = 9;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.LightSalmon;
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 71);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(464, 5);
-            this.panel2.TabIndex = 9;
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPageLogin);
-            this.tabControl1.Controls.Add(this.tabPageConnectionProperties);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(10, 10);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(444, 259);
-            this.tabControl1.TabIndex = 1;
-            // 
-            // tabPageLogin
-            // 
-            this.tabPageLogin.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.tabPageLogin.Controls.Add(this.pictureBox1);
-            this.tabPageLogin.Controls.Add(this.label7);
-            this.tabPageLogin.Controls.Add(this.label4);
-            this.tabPageLogin.Controls.Add(this.label1);
-            this.tabPageLogin.Controls.Add(this.label2);
-            this.tabPageLogin.Controls.Add(this.checkBoxWinAuth);
-            this.tabPageLogin.Controls.Add(this.label3);
-            this.tabPageLogin.Controls.Add(this.textBoxPassword);
-            this.tabPageLogin.Controls.Add(this.label5);
-            this.tabPageLogin.Controls.Add(this.textBoxUserID);
-            this.tabPageLogin.Controls.Add(this.textBoxConnectionName);
-            this.tabPageLogin.Controls.Add(this.textBoxServerName);
-            this.tabPageLogin.Location = new System.Drawing.Point(4, 22);
-            this.tabPageLogin.Name = "tabPageLogin";
-            this.tabPageLogin.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageLogin.Size = new System.Drawing.Size(436, 233);
-            this.tabPageLogin.TabIndex = 0;
-            this.tabPageLogin.Text = "Login";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::SQLDBATool.Properties.Resources.ShadowHorizontalLine;
-            this.pictureBox1.Location = new System.Drawing.Point(56, 30);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(366, 2);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(15, 24);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(38, 13);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Server";
+            this.textBoxServerName.Location = new System.Drawing.Point(149, 96);
+            this.textBoxServerName.Name = "textBoxServerName";
+            this.textBoxServerName.Size = new System.Drawing.Size(258, 20);
+            this.textBoxServerName.TabIndex = 1;
             // 
             // tabPageConnectionProperties
             // 
@@ -307,16 +367,16 @@
             this.tabPageConnectionProperties.Controls.Add(this.checkBoxEncryptConnection);
             this.tabPageConnectionProperties.Controls.Add(this.label13);
             this.tabPageConnectionProperties.Controls.Add(this.label12);
-            this.tabPageConnectionProperties.Controls.Add(this.pictureBox3);
             this.tabPageConnectionProperties.Controls.Add(this.label11);
             this.tabPageConnectionProperties.Controls.Add(this.label10);
             this.tabPageConnectionProperties.Controls.Add(this.label9);
-            this.tabPageConnectionProperties.Controls.Add(this.pictureBox2);
             this.tabPageConnectionProperties.Controls.Add(this.label8);
+            this.tabPageConnectionProperties.Controls.Add(this.pictureBox3);
+            this.tabPageConnectionProperties.Controls.Add(this.pictureBox2);
             this.tabPageConnectionProperties.Location = new System.Drawing.Point(4, 22);
             this.tabPageConnectionProperties.Name = "tabPageConnectionProperties";
             this.tabPageConnectionProperties.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageConnectionProperties.Size = new System.Drawing.Size(436, 233);
+            this.tabPageConnectionProperties.Size = new System.Drawing.Size(439, 234);
             this.tabPageConnectionProperties.TabIndex = 1;
             this.tabPageConnectionProperties.Text = "Connection Properties";
             // 
@@ -449,16 +509,6 @@
             this.label12.TabIndex = 13;
             this.label12.Text = "Connection time-out:";
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::SQLDBATool.Properties.Resources.ShadowHorizontalLine;
-            this.pictureBox3.Location = new System.Drawing.Point(77, 115);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(344, 2);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 12;
-            this.pictureBox3.TabStop = false;
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -486,6 +536,25 @@
             this.label9.TabIndex = 9;
             this.label9.Text = "Network protocol:";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(15, 24);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(47, 13);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Network";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::SQLDBATool.Properties.Resources.ShadowHorizontalLine;
+            this.pictureBox3.Location = new System.Drawing.Point(77, 115);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(344, 2);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 12;
+            this.pictureBox3.TabStop = false;
+            // 
             // pictureBox2
             // 
             this.pictureBox2.Image = global::SQLDBATool.Properties.Resources.ShadowHorizontalLine;
@@ -496,34 +565,12 @@
             this.pictureBox2.TabIndex = 8;
             this.pictureBox2.TabStop = false;
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(15, 24);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(47, 13);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Network";
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.tabControl1);
-            this.panel3.Controls.Add(this.panel7);
-            this.panel3.Controls.Add(this.panel6);
-            this.panel3.Controls.Add(this.panel5);
-            this.panel3.Controls.Add(this.panel4);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 76);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(464, 279);
-            this.panel3.TabIndex = 11;
-            // 
             // panel7
             // 
             this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel7.Location = new System.Drawing.Point(454, 10);
+            this.panel7.Location = new System.Drawing.Point(457, 10);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(10, 259);
+            this.panel7.Size = new System.Drawing.Size(10, 260);
             this.panel7.TabIndex = 14;
             // 
             // panel6
@@ -531,15 +578,15 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel6.Location = new System.Drawing.Point(0, 10);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(10, 259);
+            this.panel6.Size = new System.Drawing.Size(10, 260);
             this.panel6.TabIndex = 13;
             // 
             // panel5
             // 
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(0, 269);
+            this.panel5.Location = new System.Drawing.Point(0, 270);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(464, 10);
+            this.panel5.Size = new System.Drawing.Size(467, 10);
             this.panel5.TabIndex = 12;
             // 
             // panel4
@@ -547,57 +594,27 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(464, 10);
+            this.panel4.Size = new System.Drawing.Size(467, 10);
             this.panel4.TabIndex = 11;
             // 
-            // panel8
+            // FormConnectionProperties
             // 
-            this.panel8.Controls.Add(this.labelConnectionFailed);
-            this.panel8.Controls.Add(this.labelConnectionSuccessful);
-            this.panel8.Controls.Add(this.button2);
-            this.panel8.Controls.Add(this.button1);
-            this.panel8.Controls.Add(this.button3);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel8.Location = new System.Drawing.Point(0, 355);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(464, 34);
-            this.panel8.TabIndex = 8;
-            // 
-            // labelConnectionFailed
-            // 
-            this.labelConnectionFailed.AutoSize = true;
-            this.labelConnectionFailed.ForeColor = System.Drawing.Color.Tomato;
-            this.labelConnectionFailed.Location = new System.Drawing.Point(90, 12);
-            this.labelConnectionFailed.Name = "labelConnectionFailed";
-            this.labelConnectionFailed.Size = new System.Drawing.Size(92, 13);
-            this.labelConnectionFailed.TabIndex = 9;
-            this.labelConnectionFailed.Text = "Connection Failed";
-            this.labelConnectionFailed.Visible = false;
-            // 
-            // labelConnectionSuccessful
-            // 
-            this.labelConnectionSuccessful.AutoSize = true;
-            this.labelConnectionSuccessful.ForeColor = System.Drawing.Color.SeaGreen;
-            this.labelConnectionSuccessful.Location = new System.Drawing.Point(69, 12);
-            this.labelConnectionSuccessful.Name = "labelConnectionSuccessful";
-            this.labelConnectionSuccessful.Size = new System.Drawing.Size(116, 13);
-            this.labelConnectionSuccessful.TabIndex = 8;
-            this.labelConnectionSuccessful.Text = "Connection Successful";
-            this.labelConnectionSuccessful.Visible = false;
-            // 
-            // FormNewConnection
-            // 
+            this.AcceptButton = this.buttonAccept;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(464, 389);
+            this.CancelButton = this.buttonCancel;
+            this.ClientSize = new System.Drawing.Size(467, 390);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "FormNewConnection";
+            this.Name = "FormConnectionProperties";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "New Connection";
+            this.Text = "Connection Properties";
             this.panel1.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
+            this.panel3.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPageLogin.ResumeLayout(false);
             this.tabPageLogin.PerformLayout();
@@ -609,60 +626,58 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNetworkPacketSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Label labelConnectionFailed;
+        private System.Windows.Forms.Label labelConnectionSuccessful;
+        private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Button buttonAccept;
+        private System.Windows.Forms.Button buttonTestConnection;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPageLogin;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBoxWinAuth;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBoxPassword;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBoxUserID;
         private System.Windows.Forms.TextBox textBoxConnectionName;
         private System.Windows.Forms.TextBox textBoxServerName;
-        private System.Windows.Forms.TextBox textBoxPassword;
-        private System.Windows.Forms.TextBox textBoxUserID;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPageLogin;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TabPage tabPageConnectionProperties;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.CheckBox checkBoxTrustServerCertificate;
-        private System.Windows.Forms.CheckBox checkBoxEncryptConnection;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBoxNetworkProtocol;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.NumericUpDown numericUpDownExecutionTimeOut;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.NumericUpDown numericUpDownConnectionTimeOut;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.NumericUpDown numericUpDownNetworkPacketSize;
-        private System.Windows.Forms.Label labelConnectionSuccessful;
-        private System.Windows.Forms.Label labelConnectionFailed;
+        private System.Windows.Forms.ComboBox comboBoxNetworkProtocol;
+        private System.Windows.Forms.CheckBox checkBoxTrustServerCertificate;
+        private System.Windows.Forms.CheckBox checkBoxEncryptConnection;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button buttonDisconnect;
     }
 }

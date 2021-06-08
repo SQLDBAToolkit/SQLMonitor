@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace SQLDBATool.Code
 {
@@ -57,7 +58,7 @@ namespace SQLDBATool.Code
             treeInformation.ConnectionTreeNode.Tag = treeInformation;
             treeInformation.ConnectionTreeNode.ImageIndex = (serverTree.IsSubFolder ? 0 : 1);
             treeInformation.ConnectionTreeNode.ContextMenuStrip = contextMenuStripRootMenu;
-
+            treeInformation.ParentTree = this;
             treeInformation.ServerDiagram = new ucServerDiagram(treeInformation);
             if (serverTree.ChildTreeNodes.Count > 0)
             {
@@ -65,6 +66,13 @@ namespace SQLDBATool.Code
             }
             ParentSqlToolsForm.AddServerDiagram(treeInformation.ServerDiagram);
             FThisTreeInformation = treeInformation;
+        }
+        public ContextMenuStrip GetContextMenu(string menuType)
+        {
+            if (menuType.ToUpper() == "DISCONNECT")
+                return contextMenuStripDisconnectedConnection;
+            else
+                return contextMenuStripServerConnection;
         }
         public void PopulateSubTreeItem(CLSTreeInformation parentNode)
         {
@@ -81,6 +89,7 @@ namespace SQLDBATool.Code
                         treeInformation.ConnectionTreeNode.Tag = treeInformation;
                         treeInformation.ConnectionTreeNode.ImageIndex = (serverTree.IsSubFolder ? 0 : 1);
                         treeInformation.ConnectionTreeNode.SelectedImageIndex = treeInformation.ConnectionTreeNode.ImageIndex;
+                        treeInformation.ParentTree = this;
                         parentNode.ChildConnections.Add(treeInformation);
                         treeInformation.ParentTreeInformation = parentNode;
                         if (serverTree.IsSubFolder)
@@ -111,7 +120,7 @@ namespace SQLDBATool.Code
                                 treeInformation.ConnectionTreeNode.ImageIndex = 1;
                             }
                             connectionInformation.ServerStats = new clsServerStats();
-                            connectionInformation.ServerIcon = new List<ucServerIcon>();
+                            connectionInformation.ServerIcon = new List<Code.ucServerIcon>();
                             treeInformation.ConnectionInformation = connectionInformation;
                             treeInformation.ParentTreeInformation = parentNode;
                             CLSTreeInformation treeLoop = parentNode;
@@ -124,7 +133,13 @@ namespace SQLDBATool.Code
                                 else
                                     treeLoop = treeLoop.ParentTreeInformation;
                             }
-                            connectionInformation.StartRefreshProcess();
+                            if (!connectionInformation.MonitoredServer.IsDisabled)
+                                connectionInformation.StartRefreshProcess();
+                            else
+                                foreach (Code.ucServerIcon icon in connectionInformation.ServerIcon)
+                                {
+                                    icon.SetTitleColor(Color.Black, Color.LightGray);
+                                }
 
                         }
                     }
@@ -133,7 +148,7 @@ namespace SQLDBATool.Code
         }
         public void AppendNewTreeItem(ServerTree serverTree, CLSTreeInformation parentNode)
         {
-            TreeNode treeNode = new TreeNode();
+            //TreeNode treeNode = new TreeNode();
             CLSTreeInformation treeInformation = new CLSTreeInformation();
 
             treeInformation.ServerTree = serverTree;
@@ -142,6 +157,7 @@ namespace SQLDBATool.Code
             treeInformation.ConnectionTreeNode.ImageIndex = (serverTree.IsSubFolder ? 0 : 1);
             treeInformation.ConnectionTreeNode.ContextMenuStrip = contextMenuStripRootMenu;
             treeInformation.ParentTreeInformation = parentNode;
+            treeInformation.ParentTree = this;
             if (serverTree.IsSubFolder)
             {
                 treeInformation.ConnectionTreeNode.ContextMenuStrip = contextMenuStripFolder;
@@ -258,6 +274,11 @@ namespace SQLDBATool.Code
                 monitoredServerController.UpdateMonitoredServer(currentNode.ConnectionInformation.MonitoredServer);
             }
 
+            currentNode.ConnectionInformation.StopRefreshProcess();
+            foreach (Code.ucServerIcon icon in currentNode.ConnectionInformation.ServerIcon)
+            {
+                icon.SetTitleColor(Color.Black, Color.LightGray);
+            }
 
 
         }
@@ -277,6 +298,61 @@ namespace SQLDBATool.Code
             {
                 monitoredServerController.UpdateMonitoredServer(currentNode.ConnectionInformation.MonitoredServer);
             }
+            foreach (Code.ucServerIcon icon in currentNode.ConnectionInformation.ServerIcon)
+            {
+                icon.SetTitleColor(Color.Black, Color.LightSlateGray);
+            }
+            currentNode.ConnectionInformation.StartRefreshProcess();
+
+        }
+
+        private void toolStripMenuItemProperties_Click(object sender, EventArgs e)
+        {
+            ContextMenuStrip cms = (ContextMenuStrip)((ToolStripMenuItem)sender).Owner;
+
+            TreeView treeView = (TreeView)cms.SourceControl;
+
+            TreeNode node = treeView.GetNodeAt(treeView.PointToClient(cms.Location));
+            CLSTreeInformation currentNode = (CLSTreeInformation)node.Tag;
+
+            FormConnectionProperties connectionProperties = new FormConnectionProperties(currentNode);
+            connectionProperties.ShowDialog();
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItemDisconnect_Click(object sender, EventArgs e)
+        {
+            ContextMenuStrip cms = (ContextMenuStrip)((ToolStripMenuItem)sender).Owner;
+            TreeView treeView = (TreeView)cms.SourceControl;
+
+            TreeNode node = treeView.GetNodeAt(treeView.PointToClient(cms.Location));
+            CLSTreeInformation currentNode = (CLSTreeInformation)node.Tag;
+            currentNode.ConnectionTreeNode.ContextMenuStrip = contextMenuStripDisconnectedConnection;
+            currentNode.ConnectionTreeNode.ImageIndex = 2;
+
+            currentNode.ConnectionInformation.StopRefreshProcess();
+            foreach (Code.ucServerIcon icon in currentNode.ConnectionInformation.ServerIcon)
+            {
+                icon.SetTitleColor(Color.Black, Color.Gray);
+            }
+
+        }
+
+        private void toolStripMenuItemConnect_Click(object sender, EventArgs e)
+        {
+            ContextMenuStrip cms = (ContextMenuStrip)((ToolStripMenuItem)sender).Owner;
+            TreeView treeView = (TreeView)cms.SourceControl;
+
+            TreeNode node = treeView.GetNodeAt(treeView.PointToClient(cms.Location));
+            CLSTreeInformation currentNode = (CLSTreeInformation)node.Tag;
+            currentNode.ConnectionTreeNode.ContextMenuStrip = contextMenuStripServerConnection;
+            currentNode.ConnectionTreeNode.ImageIndex = 1;
+
+            currentNode.ConnectionInformation.StartRefreshProcess();
 
         }
     }
@@ -288,6 +364,7 @@ namespace SQLDBATool.Code
         private List<CLSTreeInformation> FChildConnections;
         private CLSConnectionInformation FConnectionInformation;
         private ucServerDiagram FServerDiagram;
+        private ucConnectionTree FParentTree;
         private CLSTreeInformation FParentTreeInformation;
         public ServerTree ServerTree { get => FServerTree; set => FServerTree = value; }
         public TreeNode ConnectionTreeNode { get => FConnectionTreeNode; set => FConnectionTreeNode = value; }
@@ -295,6 +372,7 @@ namespace SQLDBATool.Code
         internal CLSConnectionInformation ConnectionInformation { get => FConnectionInformation; set => FConnectionInformation = value; }
         public CLSTreeInformation ParentTreeInformation { get => FParentTreeInformation; set => FParentTreeInformation = value; }
         public ucServerDiagram ServerDiagram { get => FServerDiagram; set => FServerDiagram = value; }
+        public ucConnectionTree ParentTree { get => FParentTree; set => FParentTree = value; }
 
         public CLSTreeInformation()
         {
