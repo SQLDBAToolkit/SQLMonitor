@@ -19,7 +19,13 @@ namespace SQLDBATool.Code
             InitializeComponent();
             FDriveGraphs = new List<clsDriveGraph>();
         }
-
+        public void HideGraphs()
+        {
+            ucDatabaseStorageMain.PreRefresh();
+            ucDatabaseStorageMain.PostRefresh();
+            PreRefreshDrives();
+            PostRefreshDrives();
+        }
         public void PopulateMainGraph(DataTable dataSizeInformation, DataTable databaseInformation)
         {
             try

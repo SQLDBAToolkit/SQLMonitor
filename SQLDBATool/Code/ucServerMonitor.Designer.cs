@@ -200,6 +200,7 @@ namespace SQLDBATool.Code
             this.panelSystemInformation = new System.Windows.Forms.Panel();
             this.panelMemoryInformation = new System.Windows.Forms.Panel();
             this.panelMemoryInformationData = new System.Windows.Forms.Panel();
+            this.ucDataLabelLastConnectionError = new SQLDBATool.Code.UCDataLabel();
             this.ucDataMemoryGrantsPending = new SQLDBATool.Code.UCDataLabel();
             this.ucDataMemoryGrantsOutstanding = new SQLDBATool.Code.UCDataLabel();
             this.ucDataReservedMemory = new SQLDBATool.Code.UCDataLabel();
@@ -275,7 +276,6 @@ namespace SQLDBATool.Code
             this.ucDatabaseInformation1 = new SQLDBATool.Code.ucDatabaseInformation();
             this.ucSeries1 = new SQLDBATool.Code.ucSeries();
             this.ucTitleBar1 = new SQLDBATool.Code.ucTitleBar();
-            this.ucDataLabelLastConnectionError = new SQLDBATool.Code.UCDataLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetServerInformation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableServerInformation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTablePerformanceCounters)).BeginInit();
@@ -1202,6 +1202,7 @@ namespace SQLDBATool.Code
             this.ucDataLocalTCPPort.DataTitle = "Local TCP Port";
             this.ucDataLocalTCPPort.DataTitleWidth = 134;
             this.ucDataLocalTCPPort.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLocalTCPPort.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLocalTCPPort.LabelData = "";
             this.ucDataLocalTCPPort.Location = new System.Drawing.Point(0, 292);
             this.ucDataLocalTCPPort.Name = "ucDataLocalTCPPort";
@@ -1215,6 +1216,7 @@ namespace SQLDBATool.Code
             this.ucDataLocalNetAddress.DataTitle = "Local IP Address";
             this.ucDataLocalNetAddress.DataTitleWidth = 134;
             this.ucDataLocalNetAddress.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLocalNetAddress.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLocalNetAddress.LabelData = "";
             this.ucDataLocalNetAddress.Location = new System.Drawing.Point(0, 274);
             this.ucDataLocalNetAddress.Name = "ucDataLocalNetAddress";
@@ -1228,6 +1230,7 @@ namespace SQLDBATool.Code
             this.ucDataCostThresholdOfP.DataTitle = "Cost Threshold of P.";
             this.ucDataCostThresholdOfP.DataTitleWidth = 134;
             this.ucDataCostThresholdOfP.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataCostThresholdOfP.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataCostThresholdOfP.LabelData = "";
             this.ucDataCostThresholdOfP.Location = new System.Drawing.Point(0, 256);
             this.ucDataCostThresholdOfP.Name = "ucDataCostThresholdOfP";
@@ -1241,6 +1244,7 @@ namespace SQLDBATool.Code
             this.ucDataMaxDegreeOfP.DataTitle = "Max Degree of P.";
             this.ucDataMaxDegreeOfP.DataTitleWidth = 134;
             this.ucDataMaxDegreeOfP.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataMaxDegreeOfP.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataMaxDegreeOfP.LabelData = "";
             this.ucDataMaxDegreeOfP.Location = new System.Drawing.Point(0, 238);
             this.ucDataMaxDegreeOfP.Name = "ucDataMaxDegreeOfP";
@@ -1254,6 +1258,7 @@ namespace SQLDBATool.Code
             this.ucDataRunningTime.DataTitle = "Running Time";
             this.ucDataRunningTime.DataTitleWidth = 134;
             this.ucDataRunningTime.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataRunningTime.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataRunningTime.LabelData = "";
             this.ucDataRunningTime.Location = new System.Drawing.Point(0, 220);
             this.ucDataRunningTime.Name = "ucDataRunningTime";
@@ -1267,6 +1272,7 @@ namespace SQLDBATool.Code
             this.ucDataCurrentTime.DataTitle = "Current Time";
             this.ucDataCurrentTime.DataTitleWidth = 134;
             this.ucDataCurrentTime.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataCurrentTime.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataCurrentTime.LabelData = "";
             this.ucDataCurrentTime.Location = new System.Drawing.Point(0, 202);
             this.ucDataCurrentTime.Name = "ucDataCurrentTime";
@@ -1280,6 +1286,7 @@ namespace SQLDBATool.Code
             this.ucDataStartTime.DataTitle = "Startup Time";
             this.ucDataStartTime.DataTitleWidth = 134;
             this.ucDataStartTime.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataStartTime.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataStartTime.LabelData = "";
             this.ucDataStartTime.Location = new System.Drawing.Point(0, 184);
             this.ucDataStartTime.Name = "ucDataStartTime";
@@ -1293,6 +1300,7 @@ namespace SQLDBATool.Code
             this.ucDataAffinityType.DataTitle = "Affinity Type";
             this.ucDataAffinityType.DataTitleWidth = 134;
             this.ucDataAffinityType.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataAffinityType.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataAffinityType.LabelData = "";
             this.ucDataAffinityType.Location = new System.Drawing.Point(0, 166);
             this.ucDataAffinityType.Name = "ucDataAffinityType";
@@ -1306,6 +1314,7 @@ namespace SQLDBATool.Code
             this.ucDataHyperthreadRatio.DataTitle = "Hyperthread Ratio";
             this.ucDataHyperthreadRatio.DataTitleWidth = 134;
             this.ucDataHyperthreadRatio.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataHyperthreadRatio.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataHyperthreadRatio.LabelData = "";
             this.ucDataHyperthreadRatio.Location = new System.Drawing.Point(0, 148);
             this.ucDataHyperthreadRatio.Name = "ucDataHyperthreadRatio";
@@ -1319,6 +1328,7 @@ namespace SQLDBATool.Code
             this.ucDataCPUCount.DataTitle = "CPU Count";
             this.ucDataCPUCount.DataTitleWidth = 134;
             this.ucDataCPUCount.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataCPUCount.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataCPUCount.LabelData = "";
             this.ucDataCPUCount.Location = new System.Drawing.Point(0, 130);
             this.ucDataCPUCount.Name = "ucDataCPUCount";
@@ -1332,6 +1342,7 @@ namespace SQLDBATool.Code
             this.ucDataOSVersion.DataTitle = "OS Version";
             this.ucDataOSVersion.DataTitleWidth = 134;
             this.ucDataOSVersion.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataOSVersion.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataOSVersion.LabelData = "";
             this.ucDataOSVersion.Location = new System.Drawing.Point(0, 112);
             this.ucDataOSVersion.Name = "ucDataOSVersion";
@@ -1345,6 +1356,7 @@ namespace SQLDBATool.Code
             this.ucDataMachineName.DataTitle = "Machine Name";
             this.ucDataMachineName.DataTitleWidth = 134;
             this.ucDataMachineName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataMachineName.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataMachineName.LabelData = "";
             this.ucDataMachineName.Location = new System.Drawing.Point(0, 94);
             this.ucDataMachineName.Name = "ucDataMachineName";
@@ -1358,6 +1370,7 @@ namespace SQLDBATool.Code
             this.ucDataProductLevel.DataTitle = "Product Level";
             this.ucDataProductLevel.DataTitleWidth = 134;
             this.ucDataProductLevel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataProductLevel.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataProductLevel.LabelData = "";
             this.ucDataProductLevel.Location = new System.Drawing.Point(0, 76);
             this.ucDataProductLevel.Name = "ucDataProductLevel";
@@ -1371,6 +1384,7 @@ namespace SQLDBATool.Code
             this.ucDataProductVersion.DataTitle = "Product Version";
             this.ucDataProductVersion.DataTitleWidth = 134;
             this.ucDataProductVersion.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataProductVersion.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataProductVersion.LabelData = "";
             this.ucDataProductVersion.Location = new System.Drawing.Point(0, 58);
             this.ucDataProductVersion.Name = "ucDataProductVersion";
@@ -1384,6 +1398,7 @@ namespace SQLDBATool.Code
             this.ucDataProductEdition.DataTitle = "Product Edition";
             this.ucDataProductEdition.DataTitleWidth = 134;
             this.ucDataProductEdition.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataProductEdition.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataProductEdition.LabelData = "";
             this.ucDataProductEdition.Location = new System.Drawing.Point(0, 40);
             this.ucDataProductEdition.Name = "ucDataProductEdition";
@@ -1397,6 +1412,7 @@ namespace SQLDBATool.Code
             this.ucDataServerName.DataTitle = "Server Name";
             this.ucDataServerName.DataTitleWidth = 134;
             this.ucDataServerName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataServerName.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataServerName.LabelData = "";
             this.ucDataServerName.Location = new System.Drawing.Point(0, 22);
             this.ucDataServerName.Name = "ucDataServerName";
@@ -1443,6 +1459,19 @@ namespace SQLDBATool.Code
             this.panelMemoryInformationData.Size = new System.Drawing.Size(474, 473);
             this.panelMemoryInformationData.TabIndex = 5;
             // 
+            // ucDataLabelLastConnectionError
+            // 
+            this.ucDataLabelLastConnectionError.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ucDataLabelLastConnectionError.DataTitle = "Last Connection Error";
+            this.ucDataLabelLastConnectionError.DataTitleWidth = 134;
+            this.ucDataLabelLastConnectionError.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabelLastConnectionError.LabelColor = System.Drawing.SystemColors.ControlText;
+            this.ucDataLabelLastConnectionError.LabelData = "";
+            this.ucDataLabelLastConnectionError.Location = new System.Drawing.Point(0, 162);
+            this.ucDataLabelLastConnectionError.Name = "ucDataLabelLastConnectionError";
+            this.ucDataLabelLastConnectionError.Size = new System.Drawing.Size(474, 102);
+            this.ucDataLabelLastConnectionError.TabIndex = 9;
+            // 
             // ucDataMemoryGrantsPending
             // 
             this.ucDataMemoryGrantsPending.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1450,6 +1479,7 @@ namespace SQLDBATool.Code
             this.ucDataMemoryGrantsPending.DataTitle = "Merm Grants Pending";
             this.ucDataMemoryGrantsPending.DataTitleWidth = 134;
             this.ucDataMemoryGrantsPending.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataMemoryGrantsPending.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataMemoryGrantsPending.LabelData = "";
             this.ucDataMemoryGrantsPending.Location = new System.Drawing.Point(0, 144);
             this.ucDataMemoryGrantsPending.Name = "ucDataMemoryGrantsPending";
@@ -1463,6 +1493,7 @@ namespace SQLDBATool.Code
             this.ucDataMemoryGrantsOutstanding.DataTitle = "Mem Grants Outstanding";
             this.ucDataMemoryGrantsOutstanding.DataTitleWidth = 134;
             this.ucDataMemoryGrantsOutstanding.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataMemoryGrantsOutstanding.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataMemoryGrantsOutstanding.LabelData = "";
             this.ucDataMemoryGrantsOutstanding.Location = new System.Drawing.Point(0, 126);
             this.ucDataMemoryGrantsOutstanding.Name = "ucDataMemoryGrantsOutstanding";
@@ -1476,6 +1507,7 @@ namespace SQLDBATool.Code
             this.ucDataReservedMemory.DataTitle = "    Reserved Memory";
             this.ucDataReservedMemory.DataTitleWidth = 134;
             this.ucDataReservedMemory.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataReservedMemory.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataReservedMemory.LabelData = "";
             this.ucDataReservedMemory.Location = new System.Drawing.Point(0, 108);
             this.ucDataReservedMemory.Name = "ucDataReservedMemory";
@@ -1489,6 +1521,7 @@ namespace SQLDBATool.Code
             this.ucDataFreeMemory.DataTitle = "    Free Memory";
             this.ucDataFreeMemory.DataTitleWidth = 134;
             this.ucDataFreeMemory.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataFreeMemory.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataFreeMemory.LabelData = "";
             this.ucDataFreeMemory.Location = new System.Drawing.Point(0, 90);
             this.ucDataFreeMemory.Name = "ucDataFreeMemory";
@@ -1502,6 +1535,7 @@ namespace SQLDBATool.Code
             this.ucDataStolenMemory.DataTitle = "    Stolen Memory";
             this.ucDataStolenMemory.DataTitleWidth = 134;
             this.ucDataStolenMemory.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataStolenMemory.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataStolenMemory.LabelData = "";
             this.ucDataStolenMemory.Location = new System.Drawing.Point(0, 72);
             this.ucDataStolenMemory.Name = "ucDataStolenMemory";
@@ -1515,6 +1549,7 @@ namespace SQLDBATool.Code
             this.ucDataDataCache.DataTitle = "    Data Cache";
             this.ucDataDataCache.DataTitleWidth = 134;
             this.ucDataDataCache.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataDataCache.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataDataCache.LabelData = "";
             this.ucDataDataCache.Location = new System.Drawing.Point(0, 54);
             this.ucDataDataCache.Name = "ucDataDataCache";
@@ -1528,6 +1563,7 @@ namespace SQLDBATool.Code
             this.ucDataCurrentSQLMemory.DataTitle = "Current SQL Memory";
             this.ucDataCurrentSQLMemory.DataTitleWidth = 134;
             this.ucDataCurrentSQLMemory.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataCurrentSQLMemory.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataCurrentSQLMemory.LabelData = "";
             this.ucDataCurrentSQLMemory.Location = new System.Drawing.Point(0, 36);
             this.ucDataCurrentSQLMemory.Name = "ucDataCurrentSQLMemory";
@@ -1541,6 +1577,7 @@ namespace SQLDBATool.Code
             this.ucDataTargetSQLMelory.DataTitle = "Target SQL Memory";
             this.ucDataTargetSQLMelory.DataTitleWidth = 134;
             this.ucDataTargetSQLMelory.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataTargetSQLMelory.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataTargetSQLMelory.LabelData = "";
             this.ucDataTargetSQLMelory.Location = new System.Drawing.Point(0, 18);
             this.ucDataTargetSQLMelory.Name = "ucDataTargetSQLMelory";
@@ -1554,6 +1591,7 @@ namespace SQLDBATool.Code
             this.ucDataTotalPhysicalMemory.DataTitle = "Total Physical Memory";
             this.ucDataTotalPhysicalMemory.DataTitleWidth = 134;
             this.ucDataTotalPhysicalMemory.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataTotalPhysicalMemory.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataTotalPhysicalMemory.LabelData = "";
             this.ucDataTotalPhysicalMemory.Location = new System.Drawing.Point(0, 0);
             this.ucDataTotalPhysicalMemory.Name = "ucDataTotalPhysicalMemory";
@@ -2461,19 +2499,6 @@ namespace SQLDBATool.Code
             this.ucTitleBar1.TabIndex = 3;
             this.ucTitleBar1.TitleBold = true;
             this.ucTitleBar1.TitleText = "Database Server";
-            // 
-            // ucDataLabelLastConnectionError
-            // 
-            this.ucDataLabelLastConnectionError.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ucDataLabelLastConnectionError.DataBindings.Add(new System.Windows.Forms.Binding("LabelData", this.dataSetServerInformation, "ServerInformation.MemoryGrantsPending", true));
-            this.ucDataLabelLastConnectionError.DataTitle = "Last Connection Error";
-            this.ucDataLabelLastConnectionError.DataTitleWidth = 134;
-            this.ucDataLabelLastConnectionError.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucDataLabelLastConnectionError.LabelData = "";
-            this.ucDataLabelLastConnectionError.Location = new System.Drawing.Point(0, 162);
-            this.ucDataLabelLastConnectionError.Name = "ucDataLabelLastConnectionError";
-            this.ucDataLabelLastConnectionError.Size = new System.Drawing.Size(474, 18);
-            this.ucDataLabelLastConnectionError.TabIndex = 9;
             // 
             // ucServerMonitor
             // 

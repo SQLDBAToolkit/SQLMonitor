@@ -7,6 +7,7 @@ namespace SQLDBATool.Code
     {
         private CLSTreeInformation FTreeInformation;
         private ucServerDiagram FServerDiagram;
+        //private ucConnectionTree FParentTree;
 
         public ucServerDiagram ServerDiagram { get => FServerDiagram; set => FServerDiagram = value; }
         internal CLSTreeInformation TreeInformation
@@ -18,6 +19,9 @@ namespace SQLDBATool.Code
                 ServerInfoRefreshed();
             }
         }
+
+        //public ucConnectionTree ParentTree { get => FParentTree; set => FParentTree = value; }
+
         public ucServerIcon()
         {
             InitializeComponent();
@@ -44,5 +48,9 @@ namespace SQLDBATool.Code
             labelUpTime.Text = upTime;
         }
 
+        private void labelServerName_Click(object sender, System.EventArgs e)
+        {
+            FTreeInformation.ParentTree.SelectTreeNode(FTreeInformation.ConnectionTreeNode);
+        }
     }
 }

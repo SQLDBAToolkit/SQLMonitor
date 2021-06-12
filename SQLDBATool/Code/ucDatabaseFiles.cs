@@ -19,14 +19,20 @@ namespace SQLDBATool.Code
 
         public void PopulateDatabaseFileInformation(int database_id, DataTable fileInformation)
         {
-            ucTitleBar1.TitleText = database_id.ToString();
-            string databaseSearchString = "database_id = " + database_id.ToString();
-            dataTableDatabaseFiles.Clear();
-            foreach (DataRow r in fileInformation.Select(databaseSearchString))
+            if (fileInformation.Rows.Count > 0)
             {
-                dataTableDatabaseFiles.Rows.Add(r.ItemArray);
+                ucTitleBar1.TitleText = database_id.ToString();
+                string databaseSearchString = "database_id = " + database_id.ToString();
+                dataTableDatabaseFiles.Clear();
+                foreach (DataRow r in fileInformation.Select(databaseSearchString))
+                {
+                    dataTableDatabaseFiles.Rows.Add(r.ItemArray);
+                }
             }
-
+            else
+            { 
+                dataTableDatabaseFiles.Rows.Clear();
+            }
         }
     }
 }

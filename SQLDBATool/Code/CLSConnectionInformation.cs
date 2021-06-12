@@ -17,7 +17,7 @@ namespace SQLDBATool.Code
         private CLSTreeInformation FParentTreeInformation;
         private bool FIsConnectionOpen = false;
         private bool FIsOnError = false;
-        private string FLastCOnnectionError = "";
+        private string FLastConnectionError = "";
         public List<Code.ucServerIcon> ServerIcon { get => FServerIcons; set => FServerIcons = value; }
         public ServerTree ServerTree { get => FServerTree; set => FServerTree = value; }
         public MonitoredServer MonitoredServer { get => FMonitoredServer; set => FMonitoredServer = value; }
@@ -25,6 +25,8 @@ namespace SQLDBATool.Code
         public CLSTreeInformation ParentTreeInformation { get => FParentTreeInformation; set => FParentTreeInformation = value; }
         public bool IsConnectionOpen { get => FIsConnectionOpen; set => FIsConnectionOpen = value; }
         internal CLSRefreshServerStats RefreshBackgroundProcess { get => FRefreshBackgroundProcess; set => FRefreshBackgroundProcess = value; }
+        public bool IsOnError { get => FIsOnError; set => FIsOnError = value; }
+        public string LastConnectionError { get => FLastConnectionError; set => FLastConnectionError = value; }
 
         public CLSConnectionInformation()
         {
@@ -104,6 +106,8 @@ namespace SQLDBATool.Code
 
             if (e.IsOnError)
             {
+                this.FIsOnError = true;
+                this.FLastConnectionError = e.LastError;
                 foreach (Code.ucServerIcon icon in FServerIcons)
                 {
                     icon.SetTitleColor(Color.Yellow, Color.Red);
@@ -111,6 +115,8 @@ namespace SQLDBATool.Code
             }
             else
             {
+                this.FIsOnError = false;
+                this.FLastConnectionError = "";
                 FServerStats.UpdatePerformanceStatistics(e.PerformanceStatistics);
                 FServerStats.UpdateServerInformation(e.ServerInformation);
                 FServerStats.UpdateResponseTime(e.RefreshMS);

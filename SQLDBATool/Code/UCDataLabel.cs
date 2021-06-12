@@ -16,6 +16,7 @@ namespace SQLDBATool.Code
         public string DataTitle { get => labelTitle.Text; set => labelTitle.Text = value; }
         public string LabelData { get => labelData.Text; set => labelData.Text = value; }
         public int DataTitleWidth { get => labelTitle.Width; set => labelTitle.Width = value; }
+        public Color LabelColor { get => labelData.ForeColor; set => labelData.ForeColor = LabelColor; }
         //public ControlBindingsCollection LabelDataBindings { get => labelData.DataBindings; }
         public UCDataLabel()
         {
@@ -24,7 +25,5 @@ namespace SQLDBATool.Code
             //this.Tag
             //labelData.DataBindings
         }
-
-
     }
 }

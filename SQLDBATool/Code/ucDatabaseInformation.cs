@@ -30,24 +30,33 @@ namespace SQLDBATool.Code
             FRefreshing = true;
             try
             {
-                if (treeInformation.ConnectionInformation.MonitoredServer.ServerID == ParentMonitor.ServerID)
+                if (treeInformation.ConnectionInformation.ServerStats.DTDatabaseInformation.Columns.Count == 0)
                 {
-                    dataTableDatabaseInformation.Merge(treeInformation.ConnectionInformation.ServerStats.DTDatabaseInformation);
-
-                    foreach (DataRow r in dataTableDatabaseInformation.Rows)
-                    {
-                        int databaseID = (int)(r["database_id"]);
-                        string searchString = "database_id=" + databaseID.ToString();
-                        if (treeInformation.ConnectionInformation.ServerStats.DTDatabaseInformation.Select(searchString).Length == 0)
-                            r.Delete();
-                        r.ClearErrors();
-                    }
-
-                    dataTableDatabaseInformation.AcceptChanges();
-                    ucDataStorageMasterGraphs.PopulateMainGraph(treeInformation.ConnectionInformation.ServerStats.DTDatabaseSpaceInformation, treeInformation.ConnectionInformation.ServerStats.DTDatabaseInformation);
-                    ucDataStorageMasterGraphs.PopulateDriveGraphs(treeInformation.ConnectionInformation.ServerStats.DTDatabaseSpaceInformation, treeInformation.ConnectionInformation.ServerStats.DTDatabaseSpaceByDrive);
-                    PopulateDataFileTabPage(true);
+                    dataTableDatabaseInformation.Rows.Clear();
+                    ucDataStorageMasterGraphs.HideGraphs();
                 }
+                else
+                {
+                    if (treeInformation.ConnectionInformation.MonitoredServer.ServerID == ParentMonitor.ServerID)
+                    {
+                        dataTableDatabaseInformation.Merge(treeInformation.ConnectionInformation.ServerStats.DTDatabaseInformation);
+
+                        foreach (DataRow r in dataTableDatabaseInformation.Rows)
+                        {
+                            int databaseID = (int)(r["database_id"]);
+                            string searchString = "database_id=" + databaseID.ToString();
+                            if (treeInformation.ConnectionInformation.ServerStats.DTDatabaseInformation.Select(searchString).Length == 0)
+                                r.Delete();
+                            r.ClearErrors();
+                        }
+
+                        dataTableDatabaseInformation.AcceptChanges();
+                        ucDataStorageMasterGraphs.PopulateMainGraph(treeInformation.ConnectionInformation.ServerStats.DTDatabaseSpaceInformation, treeInformation.ConnectionInformation.ServerStats.DTDatabaseInformation);
+                        ucDataStorageMasterGraphs.PopulateDriveGraphs(treeInformation.ConnectionInformation.ServerStats.DTDatabaseSpaceInformation, treeInformation.ConnectionInformation.ServerStats.DTDatabaseSpaceByDrive);
+                        PopulateDataFileTabPage(true);
+                    }
+                }
+
             }
             catch (Exception ex)
             {

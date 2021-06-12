@@ -43,7 +43,6 @@ namespace SQLDBATool.Code
             this.labelTitle.Name = "labelTitle";
             this.labelTitle.Size = new System.Drawing.Size(134, 18);
             this.labelTitle.TabIndex = 0;
-            this.labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelData
             // 
@@ -53,7 +52,6 @@ namespace SQLDBATool.Code
             this.labelData.Name = "labelData";
             this.labelData.Size = new System.Drawing.Size(227, 18);
             this.labelData.TabIndex = 1;
-            this.labelData.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // UCDataLabel
             // 

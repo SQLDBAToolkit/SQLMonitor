@@ -26,6 +26,15 @@ namespace SQLDBATool.Code
 
         }
 
+        public void ResetSessionInformation()
+        {
+            dataTableSessionInformation.Clear();
+            dataTableSessionRequests.Clear();
+            dataTableSessionConnections.Clear();
+            dataTableSessionCommands.Clear();
+            dataTableSessionStats.Clear();
+
+        }
         public void RefreshSessionInformation(int session_id, Code.CLSTreeInformation treeInformation)
         {
             FTreeInformation = treeInformation;
@@ -79,8 +88,7 @@ namespace SQLDBATool.Code
                 dtTemp.Rows.Add(r.ItemArray);
             }
 
-            dataTableSessionWaitStates.Merge(dtTemp, false, MissingSchemaAction.Add
-                );
+            dataTableSessionWaitStates.Merge(dtTemp, false, MissingSchemaAction.Add);
             dataTableSessionStats.Clear();
             int rowCnt = treeInformation.ConnectionInformation.ServerStats.DTSessionStats.Select(sessionSearchString).Length - 300;
             foreach (DataRow r in treeInformation.ConnectionInformation.ServerStats.DTSessionStats.Select(sessionSearchString))
@@ -189,6 +197,13 @@ namespace SQLDBATool.Code
         private void checkBox1_Click(object sender, EventArgs e)
         {
             ShowCurrentSqlText();
+        }
+        public void ClearCurrentSqlText()
+        {
+            labelObjectTitle.Text = "<Idle>";
+            richTextBoxSqlText.Text = "";
+            labelObjectOffset.Text = "";
+            FSqlCode = "";
         }
         private void ShowCurrentSqlText()
         {

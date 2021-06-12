@@ -10,6 +10,7 @@ namespace SQLDBATool.Code
         private CLSTreeInformation FLinkedTree;
         private List<clsDiagramServers> FLinkedServers;
         private Point FMaxPoint;
+        private ucConnectionTree FParentTree;
         public CLSTreeInformation LinkedTree
         {
             get => FLinkedTree;
@@ -21,6 +22,8 @@ namespace SQLDBATool.Code
             }
         }
         public List<clsDiagramServers> LinkedServers { get => FLinkedServers; set => FLinkedServers = value; }
+        public ucConnectionTree ParentTree { get => FParentTree; set => FParentTree = value; }
+
         public ucServerDiagram(CLSTreeInformation linkedTree)
         {
             InitializeComponent();

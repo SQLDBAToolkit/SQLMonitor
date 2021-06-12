@@ -76,6 +76,7 @@ namespace SQLDBATool.Code
             this.labelServerName.TabIndex = 0;
             this.labelServerName.Text = "Server";
             this.labelServerName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelServerName.Click += new System.EventHandler(this.labelServerName_Click);
             // 
             // panel2
             // 

@@ -14,12 +14,20 @@ namespace SQLDBATool.Code
         private CLSTreeInformation FThisTreeInformation;
         private FormSqlDBATool FParentSqlToolsForm;
 
-        public FormSqlDBATool ParentSqlToolsForm { get => FParentSqlToolsForm; set => FParentSqlToolsForm = value; }
+        public FormSqlDBATool ParentSqlToolsForm
+        {
+            get => FParentSqlToolsForm;
+            set
+            {
+                FParentSqlToolsForm = value;
+            }
+        }
         public CLSTreeInformation ThisTreeInformation { get => FThisTreeInformation; set => FThisTreeInformation = value; }
 
         public ucConnectionTree()
         {
             InitializeComponent();
+            
             string dbPath = Application.StartupPath;
 
             if (dbPath.StartsWith(@"E:\Projects\SQLDBATool\SQLDBATool") ||
@@ -47,6 +55,10 @@ namespace SQLDBATool.Code
             PopulateTreeItem(serverTree);
             treeViewConnections.ExpandAll();
 
+        }
+        public void SelectTreeNode(TreeNode treeNode)
+        {
+            treeViewConnections.SelectedNode = treeNode;
         }
         public void PopulateTreeItem(ServerTree serverTree)
         {
@@ -238,6 +250,12 @@ namespace SQLDBATool.Code
         private void treeViewConnections_AfterSelect(object sender, TreeViewEventArgs e)
         {
             CLSTreeInformation currentNode = (CLSTreeInformation)e.Node.Tag;
+            ShowServerDiagram(currentNode);
+        }
+
+        public void ShowServerDiagram(CLSTreeInformation currentNode)
+        {
+            
             if (currentNode.ServerDiagram != null)
             {
                 if (currentNode.ServerTree.IsSubFolder)
@@ -249,11 +267,10 @@ namespace SQLDBATool.Code
             {
 
                 ParentSqlToolsForm.ShowServerMonitor(currentNode, true);
-                
+
             }
 
         }
-
         private void contextMenuStripServerConnection_Opening(object sender, CancelEventArgs e)
         {
 

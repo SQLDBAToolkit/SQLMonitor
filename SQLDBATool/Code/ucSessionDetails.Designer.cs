@@ -208,6 +208,7 @@ namespace SQLDBATool.Code
             this.dataColumnSCLocalTcpPort = new System.Data.DataColumn();
             this.dataColumnSCConnectionId = new System.Data.DataColumn();
             this.dataColumnSCParentConnectionId = new System.Data.DataColumn();
+            this.dataColumn3 = new System.Data.DataColumn();
             this.dataTableSessionStats = new System.Data.DataTable();
             this.dataColumnStatsSessionId = new System.Data.DataColumn();
             this.dataColumnStatsLoginTime = new System.Data.DataColumn();
@@ -425,7 +426,6 @@ namespace SQLDBATool.Code
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBoxWaitTypeInformation = new System.Windows.Forms.TextBox();
             this.ucSeries1 = new SQLDBATool.Code.ucSeries();
-            this.dataColumn3 = new System.Data.DataColumn();
             this.panelTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -1497,6 +1497,10 @@ namespace SQLDBATool.Code
             // dataColumnSCParentConnectionId
             // 
             this.dataColumnSCParentConnectionId.ColumnName = "parent_connection_id";
+            // 
+            // dataColumn3
+            // 
+            this.dataColumn3.ColumnName = "Column1";
             // 
             // dataTableSessionStats
             // 
@@ -4006,10 +4010,6 @@ namespace SQLDBATool.Code
             this.ucSeries1.TabIndex = 0;
             this.ucSeries1.Text = "CPU Usage";
             this.ucSeries1.TopColor = System.Drawing.Color.Red;
-            // 
-            // dataColumn3
-            // 
-            this.dataColumn3.ColumnName = "Column1";
             // 
             // ucSessionDetails
             // 

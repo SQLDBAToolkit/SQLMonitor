@@ -43,10 +43,23 @@ namespace SQLDBATool.Code
                 SessionServerID = treeInformation.ConnectionInformation.MonitoredServer.ServerID;
                 dataGridView1.AutoGenerateColumns = false;
                 //dataGridView1.DataSource = treeInformation.ConnectionInformation.ServerStats.DTSessions;
-                FDTSessionsTable = treeInformation.ConnectionInformation.ServerStats.DTSessions.Clone();
-                FDTSessionsTable.Rows.Clear();
-                dataGridView1.DataSource = FDTSessionsTable;
-                MergeSessionDataTable(treeInformation);
+                if (treeInformation.ConnectionInformation.ServerStats.DTSessions.Columns.Count == 0)
+                {
+                    FDTSessionsTable.Rows.Clear();
+                    dataTableServerInformation.Rows.Clear();
+                    dataTableDatabaseInformation.Rows.Clear();
+                    dataTablePerformanceCounters.Rows.Clear();
+                    ChangeDatabaseServerName(treeInformation.ConnectionInformation.MonitoredServer.ServerDisplayName);
+                    ucCurrentSessionDetails.ResetSessionInformation();
+                    ucCurrentSessionDetails.ClearCurrentSqlText();
+                }
+                else
+                {
+                    FDTSessionsTable = treeInformation.ConnectionInformation.ServerStats.DTSessions.Clone();
+                    FDTSessionsTable.Rows.Clear();
+                    dataGridView1.DataSource = FDTSessionsTable;
+                    MergeSessionDataTable(treeInformation);
+                }
                 FUpdatingData = false;
             }
             #endregion
@@ -107,6 +120,15 @@ namespace SQLDBATool.Code
                     Int64 maxMemory = 10;
                     Decimal maxRequests = 9;
                     int maxSessions = 10;
+                    if (treeInformation.ConnectionInformation.IsOnError)
+                    {
+                        ucDataLabelLastConnectionError.Show();
+                        ucDataLabelLastConnectionError.LabelData = treeInformation.ConnectionInformation.LastConnectionError;
+                    }
+                    else
+                    {
+                        ucDataLabelLastConnectionError.Hide();
+                    }
 
                     ucTitleBar1.TitleText = (string)(treeInformation.ConnectionInformation.ServerStats.DTServerInformation.Rows[0]["ServerName"]);
                     foreach (DataRow row in treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows)
