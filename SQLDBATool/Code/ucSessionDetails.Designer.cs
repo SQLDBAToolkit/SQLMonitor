@@ -546,6 +546,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel12.DataTitle = "Session Encrypted";
             this.ucDataLabel12.DataTitleWidth = 134;
             this.ucDataLabel12.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel12.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel12.LabelData = "";
             this.ucDataLabel12.Location = new System.Drawing.Point(0, 288);
             this.ucDataLabel12.Name = "ucDataLabel12";
@@ -1772,6 +1773,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel17.DataTitle = "Client TCP Port";
             this.ucDataLabel17.DataTitleWidth = 134;
             this.ucDataLabel17.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel17.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel17.LabelData = "";
             this.ucDataLabel17.Location = new System.Drawing.Point(0, 270);
             this.ucDataLabel17.Name = "ucDataLabel17";
@@ -1785,6 +1787,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel16.DataTitle = "Client Net Address";
             this.ucDataLabel16.DataTitleWidth = 134;
             this.ucDataLabel16.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel16.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel16.LabelData = "";
             this.ucDataLabel16.Location = new System.Drawing.Point(0, 252);
             this.ucDataLabel16.Name = "ucDataLabel16";
@@ -1798,6 +1801,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel15.DataTitle = "Network Packet Size";
             this.ucDataLabel15.DataTitleWidth = 134;
             this.ucDataLabel15.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel15.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel15.LabelData = "";
             this.ucDataLabel15.Location = new System.Drawing.Point(0, 234);
             this.ucDataLabel15.Name = "ucDataLabel15";
@@ -1811,6 +1815,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel14.DataTitle = "Protocol Version";
             this.ucDataLabel14.DataTitleWidth = 134;
             this.ucDataLabel14.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel14.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel14.LabelData = "";
             this.ucDataLabel14.Location = new System.Drawing.Point(0, 216);
             this.ucDataLabel14.Name = "ucDataLabel14";
@@ -1824,6 +1829,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel13.DataTitle = "Protocol Type";
             this.ucDataLabel13.DataTitleWidth = 134;
             this.ucDataLabel13.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel13.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel13.LabelData = "";
             this.ucDataLabel13.Location = new System.Drawing.Point(0, 198);
             this.ucDataLabel13.Name = "ucDataLabel13";
@@ -1837,6 +1843,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel11.DataTitle = "TDSVersion";
             this.ucDataLabel11.DataTitleWidth = 134;
             this.ucDataLabel11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel11.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel11.LabelData = "";
             this.ucDataLabel11.Location = new System.Drawing.Point(0, 180);
             this.ucDataLabel11.Name = "ucDataLabel11";
@@ -1850,6 +1857,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel10.DataTitle = "Last Req End Time";
             this.ucDataLabel10.DataTitleWidth = 134;
             this.ucDataLabel10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel10.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel10.LabelData = "";
             this.ucDataLabel10.Location = new System.Drawing.Point(0, 162);
             this.ucDataLabel10.Name = "ucDataLabel10";
@@ -1863,6 +1871,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel9.DataTitle = "Last Req Start Time";
             this.ucDataLabel9.DataTitleWidth = 134;
             this.ucDataLabel9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel9.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel9.LabelData = "";
             this.ucDataLabel9.Location = new System.Drawing.Point(0, 144);
             this.ucDataLabel9.Name = "ucDataLabel9";
@@ -1876,6 +1885,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel8.DataTitle = "Database";
             this.ucDataLabel8.DataTitleWidth = 134;
             this.ucDataLabel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel8.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel8.LabelData = "";
             this.ucDataLabel8.Location = new System.Drawing.Point(0, 126);
             this.ucDataLabel8.Name = "ucDataLabel8";
@@ -1889,6 +1899,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel7.DataTitle = "Session Status";
             this.ucDataLabel7.DataTitleWidth = 134;
             this.ucDataLabel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel7.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel7.LabelData = "";
             this.ucDataLabel7.Location = new System.Drawing.Point(0, 108);
             this.ucDataLabel7.Name = "ucDataLabel7";
@@ -1902,6 +1913,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel5.DataTitle = "Program Name";
             this.ucDataLabel5.DataTitleWidth = 134;
             this.ucDataLabel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel5.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel5.LabelData = "";
             this.ucDataLabel5.Location = new System.Drawing.Point(0, 90);
             this.ucDataLabel5.Name = "ucDataLabel5";
@@ -1915,6 +1927,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel2.DataTitle = "Login Time";
             this.ucDataLabel2.DataTitleWidth = 134;
             this.ucDataLabel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel2.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel2.LabelData = "";
             this.ucDataLabel2.Location = new System.Drawing.Point(0, 72);
             this.ucDataLabel2.Name = "ucDataLabel2";
@@ -1928,6 +1941,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel6.DataTitle = "Host Process ID";
             this.ucDataLabel6.DataTitleWidth = 134;
             this.ucDataLabel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel6.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel6.LabelData = "";
             this.ucDataLabel6.Location = new System.Drawing.Point(0, 54);
             this.ucDataLabel6.Name = "ucDataLabel6";
@@ -1941,6 +1955,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel1.DataTitle = "Session ID";
             this.ucDataLabel1.DataTitleWidth = 134;
             this.ucDataLabel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel1.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel1.LabelData = "";
             this.ucDataLabel1.Location = new System.Drawing.Point(0, 36);
             this.ucDataLabel1.Name = "ucDataLabel1";
@@ -1954,6 +1969,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel3.DataTitle = "Login Name";
             this.ucDataLabel3.DataTitleWidth = 134;
             this.ucDataLabel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel3.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel3.LabelData = "";
             this.ucDataLabel3.Location = new System.Drawing.Point(0, 18);
             this.ucDataLabel3.Name = "ucDataLabel3";
@@ -1967,6 +1983,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel4.DataTitle = "Host Name";
             this.ucDataLabel4.DataTitleWidth = 134;
             this.ucDataLabel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel4.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel4.LabelData = "";
             this.ucDataLabel4.Location = new System.Drawing.Point(0, 0);
             this.ucDataLabel4.Name = "ucDataLabel4";
@@ -2405,6 +2422,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel44.DataTitle = "Is Resumable";
             this.ucDataLabel44.DataTitleWidth = 134;
             this.ucDataLabel44.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel44.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel44.LabelData = "";
             this.ucDataLabel44.Location = new System.Drawing.Point(0, 396);
             this.ucDataLabel44.Name = "ucDataLabel44";
@@ -2418,6 +2436,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel20.DataTitle = "Open Resultset Count";
             this.ucDataLabel20.DataTitleWidth = 134;
             this.ucDataLabel20.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel20.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel20.LabelData = "";
             this.ucDataLabel20.Location = new System.Drawing.Point(0, 378);
             this.ucDataLabel20.Name = "ucDataLabel20";
@@ -2431,6 +2450,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel43.DataTitle = "Parallel Worker Count";
             this.ucDataLabel43.DataTitleWidth = 134;
             this.ucDataLabel43.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel43.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel43.LabelData = "";
             this.ucDataLabel43.Location = new System.Drawing.Point(0, 360);
             this.ucDataLabel43.Name = "ucDataLabel43";
@@ -2444,6 +2464,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel42.DataTitle = "Degree of Parallelism";
             this.ucDataLabel42.DataTitleWidth = 134;
             this.ucDataLabel42.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel42.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel42.LabelData = "";
             this.ucDataLabel42.Location = new System.Drawing.Point(0, 342);
             this.ucDataLabel42.Name = "ucDataLabel42";
@@ -2457,6 +2478,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel19.DataTitle = "Open Transaction Count";
             this.ucDataLabel19.DataTitleWidth = 134;
             this.ucDataLabel19.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel19.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel19.LabelData = "";
             this.ucDataLabel19.Location = new System.Drawing.Point(0, 324);
             this.ucDataLabel19.Name = "ucDataLabel19";
@@ -2470,6 +2492,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel41.DataTitle = "Granted Query Memory";
             this.ucDataLabel41.DataTitleWidth = 134;
             this.ucDataLabel41.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel41.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel41.LabelData = "";
             this.ucDataLabel41.Location = new System.Drawing.Point(0, 306);
             this.ucDataLabel41.Name = "ucDataLabel41";
@@ -2483,6 +2506,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel35.DataTitle = "Open Resultset Count";
             this.ucDataLabel35.DataTitleWidth = 134;
             this.ucDataLabel35.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel35.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel35.LabelData = "";
             this.ucDataLabel35.Location = new System.Drawing.Point(0, 288);
             this.ucDataLabel35.Name = "ucDataLabel35";
@@ -2496,6 +2520,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel40.DataTitle = "Previous Error";
             this.ucDataLabel40.DataTitleWidth = 134;
             this.ucDataLabel40.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel40.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel40.LabelData = "";
             this.ucDataLabel40.Location = new System.Drawing.Point(0, 270);
             this.ucDataLabel40.Name = "ucDataLabel40";
@@ -2509,6 +2534,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel34.DataTitle = "Transaction Isolation Level";
             this.ucDataLabel34.DataTitleWidth = 134;
             this.ucDataLabel34.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel34.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel34.LabelData = "";
             this.ucDataLabel34.Location = new System.Drawing.Point(0, 252);
             this.ucDataLabel34.Name = "ucDataLabel34";
@@ -2522,6 +2548,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel39.DataTitle = "Nest Level";
             this.ucDataLabel39.DataTitleWidth = 134;
             this.ucDataLabel39.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel39.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel39.LabelData = "";
             this.ucDataLabel39.Location = new System.Drawing.Point(0, 234);
             this.ucDataLabel39.Name = "ucDataLabel39";
@@ -2535,6 +2562,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel36.DataTitle = "Lock Timeout";
             this.ucDataLabel36.DataTitleWidth = 134;
             this.ucDataLabel36.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel36.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel36.LabelData = "";
             this.ucDataLabel36.Location = new System.Drawing.Point(0, 216);
             this.ucDataLabel36.Name = "ucDataLabel36";
@@ -2548,6 +2576,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel38.DataTitle = "Row Count";
             this.ucDataLabel38.DataTitleWidth = 134;
             this.ucDataLabel38.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel38.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel38.LabelData = "";
             this.ucDataLabel38.Location = new System.Drawing.Point(0, 198);
             this.ucDataLabel38.Name = "ucDataLabel38";
@@ -2561,6 +2590,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel37.DataTitle = "Deadlock Priority";
             this.ucDataLabel37.DataTitleWidth = 134;
             this.ucDataLabel37.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel37.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel37.LabelData = "";
             this.ucDataLabel37.Location = new System.Drawing.Point(0, 180);
             this.ucDataLabel37.Name = "ucDataLabel37";
@@ -2574,6 +2604,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel69.DataTitle = "Wait Resource";
             this.ucDataLabel69.DataTitleWidth = 134;
             this.ucDataLabel69.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel69.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel69.LabelData = "";
             this.ucDataLabel69.Location = new System.Drawing.Point(0, 162);
             this.ucDataLabel69.Name = "ucDataLabel69";
@@ -2587,6 +2618,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel64.DataTitle = "Last Wait Type";
             this.ucDataLabel64.DataTitleWidth = 134;
             this.ucDataLabel64.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel64.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel64.LabelData = "";
             this.ucDataLabel64.Location = new System.Drawing.Point(0, 144);
             this.ucDataLabel64.Name = "ucDataLabel64";
@@ -2600,6 +2632,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel71.DataTitle = "Wait Type";
             this.ucDataLabel71.DataTitleWidth = 134;
             this.ucDataLabel71.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel71.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel71.LabelData = "";
             this.ucDataLabel71.Location = new System.Drawing.Point(0, 126);
             this.ucDataLabel71.Name = "ucDataLabel71";
@@ -2613,6 +2646,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel72.DataTitle = "Percentage Complete";
             this.ucDataLabel72.DataTitleWidth = 134;
             this.ucDataLabel72.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel72.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel72.LabelData = "";
             this.ucDataLabel72.Location = new System.Drawing.Point(0, 108);
             this.ucDataLabel72.Name = "ucDataLabel72";
@@ -2626,6 +2660,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel70.DataTitle = "Blocking Session";
             this.ucDataLabel70.DataTitleWidth = 134;
             this.ucDataLabel70.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel70.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel70.LabelData = "";
             this.ucDataLabel70.Location = new System.Drawing.Point(0, 90);
             this.ucDataLabel70.Name = "ucDataLabel70";
@@ -2639,6 +2674,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel65.DataTitle = "Command";
             this.ucDataLabel65.DataTitleWidth = 134;
             this.ucDataLabel65.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel65.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel65.LabelData = "";
             this.ucDataLabel65.Location = new System.Drawing.Point(0, 72);
             this.ucDataLabel65.Name = "ucDataLabel65";
@@ -2652,6 +2688,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel68.DataTitle = "Database";
             this.ucDataLabel68.DataTitleWidth = 134;
             this.ucDataLabel68.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel68.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel68.LabelData = "";
             this.ucDataLabel68.Location = new System.Drawing.Point(0, 54);
             this.ucDataLabel68.Name = "ucDataLabel68";
@@ -2665,6 +2702,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel67.DataTitle = "Status";
             this.ucDataLabel67.DataTitleWidth = 134;
             this.ucDataLabel67.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel67.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel67.LabelData = "";
             this.ucDataLabel67.Location = new System.Drawing.Point(0, 36);
             this.ucDataLabel67.Name = "ucDataLabel67";
@@ -2678,6 +2716,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel66.DataTitle = "Start Time";
             this.ucDataLabel66.DataTitleWidth = 134;
             this.ucDataLabel66.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel66.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel66.LabelData = "";
             this.ucDataLabel66.Location = new System.Drawing.Point(0, 18);
             this.ucDataLabel66.Name = "ucDataLabel66";
@@ -2691,6 +2730,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel18.DataTitle = "Request ID";
             this.ucDataLabel18.DataTitleWidth = 134;
             this.ucDataLabel18.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel18.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel18.LabelData = "";
             this.ucDataLabel18.Location = new System.Drawing.Point(0, 0);
             this.ucDataLabel18.Name = "ucDataLabel18";
@@ -2726,6 +2766,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel33.DataTitle = "Ansi Padding";
             this.ucDataLabel33.DataTitleWidth = 134;
             this.ucDataLabel33.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel33.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel33.LabelData = "";
             this.ucDataLabel33.Location = new System.Drawing.Point(0, 216);
             this.ucDataLabel33.Name = "ucDataLabel33";
@@ -2739,6 +2780,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel22.DataTitle = "Language";
             this.ucDataLabel22.DataTitleWidth = 134;
             this.ucDataLabel22.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel22.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel22.LabelData = "";
             this.ucDataLabel22.Location = new System.Drawing.Point(0, 198);
             this.ucDataLabel22.Name = "ucDataLabel22";
@@ -2752,6 +2794,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel32.DataTitle = "Concat Null Yields Null";
             this.ucDataLabel32.DataTitleWidth = 134;
             this.ucDataLabel32.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel32.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel32.LabelData = "";
             this.ucDataLabel32.Location = new System.Drawing.Point(0, 180);
             this.ucDataLabel32.Name = "ucDataLabel32";
@@ -2765,6 +2808,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel23.DataTitle = "Date Format";
             this.ucDataLabel23.DataTitleWidth = 134;
             this.ucDataLabel23.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel23.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel23.LabelData = "";
             this.ucDataLabel23.Location = new System.Drawing.Point(0, 162);
             this.ucDataLabel23.Name = "ucDataLabel23";
@@ -2778,6 +2822,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel31.DataTitle = "Ansi Nulls";
             this.ucDataLabel31.DataTitleWidth = 134;
             this.ucDataLabel31.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel31.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel31.LabelData = "";
             this.ucDataLabel31.Location = new System.Drawing.Point(0, 144);
             this.ucDataLabel31.Name = "ucDataLabel31";
@@ -2791,6 +2836,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel24.DataTitle = "Date First";
             this.ucDataLabel24.DataTitleWidth = 134;
             this.ucDataLabel24.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel24.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel24.LabelData = "";
             this.ucDataLabel24.Location = new System.Drawing.Point(0, 126);
             this.ucDataLabel24.Name = "ucDataLabel24";
@@ -2804,6 +2850,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel30.DataTitle = "Ansi Padding";
             this.ucDataLabel30.DataTitleWidth = 134;
             this.ucDataLabel30.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel30.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel30.LabelData = "";
             this.ucDataLabel30.Location = new System.Drawing.Point(0, 108);
             this.ucDataLabel30.Name = "ucDataLabel30";
@@ -2817,6 +2864,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel21.DataTitle = "Text Size";
             this.ucDataLabel21.DataTitleWidth = 134;
             this.ucDataLabel21.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel21.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel21.LabelData = "";
             this.ucDataLabel21.Location = new System.Drawing.Point(0, 90);
             this.ucDataLabel21.Name = "ucDataLabel21";
@@ -2830,6 +2878,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel29.DataTitle = "Ansi Warnings";
             this.ucDataLabel29.DataTitleWidth = 134;
             this.ucDataLabel29.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel29.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel29.LabelData = "";
             this.ucDataLabel29.Location = new System.Drawing.Point(0, 72);
             this.ucDataLabel29.Name = "ucDataLabel29";
@@ -2843,6 +2892,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel25.DataTitle = "Quoted Identifier";
             this.ucDataLabel25.DataTitleWidth = 134;
             this.ucDataLabel25.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel25.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel25.LabelData = "";
             this.ucDataLabel25.Location = new System.Drawing.Point(0, 54);
             this.ucDataLabel25.Name = "ucDataLabel25";
@@ -2856,6 +2906,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel28.DataTitle = "Ansi Defaults";
             this.ucDataLabel28.DataTitleWidth = 134;
             this.ucDataLabel28.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel28.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel28.LabelData = "";
             this.ucDataLabel28.Location = new System.Drawing.Point(0, 36);
             this.ucDataLabel28.Name = "ucDataLabel28";
@@ -2869,6 +2920,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel26.DataTitle = "Arithabort";
             this.ucDataLabel26.DataTitleWidth = 134;
             this.ucDataLabel26.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel26.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel26.LabelData = "";
             this.ucDataLabel26.Location = new System.Drawing.Point(0, 18);
             this.ucDataLabel26.Name = "ucDataLabel26";
@@ -2882,6 +2934,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel27.DataTitle = "Ansi Null Dflt On";
             this.ucDataLabel27.DataTitleWidth = 134;
             this.ucDataLabel27.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel27.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel27.LabelData = "";
             this.ucDataLabel27.Location = new System.Drawing.Point(0, 0);
             this.ucDataLabel27.Name = "ucDataLabel27";
@@ -3210,6 +3263,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel63.DataTitle = "Parent Connection ID";
             this.ucDataLabel63.DataTitleWidth = 134;
             this.ucDataLabel63.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel63.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel63.LabelData = "";
             this.ucDataLabel63.Location = new System.Drawing.Point(0, 324);
             this.ucDataLabel63.Name = "ucDataLabel63";
@@ -3223,6 +3277,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel62.DataTitle = "Local Net Port";
             this.ucDataLabel62.DataTitleWidth = 134;
             this.ucDataLabel62.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel62.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel62.LabelData = "";
             this.ucDataLabel62.Location = new System.Drawing.Point(0, 306);
             this.ucDataLabel62.Name = "ucDataLabel62";
@@ -3236,6 +3291,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel61.DataTitle = "Local Net Address";
             this.ucDataLabel61.DataTitleWidth = 134;
             this.ucDataLabel61.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel61.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel61.LabelData = "";
             this.ucDataLabel61.Location = new System.Drawing.Point(0, 288);
             this.ucDataLabel61.Name = "ucDataLabel61";
@@ -3249,6 +3305,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel60.DataTitle = "Client Net Port";
             this.ucDataLabel60.DataTitleWidth = 134;
             this.ucDataLabel60.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel60.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel60.LabelData = "";
             this.ucDataLabel60.Location = new System.Drawing.Point(0, 270);
             this.ucDataLabel60.Name = "ucDataLabel60";
@@ -3262,6 +3319,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel59.DataTitle = "Client Net Address";
             this.ucDataLabel59.DataTitleWidth = 134;
             this.ucDataLabel59.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel59.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel59.LabelData = "";
             this.ucDataLabel59.Location = new System.Drawing.Point(0, 252);
             this.ucDataLabel59.Name = "ucDataLabel59";
@@ -3275,6 +3333,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel58.DataTitle = "Net Packet Size";
             this.ucDataLabel58.DataTitleWidth = 134;
             this.ucDataLabel58.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel58.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel58.LabelData = "";
             this.ucDataLabel58.Location = new System.Drawing.Point(0, 234);
             this.ucDataLabel58.Name = "ucDataLabel58";
@@ -3288,6 +3347,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel57.DataTitle = "Last Write";
             this.ucDataLabel57.DataTitleWidth = 134;
             this.ucDataLabel57.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel57.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel57.LabelData = "";
             this.ucDataLabel57.Location = new System.Drawing.Point(0, 216);
             this.ucDataLabel57.Name = "ucDataLabel57";
@@ -3301,6 +3361,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel56.DataTitle = "Last Read";
             this.ucDataLabel56.DataTitleWidth = 134;
             this.ucDataLabel56.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel56.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel56.LabelData = "";
             this.ucDataLabel56.Location = new System.Drawing.Point(0, 198);
             this.ucDataLabel56.Name = "ucDataLabel56";
@@ -3314,6 +3375,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel55.DataTitle = "Number Writes";
             this.ucDataLabel55.DataTitleWidth = 134;
             this.ucDataLabel55.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel55.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel55.LabelData = "";
             this.ucDataLabel55.Location = new System.Drawing.Point(0, 180);
             this.ucDataLabel55.Name = "ucDataLabel55";
@@ -3327,6 +3389,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel54.DataTitle = "Number Reads";
             this.ucDataLabel54.DataTitleWidth = 134;
             this.ucDataLabel54.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel54.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel54.LabelData = "";
             this.ucDataLabel54.Location = new System.Drawing.Point(0, 162);
             this.ucDataLabel54.Name = "ucDataLabel54";
@@ -3340,6 +3403,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel53.DataTitle = "Node Affinity";
             this.ucDataLabel53.DataTitleWidth = 134;
             this.ucDataLabel53.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel53.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel53.LabelData = "";
             this.ucDataLabel53.Location = new System.Drawing.Point(0, 144);
             this.ucDataLabel53.Name = "ucDataLabel53";
@@ -3353,6 +3417,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel52.DataTitle = "Authentication Scheme";
             this.ucDataLabel52.DataTitleWidth = 134;
             this.ucDataLabel52.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel52.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel52.LabelData = "";
             this.ucDataLabel52.Location = new System.Drawing.Point(0, 126);
             this.ucDataLabel52.Name = "ucDataLabel52";
@@ -3366,6 +3431,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel51.DataTitle = "Encryption Option";
             this.ucDataLabel51.DataTitleWidth = 134;
             this.ucDataLabel51.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel51.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel51.LabelData = "";
             this.ucDataLabel51.Location = new System.Drawing.Point(0, 108);
             this.ucDataLabel51.Name = "ucDataLabel51";
@@ -3379,6 +3445,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel50.DataTitle = "TDS Version";
             this.ucDataLabel50.DataTitleWidth = 134;
             this.ucDataLabel50.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel50.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel50.LabelData = "";
             this.ucDataLabel50.Location = new System.Drawing.Point(0, 90);
             this.ucDataLabel50.Name = "ucDataLabel50";
@@ -3392,6 +3459,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel49.DataTitle = "Protocol Version";
             this.ucDataLabel49.DataTitleWidth = 134;
             this.ucDataLabel49.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel49.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel49.LabelData = "";
             this.ucDataLabel49.Location = new System.Drawing.Point(0, 72);
             this.ucDataLabel49.Name = "ucDataLabel49";
@@ -3405,6 +3473,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel48.DataTitle = "Protocol Type";
             this.ucDataLabel48.DataTitleWidth = 134;
             this.ucDataLabel48.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel48.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel48.LabelData = "";
             this.ucDataLabel48.Location = new System.Drawing.Point(0, 54);
             this.ucDataLabel48.Name = "ucDataLabel48";
@@ -3418,6 +3487,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel47.DataTitle = "Network Transport";
             this.ucDataLabel47.DataTitleWidth = 134;
             this.ucDataLabel47.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel47.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel47.LabelData = "";
             this.ucDataLabel47.Location = new System.Drawing.Point(0, 36);
             this.ucDataLabel47.Name = "ucDataLabel47";
@@ -3431,6 +3501,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel46.DataTitle = "Connection Time";
             this.ucDataLabel46.DataTitleWidth = 134;
             this.ucDataLabel46.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel46.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel46.LabelData = "";
             this.ucDataLabel46.Location = new System.Drawing.Point(0, 18);
             this.ucDataLabel46.Name = "ucDataLabel46";
@@ -3444,6 +3515,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel45.DataTitle = "Connection ID";
             this.ucDataLabel45.DataTitleWidth = 134;
             this.ucDataLabel45.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel45.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel45.LabelData = "";
             this.ucDataLabel45.Location = new System.Drawing.Point(0, 0);
             this.ucDataLabel45.Name = "ucDataLabel45";
@@ -3481,6 +3553,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel87.DataTitle = "Deadlock Priority";
             this.ucDataLabel87.DataTitleWidth = 134;
             this.ucDataLabel87.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel87.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel87.LabelData = "";
             this.ucDataLabel87.Location = new System.Drawing.Point(0, 252);
             this.ucDataLabel87.Name = "ucDataLabel87";
@@ -3494,6 +3567,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel86.DataTitle = "Lock Timeout";
             this.ucDataLabel86.DataTitleWidth = 134;
             this.ucDataLabel86.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel86.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel86.LabelData = "";
             this.ucDataLabel86.Location = new System.Drawing.Point(0, 234);
             this.ucDataLabel86.Name = "ucDataLabel86";
@@ -3507,6 +3581,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel85.DataTitle = "Transaction Isolation";
             this.ucDataLabel85.DataTitleWidth = 134;
             this.ucDataLabel85.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel85.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel85.LabelData = "";
             this.ucDataLabel85.Location = new System.Drawing.Point(0, 216);
             this.ucDataLabel85.Name = "ucDataLabel85";
@@ -3520,6 +3595,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel84.DataTitle = "Concat Null Yields Null";
             this.ucDataLabel84.DataTitleWidth = 134;
             this.ucDataLabel84.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel84.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel84.LabelData = "";
             this.ucDataLabel84.Location = new System.Drawing.Point(0, 198);
             this.ucDataLabel84.Name = "ucDataLabel84";
@@ -3533,6 +3609,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel83.DataTitle = "ANSI Nulls";
             this.ucDataLabel83.DataTitleWidth = 134;
             this.ucDataLabel83.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel83.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel83.LabelData = "";
             this.ucDataLabel83.Location = new System.Drawing.Point(0, 180);
             this.ucDataLabel83.Name = "ucDataLabel83";
@@ -3546,6 +3623,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel82.DataTitle = "ANSI Padding";
             this.ucDataLabel82.DataTitleWidth = 134;
             this.ucDataLabel82.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel82.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel82.LabelData = "";
             this.ucDataLabel82.Location = new System.Drawing.Point(0, 162);
             this.ucDataLabel82.Name = "ucDataLabel82";
@@ -3559,6 +3637,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel81.DataTitle = "ANSI Warnings";
             this.ucDataLabel81.DataTitleWidth = 134;
             this.ucDataLabel81.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel81.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel81.LabelData = "";
             this.ucDataLabel81.Location = new System.Drawing.Point(0, 144);
             this.ucDataLabel81.Name = "ucDataLabel81";
@@ -3572,6 +3651,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel80.DataTitle = "ANSI Default";
             this.ucDataLabel80.DataTitleWidth = 134;
             this.ucDataLabel80.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel80.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel80.LabelData = "";
             this.ucDataLabel80.Location = new System.Drawing.Point(0, 126);
             this.ucDataLabel80.Name = "ucDataLabel80";
@@ -3585,6 +3665,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel79.DataTitle = "ANSI Null Default On";
             this.ucDataLabel79.DataTitleWidth = 134;
             this.ucDataLabel79.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel79.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel79.LabelData = "";
             this.ucDataLabel79.Location = new System.Drawing.Point(0, 108);
             this.ucDataLabel79.Name = "ucDataLabel79";
@@ -3598,6 +3679,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel78.DataTitle = "ArithAbort";
             this.ucDataLabel78.DataTitleWidth = 134;
             this.ucDataLabel78.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel78.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel78.LabelData = "";
             this.ucDataLabel78.Location = new System.Drawing.Point(0, 90);
             this.ucDataLabel78.Name = "ucDataLabel78";
@@ -3611,6 +3693,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel77.DataTitle = "Quoted Identifier";
             this.ucDataLabel77.DataTitleWidth = 134;
             this.ucDataLabel77.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel77.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel77.LabelData = "";
             this.ucDataLabel77.Location = new System.Drawing.Point(0, 72);
             this.ucDataLabel77.Name = "ucDataLabel77";
@@ -3624,6 +3707,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel76.DataTitle = "Date First";
             this.ucDataLabel76.DataTitleWidth = 134;
             this.ucDataLabel76.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel76.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel76.LabelData = "";
             this.ucDataLabel76.Location = new System.Drawing.Point(0, 54);
             this.ucDataLabel76.Name = "ucDataLabel76";
@@ -3637,6 +3721,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel75.DataTitle = "Date Format";
             this.ucDataLabel75.DataTitleWidth = 134;
             this.ucDataLabel75.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel75.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel75.LabelData = "";
             this.ucDataLabel75.Location = new System.Drawing.Point(0, 36);
             this.ucDataLabel75.Name = "ucDataLabel75";
@@ -3650,6 +3735,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel74.DataTitle = "Language";
             this.ucDataLabel74.DataTitleWidth = 134;
             this.ucDataLabel74.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel74.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel74.LabelData = "";
             this.ucDataLabel74.Location = new System.Drawing.Point(0, 18);
             this.ucDataLabel74.Name = "ucDataLabel74";
@@ -3663,6 +3749,7 @@ namespace SQLDBATool.Code
             this.ucDataLabel73.DataTitle = "Text Size";
             this.ucDataLabel73.DataTitleWidth = 134;
             this.ucDataLabel73.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDataLabel73.LabelColor = System.Drawing.SystemColors.ControlText;
             this.ucDataLabel73.LabelData = "";
             this.ucDataLabel73.Location = new System.Drawing.Point(0, 0);
             this.ucDataLabel73.Name = "ucDataLabel73";

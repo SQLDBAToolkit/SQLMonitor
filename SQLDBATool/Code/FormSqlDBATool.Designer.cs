@@ -52,7 +52,7 @@
             // splitContainerLayout.Panel2
             // 
             this.splitContainerLayout.Panel2.Controls.Add(this.ucServerMonitor1);
-            this.splitContainerLayout.Size = new System.Drawing.Size(1443, 773);
+            this.splitContainerLayout.Size = new System.Drawing.Size(2164, 1159);
             this.splitContainerLayout.SplitterDistance = 306;
             this.splitContainerLayout.TabIndex = 0;
             // 
@@ -63,7 +63,7 @@
             this.ucConnectionTree1.Location = new System.Drawing.Point(0, 0);
             this.ucConnectionTree1.Name = "ucConnectionTree1";
             this.ucConnectionTree1.ParentSqlToolsForm = null;
-            this.ucConnectionTree1.Size = new System.Drawing.Size(302, 769);
+            this.ucConnectionTree1.Size = new System.Drawing.Size(302, 1155);
             this.ucConnectionTree1.TabIndex = 0;
             this.ucConnectionTree1.ThisTreeInformation = null;
             // 
@@ -75,7 +75,7 @@
             this.ucServerMonitor1.Name = "ucServerMonitor1";
             this.ucServerMonitor1.ServerID = new System.Guid("545bf3f1-33ad-4061-9fde-ff9628966183");
             this.ucServerMonitor1.SessionServerID = new System.Guid("545bf3f1-33ad-4061-9fde-ff9628966183");
-            this.ucServerMonitor1.Size = new System.Drawing.Size(1129, 769);
+            this.ucServerMonitor1.Size = new System.Drawing.Size(1850, 1155);
             this.ucServerMonitor1.TabIndex = 0;
             this.ucServerMonitor1.TreeInformation = null;
             this.ucServerMonitor1.Visible = false;

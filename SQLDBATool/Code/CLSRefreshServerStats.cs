@@ -441,6 +441,7 @@ namespace SQLDBATool.Code
             #region GetServerInfo
             string sql = @"
 CREATE procedure #GetServerInfo
+with encryption
 as
 begin
 ;with OSInfo as
@@ -575,6 +576,7 @@ create procedure #GetPerformanceStats
     ,@inPrevCheckPointsSec bigint = 0
     ,@inPrevLockWaitsSec bigint = 0
     ,@inPrevTime datetime = null
+with encryption
 as
 begin
 if @inPrevTime is null
@@ -838,6 +840,7 @@ if object_id('tempdb..#RequestsPreviousValues') is null
             #region GetSessionStats
             sql = @"
 create procedure #GetSessionInfomation
+with encryption
 as
 begin
 /*
@@ -1372,6 +1375,7 @@ end
             string sql = @"
 create procedure #GetDatabaseInformation
  	@inQuickScan bit = 0
+with encryption
 as
 /*
 exec #GetDatabaseInformation @inQuickScan = 1

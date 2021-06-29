@@ -66,6 +66,7 @@
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.contextMenuStripFolder.SuspendLayout();
             this.contextMenuStripRootMenu.SuspendLayout();
             this.contextMenuStripServerConnection.SuspendLayout();
@@ -81,7 +82,7 @@
             this.treeViewConnections.Location = new System.Drawing.Point(0, 0);
             this.treeViewConnections.Name = "treeViewConnections";
             this.treeViewConnections.SelectedImageIndex = 0;
-            this.treeViewConnections.Size = new System.Drawing.Size(410, 660);
+            this.treeViewConnections.Size = new System.Drawing.Size(410, 560);
             this.treeViewConnections.TabIndex = 0;
             this.treeViewConnections.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewConnections_AfterSelect);
             // 
@@ -336,12 +337,22 @@
             this.toolStripMenuItem7.Text = "Properties";
             this.toolStripMenuItem7.Click += new System.EventHandler(this.toolStripMenuItemProperties_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 560);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(410, 100);
+            this.panel1.TabIndex = 5;
+            this.panel1.Visible = false;
+            // 
             // ucConnectionTree
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.treeViewConnections);
+            this.Controls.Add(this.panel1);
             this.Name = "ucConnectionTree";
             this.Size = new System.Drawing.Size(410, 660);
             this.contextMenuStripFolder.ResumeLayout(false);
@@ -391,5 +402,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
+        private System.Windows.Forms.Panel panel1;
     }
 }

@@ -221,6 +221,9 @@ namespace SQLDBATool.Code
                     int offset = (int)dataTableSessionCommands.Rows[0]["statement_start_offset"];
                     int len = (int)dataTableSessionCommands.Rows[0]["statement_length"];
                     string objTitle = dataTableSessionCommands.Rows[0]["object_title"].ToString();
+                    bool encrypted = false;
+                    if (dataTableSessionCommands.Rows[0]["encrypted"] != System.DBNull.Value)
+                        encrypted = (bool)dataTableSessionCommands.Rows[0]["encrypted"];
                     if (labelObjectTitle.Text != objTitle)
                         labelObjectTitle.Text = objTitle;
                     if (offset >= 0)
@@ -263,10 +266,18 @@ namespace SQLDBATool.Code
                             }
                             else
                             {
-                                if (FSqlCode != sqlText.Substring((offset - 1), len))
+                                if (encrypted)
                                 {
-                                    FSqlCode = sqlText.Substring((offset - 1), len);
-                                    richTextBoxSqlText.Text = sqlText.Substring((offset - 1), len);
+                                    FSqlCode = "<Encrypted>";
+                                    richTextBoxSqlText.Text = FSqlCode;
+                                }
+                                else
+                                {
+                                    if (FSqlCode != sqlText.Substring((offset - 1), len))
+                                    {
+                                        FSqlCode = sqlText.Substring((offset - 1), len);
+                                        richTextBoxSqlText.Text = sqlText.Substring((offset - 1), len);
+                                    }
                                 }
                             }
                         }
