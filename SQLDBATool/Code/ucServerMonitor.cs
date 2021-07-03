@@ -115,6 +115,7 @@ namespace SQLDBATool.Code
             {
                 if (treeInformation.ConnectionInformation.MonitoredServer.ServerID == ServerID)
                 {
+                    FFirstDisplayedRowIndex = dataGridView1.FirstDisplayedScrollingRowIndex;
                     int maxNetwork = 10;
                     int maxIO = 10;
                     Int64 maxMemory = 10;

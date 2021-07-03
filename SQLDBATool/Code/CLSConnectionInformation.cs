@@ -217,11 +217,14 @@ namespace SQLDBATool.Code
 
         public void UpdateServerInformation(DataTable dtServerInformation)
         {
-            if (FDTServerInformation.Columns.Count == 0)
+            if (dtServerInformation.Rows.Count > 0)
             {
-                FDTServerInformation = dtServerInformation.Clone();
-                FDTServerInformation.Rows.Clear();
-                FDTServerInformation.Rows.Add(dtServerInformation.Rows[0].ItemArray);
+                if (FDTServerInformation.Columns.Count == 0)
+                {
+                    FDTServerInformation = dtServerInformation.Clone();
+                    FDTServerInformation.Rows.Clear();
+                    FDTServerInformation.Rows.Add(dtServerInformation.Rows[0].ItemArray);
+                }
             }
         }
         public void UpdatePerformanceStatistics(DataTable dtPerformanceStatistics)
@@ -238,171 +241,187 @@ namespace SQLDBATool.Code
         public void UpdateSessionInformation(DataTable dtSessionInformation)
         {
             DateTime latestRefresh;
-            if (FDTSessions.Columns.Count == 0)
+            if (dtSessionInformation.Rows.Count > 0)
             {
-                FDTSessions = dtSessionInformation.Clone();
-                FDTSessions.PrimaryKey = new DataColumn[] { FDTSessions.Columns["session_id"] };
-                foreach (DataColumn col in FDTSessions.Columns)
+                if (FDTSessions.Columns.Count == 0)
                 {
-                    col.ReadOnly = false;
-                }
-            }
-
-            latestRefresh = (DateTime)dtSessionInformation.Rows[0]["RefreshedLast"];
-            dtSessionInformation.PrimaryKey = new DataColumn[] { dtSessionInformation.Columns["session_id"] };
-            FDTSessions.Merge(dtSessionInformation, false, MissingSchemaAction.Add);
-            foreach (DataRow row in FDTSessions.Rows)
-            {
-                if ((DateTime)row["RefreshedLast"] < latestRefresh)
-                {
-
-                    row["IsConnected"] = 0;
-                    row["status"] = "disconnected";
-                    row["SessionBackColor"] = "DISCONNECTED";
+                    FDTSessions = dtSessionInformation.Clone();
+                    FDTSessions.PrimaryKey = new DataColumn[] { FDTSessions.Columns["session_id"] };
+                    foreach (DataColumn col in FDTSessions.Columns)
+                    {
+                        col.ReadOnly = false;
+                    }
                 }
 
-                row.ClearErrors();
-            }
-            FDTSessions.AcceptChanges();
+                latestRefresh = (DateTime)dtSessionInformation.Rows[0]["RefreshedLast"];
+                dtSessionInformation.PrimaryKey = new DataColumn[] { dtSessionInformation.Columns["session_id"] };
+                FDTSessions.Merge(dtSessionInformation, false, MissingSchemaAction.Add);
+                foreach (DataRow row in FDTSessions.Rows)
+                {
+                    if ((DateTime)row["RefreshedLast"] < latestRefresh)
+                    {
 
+                        row["IsConnected"] = 0;
+                        row["status"] = "disconnected";
+                        row["SessionBackColor"] = "DISCONNECTED";
+                    }
+
+                    row.ClearErrors();
+                }
+                FDTSessions.AcceptChanges();
+            }
         }
         public void UpdateSessionRequests(DataTable dtSessionRequestInformation)
         {
-            if (FDTSessionRequests.Columns.Count == 0)
+            if (dtSessionRequestInformation.Rows.Count > 0)
             {
-                FDTSessionRequests = dtSessionRequestInformation.Clone();
-                FDTSessionRequests.PrimaryKey = new DataColumn[] { FDTSessionRequests.Columns["session_id"], FDTSessionRequests.Columns["request_id"] };
-                foreach (DataColumn col in FDTSessionRequests.Columns)
+                if (FDTSessionRequests.Columns.Count == 0)
                 {
-                    col.ReadOnly = false;
+                    FDTSessionRequests = dtSessionRequestInformation.Clone();
+                    FDTSessionRequests.PrimaryKey = new DataColumn[] { FDTSessionRequests.Columns["session_id"], FDTSessionRequests.Columns["request_id"] };
+                    foreach (DataColumn col in FDTSessionRequests.Columns)
+                    {
+                        col.ReadOnly = false;
+                    }
                 }
-            }
 
-            foreach (DataRow r in DTSessions.Select("IsConnected = 1"))
-            {
-                int sessionID = (Int16)r["session_id"];
-
-                string SessionSearchString = "session_id = " + sessionID.ToString();
-                foreach (DataRow reqR in DTSessionRequests.Select(SessionSearchString))
+                foreach (DataRow r in DTSessions.Select("IsConnected = 1"))
                 {
-                    reqR.Delete();
-                }
-            }
+                    int sessionID = (Int16)r["session_id"];
 
-            dtSessionRequestInformation.PrimaryKey = new DataColumn[] { dtSessionRequestInformation.Columns["session_id"], dtSessionRequestInformation.Columns["request_id"] };
-            FDTSessionRequests.Merge(dtSessionRequestInformation, false, MissingSchemaAction.Add);
-            FDTSessionRequests.AcceptChanges();
+                    string SessionSearchString = "session_id = " + sessionID.ToString();
+                    foreach (DataRow reqR in DTSessionRequests.Select(SessionSearchString))
+                    {
+                        reqR.Delete();
+                    }
+                }
+
+                dtSessionRequestInformation.PrimaryKey = new DataColumn[] { dtSessionRequestInformation.Columns["session_id"], dtSessionRequestInformation.Columns["request_id"] };
+                FDTSessionRequests.Merge(dtSessionRequestInformation, false, MissingSchemaAction.Add);
+                FDTSessionRequests.AcceptChanges();
+            }
 
         }
         public void UpdateSessionConnections(DataTable dtSessionConnectionsInformation)
         {
-            if (FDTSessionConnections.Columns.Count == 0)
+            if (dtSessionConnectionsInformation.Rows.Count > 0)
             {
-                FDTSessionConnections = dtSessionConnectionsInformation.Clone();
-                FDTSessionConnections.PrimaryKey = new DataColumn[] { FDTSessionConnections.Columns["session_id"], FDTSessionConnections.Columns["connection_id"] };
-                foreach (DataColumn col in FDTSessionConnections.Columns)
+                if (FDTSessionConnections.Columns.Count == 0)
                 {
-                    col.ReadOnly = false;
+                    FDTSessionConnections = dtSessionConnectionsInformation.Clone();
+                    FDTSessionConnections.PrimaryKey = new DataColumn[] { FDTSessionConnections.Columns["session_id"], FDTSessionConnections.Columns["connection_id"] };
+                    foreach (DataColumn col in FDTSessionConnections.Columns)
+                    {
+                        col.ReadOnly = false;
+                    }
                 }
-            }
 
-            foreach (DataRow r in DTSessions.Select("IsConnected = 1"))
-            {
-                int sessionID = (Int16)r["session_id"];
-
-                string SessionSearchString = "session_id = " + sessionID.ToString();
-                foreach (DataRow reqR in DTSessionConnections.Select(SessionSearchString))
+                foreach (DataRow r in DTSessions.Select("IsConnected = 1"))
                 {
-                    reqR.Delete();
+                    int sessionID = (Int16)r["session_id"];
+
+                    string SessionSearchString = "session_id = " + sessionID.ToString();
+                    foreach (DataRow reqR in DTSessionConnections.Select(SessionSearchString))
+                    {
+                        reqR.Delete();
+                    }
                 }
+
+                dtSessionConnectionsInformation.PrimaryKey = new DataColumn[] { dtSessionConnectionsInformation.Columns["session_id"], dtSessionConnectionsInformation.Columns["connection_id"] };
+                FDTSessionConnections.Merge(dtSessionConnectionsInformation, false, MissingSchemaAction.Add);
+                FDTSessionConnections.AcceptChanges();
             }
-
-            dtSessionConnectionsInformation.PrimaryKey = new DataColumn[] { dtSessionConnectionsInformation.Columns["session_id"], dtSessionConnectionsInformation.Columns["connection_id"] };
-            FDTSessionConnections.Merge(dtSessionConnectionsInformation, false, MissingSchemaAction.Add);
-            FDTSessionConnections.AcceptChanges();
-
         }
         public void UpdateSessionWaitStates(DataTable dtSessionWaitStatesInformation)
         {
-            if (FDTSessionWaitStates.Columns.Count == 0)
+            if (dtSessionWaitStatesInformation.Rows.Count > 0)
             {
-                FDTSessionWaitStates = dtSessionWaitStatesInformation.Clone();
-                FDTSessionWaitStates.PrimaryKey = new DataColumn[] { FDTSessionWaitStates.Columns["session_id"], FDTSessionWaitStates.Columns["wait_type"] };
-                foreach (DataColumn col in FDTSessionWaitStates.Columns)
+                if (FDTSessionWaitStates.Columns.Count == 0)
                 {
-                    col.ReadOnly = false;
+                    FDTSessionWaitStates = dtSessionWaitStatesInformation.Clone();
+                    FDTSessionWaitStates.PrimaryKey = new DataColumn[] { FDTSessionWaitStates.Columns["session_id"], FDTSessionWaitStates.Columns["wait_type"] };
+                    foreach (DataColumn col in FDTSessionWaitStates.Columns)
+                    {
+                        col.ReadOnly = false;
+                    }
                 }
+
+                DTSessionWaitStates.Rows.Clear();
+                //foreach (DataRow r in DTSessions.Select("IsConnected = 1"))
+                //{
+                //    int sessionID = (Int16)r["session_id"];
+
+                //    string SessionSearchString = "session_id = " + sessionID.ToString();
+                //    foreach (DataRow reqR in DTSessionWaitStates.Select(SessionSearchString))
+                //    {
+                //        reqR.Delete();
+                //    }
+                //}
+
+                dtSessionWaitStatesInformation.PrimaryKey = new DataColumn[] { dtSessionWaitStatesInformation.Columns["session_id"], dtSessionWaitStatesInformation.Columns["wait_type"] };
+                FDTSessionWaitStates.Merge(dtSessionWaitStatesInformation, false, MissingSchemaAction.Add);
+                FDTSessionWaitStates.AcceptChanges();
             }
-
-            DTSessionWaitStates.Rows.Clear();
-            //foreach (DataRow r in DTSessions.Select("IsConnected = 1"))
-            //{
-            //    int sessionID = (Int16)r["session_id"];
-
-            //    string SessionSearchString = "session_id = " + sessionID.ToString();
-            //    foreach (DataRow reqR in DTSessionWaitStates.Select(SessionSearchString))
-            //    {
-            //        reqR.Delete();
-            //    }
-            //}
-
-            dtSessionWaitStatesInformation.PrimaryKey = new DataColumn[] { dtSessionWaitStatesInformation.Columns["session_id"], dtSessionWaitStatesInformation.Columns["wait_type"] };
-            FDTSessionWaitStates.Merge(dtSessionWaitStatesInformation, false, MissingSchemaAction.Add);
-            FDTSessionWaitStates.AcceptChanges();
 
         }
         public void UpdateSessionStats(DataTable dtSessionStatsInformation)
         {
-            if (FDTSessionStats.Columns.Count == 0)
+            if (dtSessionStatsInformation.Rows.Count > 0)
             {
-                FDTSessionStats = dtSessionStatsInformation.Clone();
-                FDTSessionStats.PrimaryKey = new DataColumn[] { FDTSessionStats.Columns["session_id"], FDTSessionStats.Columns["currentDateStamp"] };
-                foreach (DataColumn col in FDTSessionStats.Columns)
+                if (FDTSessionStats.Columns.Count == 0)
                 {
-                    col.ReadOnly = false;
+                    FDTSessionStats = dtSessionStatsInformation.Clone();
+                    FDTSessionStats.PrimaryKey = new DataColumn[] { FDTSessionStats.Columns["session_id"], FDTSessionStats.Columns["currentDateStamp"] };
+                    foreach (DataColumn col in FDTSessionStats.Columns)
+                    {
+                        col.ReadOnly = false;
+                    }
                 }
-            }
 
-            foreach (DataRow r in DTSessions.Select("IsConnected = 1"))
-            {
-                int sessionID = (Int16)r["session_id"];
-                DateTime sessionLoginTime = (DateTime)r["login_time"];
-                string SessionSearchString = "session_id = " + sessionID.ToString();
-                //int rowCnt = 0;
-                FSessionGraphMaximums.cpuTime = 100;
-                foreach (DataRow reqR in DTSessionStats.Select(SessionSearchString))
+                foreach (DataRow r in DTSessions.Select("IsConnected = 1"))
                 {
-                    if ((DateTime)reqR["login_time"] != sessionLoginTime)
-                        reqR.Delete();
-                    //else
-                    //    rowCnt++;
+                    int sessionID = (Int16)r["session_id"];
+                    DateTime sessionLoginTime = (DateTime)r["login_time"];
+                    string SessionSearchString = "session_id = " + sessionID.ToString();
+                    //int rowCnt = 0;
+                    FSessionGraphMaximums.cpuTime = 100;
+                    foreach (DataRow reqR in DTSessionStats.Select(SessionSearchString))
+                    {
+                        if ((DateTime)reqR["login_time"] != sessionLoginTime)
+                            reqR.Delete();
+                        //else
+                        //    rowCnt++;
+                    }
+                    while (DTSessionStats.Select(SessionSearchString).Length > 300)
+                    {
+                        DTSessionStats.Select(SessionSearchString)[0].Delete();
+                    }
                 }
-                while (DTSessionStats.Select(SessionSearchString).Length > 300)
-                {
-                    DTSessionStats.Select(SessionSearchString)[0].Delete();
-                }
+                dtSessionStatsInformation.PrimaryKey = new DataColumn[] { dtSessionStatsInformation.Columns["session_id"], dtSessionStatsInformation.Columns["currentDateStamp"] };
+                FDTSessionStats.Merge(dtSessionStatsInformation, false, MissingSchemaAction.Add);
+                FDTSessionStats.AcceptChanges();
             }
-            dtSessionStatsInformation.PrimaryKey = new DataColumn[] { dtSessionStatsInformation.Columns["session_id"], dtSessionStatsInformation.Columns["currentDateStamp"] };
-            FDTSessionStats.Merge(dtSessionStatsInformation, false, MissingSchemaAction.Add);
-            FDTSessionStats.AcceptChanges();
 
         }
         public void UpdateSessionCommands(DataTable dtSessionCommands)
         {
-            if (FDTSessionCommands.Columns.Count == 0)
+            if (dtSessionCommands.Rows.Count > 0)
             {
-                FDTSessionCommands = dtSessionCommands.Clone();
-                FDTSessionCommands.PrimaryKey = new DataColumn[] { FDTSessionCommands.Columns["session_id"] };
-                foreach (DataColumn col in FDTSessionCommands.Columns)
+                if (FDTSessionCommands.Columns.Count == 0)
                 {
-                    col.ReadOnly = false;
+                    FDTSessionCommands = dtSessionCommands.Clone();
+                    FDTSessionCommands.PrimaryKey = new DataColumn[] { FDTSessionCommands.Columns["session_id"] };
+                    foreach (DataColumn col in FDTSessionCommands.Columns)
+                    {
+                        col.ReadOnly = false;
+                    }
                 }
-            }
 
-            dtSessionCommands.PrimaryKey = new DataColumn[] { dtSessionCommands.Columns["session_id"] };
-            FDTSessionCommands.Merge(dtSessionCommands, false, MissingSchemaAction.Add);
-            FDTSessionCommands.AcceptChanges();
-            BuildLockingTable(FDTSessions, FDTSessionCommands);
+                dtSessionCommands.PrimaryKey = new DataColumn[] { dtSessionCommands.Columns["session_id"] };
+                FDTSessionCommands.Merge(dtSessionCommands, false, MissingSchemaAction.Add);
+                FDTSessionCommands.AcceptChanges();
+                BuildLockingTable(FDTSessions, FDTSessionCommands);
+            }
         }
         public void UpdateResponseTime(long responseTimeMS)
         {
@@ -413,121 +432,133 @@ namespace SQLDBATool.Code
         }
         public void UpdateDatabaseInformation(DataTable dtDatabaseInformation)
         {
-            if (FDTDatabaseInformation.Columns.Count == 0)
+            if (dtDatabaseInformation.Rows.Count > 0)
             {
-                FDTDatabaseInformation = dtDatabaseInformation.Clone();
-                FDTDatabaseInformation.PrimaryKey = new DataColumn[] { FDTDatabaseInformation.Columns["database_id"] };
-                foreach (DataColumn col in FDTDatabaseInformation.Columns)
+                if (FDTDatabaseInformation.Columns.Count == 0)
                 {
-                    col.ReadOnly = false;
+                    FDTDatabaseInformation = dtDatabaseInformation.Clone();
+                    FDTDatabaseInformation.PrimaryKey = new DataColumn[] { FDTDatabaseInformation.Columns["database_id"] };
+                    foreach (DataColumn col in FDTDatabaseInformation.Columns)
+                    {
+                        col.ReadOnly = false;
+                    }
                 }
-            }
 
-            dtDatabaseInformation.PrimaryKey = new DataColumn[] { dtDatabaseInformation.Columns["database_id"] };
-            FDTDatabaseInformation.Rows.Clear();
-            FDTDatabaseInformation.Merge(dtDatabaseInformation, false, MissingSchemaAction.Add);
-            FDTDatabaseInformation.AcceptChanges();
+                dtDatabaseInformation.PrimaryKey = new DataColumn[] { dtDatabaseInformation.Columns["database_id"] };
+                FDTDatabaseInformation.Rows.Clear();
+                FDTDatabaseInformation.Merge(dtDatabaseInformation, false, MissingSchemaAction.Add);
+                FDTDatabaseInformation.AcceptChanges();
+            }
 
         }
         public void UpdateDatabaseSize(DataTable dtDatabaseSize)
         {
-            if (FDTDatabaseSpaceInformation.Columns.Count == 0)
+            if (dtDatabaseSize.Rows.Count > 0)
             {
-                FDTDatabaseSpaceInformation = dtDatabaseSize.Clone();
-                FDTDatabaseSpaceInformation.PrimaryKey = new DataColumn[] { FDTDatabaseSpaceInformation.Columns["DriveType"], FDTDatabaseSpaceInformation.Columns["Drive"] };
-                foreach (DataColumn col in FDTDatabaseSpaceInformation.Columns)
+                if (FDTDatabaseSpaceInformation.Columns.Count == 0)
                 {
-                    col.ReadOnly = false;
+                    FDTDatabaseSpaceInformation = dtDatabaseSize.Clone();
+                    FDTDatabaseSpaceInformation.PrimaryKey = new DataColumn[] { FDTDatabaseSpaceInformation.Columns["DriveType"], FDTDatabaseSpaceInformation.Columns["Drive"] };
+                    foreach (DataColumn col in FDTDatabaseSpaceInformation.Columns)
+                    {
+                        col.ReadOnly = false;
+                    }
                 }
-            }
 
-            dtDatabaseSize.PrimaryKey = new DataColumn[] { dtDatabaseSize.Columns["DriveType"], dtDatabaseSize.Columns["Drive"] };
-            FDTDatabaseSpaceInformation.Rows.Clear();
-            FDTDatabaseSpaceInformation.Merge(dtDatabaseSize, false, MissingSchemaAction.Add);
-            FDTDatabaseSpaceInformation.AcceptChanges();
+                dtDatabaseSize.PrimaryKey = new DataColumn[] { dtDatabaseSize.Columns["DriveType"], dtDatabaseSize.Columns["Drive"] };
+                FDTDatabaseSpaceInformation.Rows.Clear();
+                FDTDatabaseSpaceInformation.Merge(dtDatabaseSize, false, MissingSchemaAction.Add);
+                FDTDatabaseSpaceInformation.AcceptChanges();
+            }
 
         }
         public void UpdateDatabaseSizeByDrive(DataTable dtDatabaseSizeByDrive)
         {
-            if (FDTDatabaseSpaceByDrive.Columns.Count == 0)
+            if (dtDatabaseSizeByDrive.Rows.Count > 0)
             {
-                FDTDatabaseSpaceByDrive = dtDatabaseSizeByDrive.Clone();
-                FDTDatabaseSpaceByDrive.PrimaryKey = new DataColumn[] { FDTDatabaseSpaceByDrive.Columns["DriveType"], FDTDatabaseSpaceByDrive.Columns["Drive"] };
-                foreach (DataColumn col in FDTDatabaseSpaceByDrive.Columns)
+                if (FDTDatabaseSpaceByDrive.Columns.Count == 0)
                 {
-                    col.ReadOnly = false;
+                    FDTDatabaseSpaceByDrive = dtDatabaseSizeByDrive.Clone();
+                    FDTDatabaseSpaceByDrive.PrimaryKey = new DataColumn[] { FDTDatabaseSpaceByDrive.Columns["DriveType"], FDTDatabaseSpaceByDrive.Columns["Drive"] };
+                    foreach (DataColumn col in FDTDatabaseSpaceByDrive.Columns)
+                    {
+                        col.ReadOnly = false;
+                    }
                 }
+
+                dtDatabaseSizeByDrive.PrimaryKey = new DataColumn[] { dtDatabaseSizeByDrive.Columns["DriveType"], dtDatabaseSizeByDrive.Columns["Drive"] };
+                FDTDatabaseSpaceByDrive.Rows.Clear();
+                FDTDatabaseSpaceByDrive.Merge(dtDatabaseSizeByDrive, false, MissingSchemaAction.Add);
+                FDTDatabaseSpaceByDrive.AcceptChanges();
             }
-
-            dtDatabaseSizeByDrive.PrimaryKey = new DataColumn[] { dtDatabaseSizeByDrive.Columns["DriveType"], dtDatabaseSizeByDrive.Columns["Drive"] };
-            FDTDatabaseSpaceByDrive.Rows.Clear();
-            FDTDatabaseSpaceByDrive.Merge(dtDatabaseSizeByDrive, false, MissingSchemaAction.Add);
-            FDTDatabaseSpaceByDrive.AcceptChanges();
-
         }
         public void UpdateDatabaseFileInformation(DataTable dtDatabaseFileInformation)
         {
-            if (FDTDatabaseFileInformation.Columns.Count == 0)
+            if (dtDatabaseFileInformation.Rows.Count > 0)
             {
-                FDTDatabaseFileInformation = dtDatabaseFileInformation.Clone();
-                FDTDatabaseFileInformation.PrimaryKey = new DataColumn[] { FDTDatabaseFileInformation.Columns["database_id"], FDTDatabaseFileInformation.Columns["file_id"] };
-                foreach (DataColumn col in FDTDatabaseFileInformation.Columns)
+                if (FDTDatabaseFileInformation.Columns.Count == 0)
                 {
-                    col.ReadOnly = false;
+                    FDTDatabaseFileInformation = dtDatabaseFileInformation.Clone();
+                    FDTDatabaseFileInformation.PrimaryKey = new DataColumn[] { FDTDatabaseFileInformation.Columns["database_id"], FDTDatabaseFileInformation.Columns["file_id"] };
+                    foreach (DataColumn col in FDTDatabaseFileInformation.Columns)
+                    {
+                        col.ReadOnly = false;
+                    }
                 }
+
+                dtDatabaseFileInformation.PrimaryKey = new DataColumn[] { dtDatabaseFileInformation.Columns["database_id"], dtDatabaseFileInformation.Columns["file_id"] };
+                FDTDatabaseFileInformation.Rows.Clear();
+                FDTDatabaseFileInformation.Merge(dtDatabaseFileInformation, false, MissingSchemaAction.Add);
+                FDTDatabaseFileInformation.AcceptChanges();
             }
-
-            dtDatabaseFileInformation.PrimaryKey = new DataColumn[] { dtDatabaseFileInformation.Columns["database_id"], dtDatabaseFileInformation.Columns["file_id"] };
-            FDTDatabaseFileInformation.Rows.Clear();
-            FDTDatabaseFileInformation.Merge(dtDatabaseFileInformation, false, MissingSchemaAction.Add);
-            FDTDatabaseFileInformation.AcceptChanges();
-
         }
         private void BuildLockingTable(DataTable dtSessionInformation, DataTable dtSessionCommands)
         {
-            string searchString = "blocking_session_id > 0";
-            List<stLockingInfomation> lockingInformation = new List<stLockingInfomation>();
-            List<stLockingInfomation> parentLockingInformation = new List<stLockingInfomation>();
-            foreach (DataRow r in dtSessionInformation.Select(searchString))
+            if (dtSessionInformation.Rows.Count > 0)
             {
-                stLockingInfomation lockInfo = new stLockingInfomation();
-
-                lockInfo.SessionID = (Int16)r["session_id"];
-                lockInfo.BlockingSessionID = (int)r["blocking_session_id"];
-                lockInfo.BlockingLevel = -1;
-                lockingInformation.Add(lockInfo);
-            }
-
-            if (lockingInformation.Count > 0)
-            {
-                foreach (stLockingInfomation li in lockingInformation)
+                string searchString = "blocking_session_id > 0";
+                List<stLockingInfomation> lockingInformation = new List<stLockingInfomation>();
+                List<stLockingInfomation> parentLockingInformation = new List<stLockingInfomation>();
+                foreach (DataRow r in dtSessionInformation.Select(searchString))
                 {
-                    stLockingInfomation parentLock = FindLockParent(li.BlockingSessionID, ref lockingInformation);
-                    if (parentLock.BlockingSessionID == 0)
+                    stLockingInfomation lockInfo = new stLockingInfomation();
+
+                    lockInfo.SessionID = (Int16)r["session_id"];
+                    lockInfo.BlockingSessionID = (int)r["blocking_session_id"];
+                    lockInfo.BlockingLevel = -1;
+                    lockingInformation.Add(lockInfo);
+                }
+
+                if (lockingInformation.Count > 0)
+                {
+                    foreach (stLockingInfomation li in lockingInformation)
                     {
-                        if (!FindLock(parentLock.SessionID, ref parentLockingInformation))
-                            parentLockingInformation.Add(parentLock);
-                    }
+                        stLockingInfomation parentLock = FindLockParent(li.BlockingSessionID, ref lockingInformation);
+                        if (parentLock.BlockingSessionID == 0)
+                        {
+                            if (!FindLock(parentLock.SessionID, ref parentLockingInformation))
+                                parentLockingInformation.Add(parentLock);
+                        }
 
-                }
-                foreach (stLockingInfomation li in parentLockingInformation)
-                {
-                    lockingInformation.Add(li);
-                }
-                int locksProcessed = parentLockingInformation.Count;
-                int lockLevel = 0;
-                while (locksProcessed < lockingInformation.Count)
-                {
-                    for (int i = 0; i < lockingInformation.Count; i++)
-                    {
-                        stLockingInfomation li = lockingInformation[i];
-                        if (li.BlockingLevel == lockLevel)
-                            locksProcessed += UpdateLockLevel(li.SessionID, lockLevel, ref lockingInformation);
                     }
-                    lockLevel++;
+                    foreach (stLockingInfomation li in parentLockingInformation)
+                    {
+                        lockingInformation.Add(li);
+                    }
+                    int locksProcessed = parentLockingInformation.Count;
+                    int lockLevel = 0;
+                    while (locksProcessed < lockingInformation.Count)
+                    {
+                        for (int i = 0; i < lockingInformation.Count; i++)
+                        {
+                            stLockingInfomation li = lockingInformation[i];
+                            if (li.BlockingLevel == lockLevel)
+                                locksProcessed += UpdateLockLevel(li.SessionID, lockLevel, ref lockingInformation);
+                        }
+                        lockLevel++;
+                    }
                 }
             }
-
         }
         public stLockingInfomation FindLockParent(int parentSessionID, ref List<stLockingInfomation> lockingInfo)
         {
