@@ -61,6 +61,12 @@
     <Reference Include="LiteDB, Version=5.0.10.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
       <HintPath>..\packages\LiteDB.5.0.10\lib\net45\LiteDB.dll</HintPath>
     </Reference>
+    <Reference Include="PagerDutyAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagerDutyAPI.1.1.0\lib\net45\PagerDutyAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.0.1\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -98,11 +104,24 @@
   <ItemGroup>
     <Compile Include="clsConnectionInformation.cs" />
     <Compile Include="clsServerInfoXML.cs" />
+    <Compile Include="Code\CLSAlerts.cs" />
     <Compile Include="Code\CLSConnectionInformation.cs" />
     <Compile Include="Code\clsGlobals.cs" />
     <Compile Include="Code\CLSRefreshServerStats.cs" />
     <Compile Include="Code\CLSSqlServerRefresh.cs" />
     <Compile Include="Code\CLSSqlDBToolsDB.cs" />
+    <Compile Include="Code\FormSMTPSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Code\FormSMTPSettings.designer.cs">
+      <DependentUpon>FormSMTPSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Code\FormAlertConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Code\FormAlertConfiguration.Designer.cs">
+      <DependentUpon>FormAlertConfiguration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Code\FormConnectionProperties.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,6 +255,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Code\FormSMTPSettings.resx">
+      <DependentUpon>FormSMTPSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\FormAlertConfiguration.resx">
+      <DependentUpon>FormAlertConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Code\FormConnectionProperties.resx">
       <DependentUpon>FormConnectionProperties.cs</DependentUpon>
     </EmbeddedResource>

@@ -87,5 +87,10 @@ namespace SQLDBATool
             }
         }
 
+        private void alertingToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            Code.FormAlertConfiguration alert = new Code.FormAlertConfiguration();
+            alert.ShowDialog();
+        }
     }
 }

@@ -31,10 +31,19 @@
             this.splitContainerLayout = new System.Windows.Forms.SplitContainer();
             this.ucConnectionTree1 = new SQLDBATool.Code.ucConnectionTree();
             this.ucServerMonitor1 = new SQLDBATool.Code.ucServerMonitor();
+            this.statusStripBottom = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backgroundTasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.alertingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerLayout)).BeginInit();
             this.splitContainerLayout.Panel1.SuspendLayout();
             this.splitContainerLayout.Panel2.SuspendLayout();
             this.splitContainerLayout.SuspendLayout();
+            this.statusStripBottom.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainerLayout
@@ -42,7 +51,7 @@
             this.splitContainerLayout.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.splitContainerLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerLayout.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainerLayout.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerLayout.Location = new System.Drawing.Point(0, 24);
             this.splitContainerLayout.Name = "splitContainerLayout";
             // 
             // splitContainerLayout.Panel1
@@ -52,7 +61,7 @@
             // splitContainerLayout.Panel2
             // 
             this.splitContainerLayout.Panel2.Controls.Add(this.ucServerMonitor1);
-            this.splitContainerLayout.Size = new System.Drawing.Size(2164, 1159);
+            this.splitContainerLayout.Size = new System.Drawing.Size(2164, 1113);
             this.splitContainerLayout.SplitterDistance = 306;
             this.splitContainerLayout.TabIndex = 0;
             // 
@@ -63,7 +72,7 @@
             this.ucConnectionTree1.Location = new System.Drawing.Point(0, 0);
             this.ucConnectionTree1.Name = "ucConnectionTree1";
             this.ucConnectionTree1.ParentSqlToolsForm = null;
-            this.ucConnectionTree1.Size = new System.Drawing.Size(302, 1155);
+            this.ucConnectionTree1.Size = new System.Drawing.Size(302, 1109);
             this.ucConnectionTree1.TabIndex = 0;
             this.ucConnectionTree1.ThisTreeInformation = null;
             // 
@@ -75,10 +84,66 @@
             this.ucServerMonitor1.Name = "ucServerMonitor1";
             this.ucServerMonitor1.ServerID = new System.Guid("545bf3f1-33ad-4061-9fde-ff9628966183");
             this.ucServerMonitor1.SessionServerID = new System.Guid("545bf3f1-33ad-4061-9fde-ff9628966183");
-            this.ucServerMonitor1.Size = new System.Drawing.Size(1850, 1155);
+            this.ucServerMonitor1.Size = new System.Drawing.Size(1850, 1109);
             this.ucServerMonitor1.TabIndex = 0;
             this.ucServerMonitor1.TreeInformation = null;
             this.ucServerMonitor1.Visible = false;
+            // 
+            // statusStripBottom
+            // 
+            this.statusStripBottom.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStripBottom.Location = new System.Drawing.Point(0, 1137);
+            this.statusStripBottom.Name = "statusStripBottom";
+            this.statusStripBottom.Size = new System.Drawing.Size(2164, 22);
+            this.statusStripBottom.TabIndex = 1;
+            this.statusStripBottom.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(39, 17);
+            this.toolStripStatusLabel1.Text = "Ready";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.backgroundTasksToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(2164, 24);
+            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            // 
+            // backgroundTasksToolStripMenuItem
+            // 
+            this.backgroundTasksToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.alertingToolStripMenuItem});
+            this.backgroundTasksToolStripMenuItem.Name = "backgroundTasksToolStripMenuItem";
+            this.backgroundTasksToolStripMenuItem.Size = new System.Drawing.Size(113, 20);
+            this.backgroundTasksToolStripMenuItem.Text = "Background Tasks";
+            // 
+            // alertingToolStripMenuItem
+            // 
+            this.alertingToolStripMenuItem.Name = "alertingToolStripMenuItem";
+            this.alertingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.alertingToolStripMenuItem.Text = "Alerting";
+            this.alertingToolStripMenuItem.Click += new System.EventHandler(this.alertingToolStripMenuItem_Click);
             // 
             // FormSqlDBATool
             // 
@@ -86,7 +151,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2164, 1159);
             this.Controls.Add(this.splitContainerLayout);
+            this.Controls.Add(this.statusStripBottom);
+            this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormSqlDBATool";
             this.Text = "FormSqlDBATool";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -94,7 +162,12 @@
             this.splitContainerLayout.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerLayout)).EndInit();
             this.splitContainerLayout.ResumeLayout(false);
+            this.statusStripBottom.ResumeLayout(false);
+            this.statusStripBottom.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -103,5 +176,12 @@
         private System.Windows.Forms.SplitContainer splitContainerLayout;
         private Code.ucConnectionTree ucConnectionTree1;
         private Code.ucServerMonitor ucServerMonitor1;
+        private System.Windows.Forms.StatusStrip statusStripBottom;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem backgroundTasksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem alertingToolStripMenuItem;
     }
 }

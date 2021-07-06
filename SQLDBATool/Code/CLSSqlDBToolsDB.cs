@@ -403,8 +403,6 @@ namespace SQLDBATool.Code
     }
     #endregion
 
-
-
     #region Database Class Objects
     public class ServerTree
     {
@@ -436,7 +434,6 @@ namespace SQLDBATool.Code
         public bool IsDisabled { get; set; }
         public List<ServerTreeDiagram> TreeDiagrams;
     }
-
     public class ServerTreeDiagram
     {
         public int ID { get; set; }
@@ -452,6 +449,21 @@ namespace SQLDBATool.Code
         public int ID { get; set; }
         public string WaitType { get; set; }
         public string WaitTypeDescription { get; set; }
+
+    }
+    public class SMTPInformation
+    {
+        public int ID { get; set; }
+        public string FromAddress { get; set; }
+        public string ToAddress { get; set; }
+        public string SMTPHost { get; set; }
+        public int SMTPPort { get; set; }
+        public bool EnableSSL { get; set; }
+        public bool UseDefaultCredentiais { get; set; }
+        public string SMTPUserID { get; set; }
+        public string SMTPPassword { get; set; }
+        public string SMTPDeliveryMethod { get; set; }
+        public string SMTPPickupDirectoryLocation { get; set; }
 
     }
     #endregion
