@@ -13,7 +13,18 @@ namespace SQLDBATool.Code
         private List<CLSTreeInformation> FTreeInformation = new List<CLSTreeInformation>();
         private CLSTreeInformation FThisTreeInformation;
         private FormSqlDBATool FParentSqlToolsForm;
-
+        private ucServerMonitor FServerMonitor;
+        private SQLDBAToolSerialNumber FRegistrationInformation;
+        public SQLDBAToolSerialNumber RegistrationInformation
+        {
+            get => FRegistrationInformation;
+            set
+            {
+                FRegistrationInformation = value;
+                ucRegistrationInformation1.RegistrationInformation = value;
+                ucRegistrationInformation1.DisplayRegistrationInformation();
+            }
+        }
         public FormSqlDBATool ParentSqlToolsForm
         {
             get => FParentSqlToolsForm;
@@ -23,6 +34,14 @@ namespace SQLDBATool.Code
             }
         }
         public CLSTreeInformation ThisTreeInformation { get => FThisTreeInformation; set => FThisTreeInformation = value; }
+        public ucServerMonitor ServerMonitor 
+        {
+            get => FServerMonitor;
+            set
+            {
+                FServerMonitor = value;
+            }
+        }
 
         public ucConnectionTree()
         {
@@ -41,6 +60,7 @@ namespace SQLDBATool.Code
             ConnectionString connString = new ConnectionString();
             connString.Filename = dbPath;
             connString.Connection = ConnectionType.Shared;
+            connString.Password = "cXWD9OKmQgwk4z95G5SI";
             connString.ReadOnly = false;
 
             Globals.ConnectionString = connString;

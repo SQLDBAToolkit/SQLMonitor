@@ -206,6 +206,12 @@
     <Compile Include="Code\ucGradientPanel.Designer.cs">
       <DependentUpon>ucGradientPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Code\ucRegistrationInformation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Code\ucRegistrationInformation.Designer.cs">
+      <DependentUpon>ucRegistrationInformation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Code\ucServerDiagram.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -302,6 +308,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Code\ucGradientPanel.resx">
       <DependentUpon>ucGradientPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Code\ucRegistrationInformation.resx">
+      <DependentUpon>ucRegistrationInformation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Code\ucServerDiagram.resx">
       <DependentUpon>ucServerDiagram.cs</DependentUpon>

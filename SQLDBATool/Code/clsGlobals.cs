@@ -29,16 +29,33 @@ namespace SQLDBATool.Code
         }
     }
 
-    class SQLDBAToolSerialNumber
+    public class SQLDBAToolSerialNumber : IDisposable
     {
-        string Encrypt()
+        private string FSerialNumber;
+        private int FNumberLicenses;
+        private string FLicenseString;
+        private bool FisLicensed = false;
+        private clsLicenseInformationController LicenseController;
+        private SerialInformation SerialNumber;
+        public SQLDBAToolSerialNumber()
+        {
+            LicenseController = new clsLicenseInformationController();
+            SerialNumber = LicenseController.GetSerialInformation();
+        }
+        public void Dispose()
+        {
+
+        }
+        public bool IsLicensed { get => FisLicensed; set => FisLicensed = value; }
+        public DateTime TrialExpiry { get => SerialNumber.ExpiryDate;}
+
+        static string Encrypt(string textToEncrypt)
         {
             try
             {
-                string textToEncrypt = "Water";
                 string ToReturn = "";
-                string publickey = "santhosh";
-                string secretkey = "engineer";
+                string publickey = "99yqKn2g";
+                string secretkey = "IgBcr4VH";
                 byte[] secretkeyByte = { };
                 secretkeyByte = System.Text.Encoding.UTF8.GetBytes(secretkey);
                 byte[] publickeybyte = { };
@@ -62,37 +79,46 @@ namespace SQLDBATool.Code
             }
         }
 
-        string Decrypt()
+        public static bool CheckSerialNumber(string serialNumber, int numberLincenses, string licenseKey)
         {
-            try
+            bool ret = false;
+            string serialKey = numberLincenses.ToString() + "-" + licenseKey + "-SQLDBATool";
+            byte[] key = Encoding.Default.GetBytes(Encrypt(serialKey));
+
+            string compareSerialNumber = BitConverter.ToString(key).Replace("-", "");
+            compareSerialNumber = serialNumber.Substring(0, 4) + "-" + serialNumber.Substring(4, 8) + "-" + serialNumber.Substring(12, 4); ;
+
+            ret = (serialNumber == compareSerialNumber);
+            return ret;
+        }
+
+        public string RegistrationStatus()
+        {
+            string ret;
+
+            if (SerialNumber.IsLicensed)
             {
-                string textToDecrypt = "VtbM/yjSA2Q=";
-                string ToReturn = "";
-                string publickey = "santhosh";
-                string privatekey = "engineer";
-                byte[] privatekeyByte = { };
-                privatekeyByte = System.Text.Encoding.UTF8.GetBytes(privatekey);
-                byte[] publickeybyte = { };
-                publickeybyte = System.Text.Encoding.UTF8.GetBytes(publickey);
-                MemoryStream ms = null;
-                CryptoStream cs = null;
-                byte[] inputbyteArray = new byte[textToDecrypt.Replace(" ", "+").Length];
-                inputbyteArray = Convert.FromBase64String(textToDecrypt.Replace(" ", "+"));
-                using (DESCryptoServiceProvider des = new DESCryptoServiceProvider())
+                ret = "Licensed: " + SerialNumber.NumLicenses.ToString();
+            }
+            else
+            {
+                ret = "Trial: ";
+                if (SerialNumber.ExpiryDate < DateTime.Now)
+                    ret = "Expired";
+                else
                 {
-                    ms = new MemoryStream();
-                    cs = new CryptoStream(ms, des.CreateDecryptor(publickeybyte, privatekeyByte), CryptoStreamMode.Write);
-                    cs.Write(inputbyteArray, 0, inputbyteArray.Length);
-                    cs.FlushFinalBlock();
-                    Encoding encoding = Encoding.UTF8;
-                    ToReturn = encoding.GetString(ms.ToArray());
+                    TimeSpan t = SerialNumber.ExpiryDate.Subtract(DateTime.Now);
+                    int days = (int)Math.Floor(t.TotalDays);
+                    int hours = (int)Math.Floor(t.TotalHours - (days * 24));
+                    int minutes = (int)Math.Floor(t.TotalMinutes - ((hours * 60) + (days * 24 * 60)));
+                    int seconds = (int)Math.Floor(t.TotalSeconds - ((minutes * 60) + (hours * 60 * 60) + (days * 24 * 60 * 60)));
+                    if (days > 0)
+                        ret += days.ToString("00") + " Days ";
+                    ret += hours.ToString("00") + ":" + minutes.ToString("00") + ":" + seconds.ToString("00");
                 }
-                return ToReturn;
             }
-            catch (Exception ae)
-            {
-                throw new Exception(ae.Message, ae.InnerException);
-            }
+
+            return ret;
         }
 
     }
@@ -100,7 +126,6 @@ namespace SQLDBATool.Code
     {
         public DBDataGridView() { DoubleBuffered = true; }
     }
-
     class DrawingControl
     {
         [DllImport("user32.dll")]

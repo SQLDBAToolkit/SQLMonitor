@@ -30,8 +30,10 @@ namespace SQLDBATool.Code
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataSetServerInformation = new System.Data.DataSet();
             this.dataTableServerInformation = new System.Data.DataTable();
             this.dataColumn1 = new System.Data.DataColumn();
@@ -243,7 +245,6 @@ namespace SQLDBATool.Code
             this.tabPagePerformanceMonitor = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabPageSessionInformation = new System.Windows.Forms.TabPage();
-            this.ucTitleBar2 = new SQLDBATool.Code.ucTitleBar();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new SQLDBATool.Code.DBDataGridView();
             this.session_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -2137,25 +2138,14 @@ namespace SQLDBATool.Code
             // 
             // tabPageSessionInformation
             // 
-            this.tabPageSessionInformation.Controls.Add(this.ucTitleBar2);
             this.tabPageSessionInformation.Controls.Add(this.splitContainer2);
             this.tabPageSessionInformation.Location = new System.Drawing.Point(4, 25);
             this.tabPageSessionInformation.Name = "tabPageSessionInformation";
             this.tabPageSessionInformation.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageSessionInformation.Size = new System.Drawing.Size(1429, 815);
             this.tabPageSessionInformation.TabIndex = 1;
-            this.tabPageSessionInformation.Text = "Session Informaion";
+            this.tabPageSessionInformation.Text = "Session Information";
             this.tabPageSessionInformation.UseVisualStyleBackColor = true;
-            // 
-            // ucTitleBar2
-            // 
-            this.ucTitleBar2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucTitleBar2.Location = new System.Drawing.Point(3, 3);
-            this.ucTitleBar2.Name = "ucTitleBar2";
-            this.ucTitleBar2.Size = new System.Drawing.Size(1423, 20);
-            this.ucTitleBar2.TabIndex = 4;
-            this.ucTitleBar2.TitleBold = true;
-            this.ucTitleBar2.TitleText = null;
             // 
             // splitContainer2
             // 
@@ -2180,6 +2170,14 @@ namespace SQLDBATool.Code
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.session_id,
@@ -2207,6 +2205,14 @@ namespace SQLDBATool.Code
             this.IsConnected,
             this.SessionBackColor,
             this.ColoumBlank});
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.MultiSelect = false;
@@ -2235,9 +2241,9 @@ namespace SQLDBATool.Code
             // 
             this.login_time.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.login_time.DataPropertyName = "login_time";
-            dataGridViewCellStyle1.Format = "G";
-            dataGridViewCellStyle1.NullValue = null;
-            this.login_time.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Format = "G";
+            dataGridViewCellStyle2.NullValue = null;
+            this.login_time.DefaultCellStyle = dataGridViewCellStyle2;
             this.login_time.HeaderText = "LoginTime";
             this.login_time.Name = "login_time";
             this.login_time.ReadOnly = true;
@@ -2281,9 +2287,9 @@ namespace SQLDBATool.Code
             // 
             this.last_request_start_time.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.last_request_start_time.DataPropertyName = "last_request_start_time";
-            dataGridViewCellStyle2.Format = "G";
-            dataGridViewCellStyle2.NullValue = null;
-            this.last_request_start_time.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Format = "G";
+            dataGridViewCellStyle3.NullValue = null;
+            this.last_request_start_time.DefaultCellStyle = dataGridViewCellStyle3;
             this.last_request_start_time.HeaderText = "LastReqStart";
             this.last_request_start_time.Name = "last_request_start_time";
             this.last_request_start_time.ReadOnly = true;
@@ -2293,9 +2299,9 @@ namespace SQLDBATool.Code
             // 
             this.last_request_end_time.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.last_request_end_time.DataPropertyName = "last_request_end_time";
-            dataGridViewCellStyle3.Format = "G";
-            dataGridViewCellStyle3.NullValue = null;
-            this.last_request_end_time.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Format = "G";
+            dataGridViewCellStyle4.NullValue = null;
+            this.last_request_end_time.DefaultCellStyle = dataGridViewCellStyle4;
             this.last_request_end_time.HeaderText = "LastReqEnd";
             this.last_request_end_time.Name = "last_request_end_time";
             this.last_request_end_time.ReadOnly = true;
@@ -2754,7 +2760,6 @@ namespace SQLDBATool.Code
         private System.Data.DataColumn dataColumnDISortFileStreamFreePct;
         private System.Windows.Forms.TabPage tabPageDatabaseInformation;
         private ucDatabaseInformation ucDatabaseInformation1;
-        private ucTitleBar ucTitleBar2;
         private ucTitleBar ucTitleBar1;
         private System.Windows.Forms.DataGridViewTextBoxColumn session_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn login_time;

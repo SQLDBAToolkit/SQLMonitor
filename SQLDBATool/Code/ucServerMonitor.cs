@@ -8,20 +8,26 @@ namespace SQLDBATool.Code
 {
     public partial class ucServerMonitor : UserControl
     {
+        private bool FExpiredDisplayed = false;
         private Guid FServerID;
         private Guid FSessionServerID;
+        private ucConnectionTree FConnectionTree;
         public Guid ServerID { get => FServerID; set => FServerID = value; }
         public Guid SessionServerID { get => FSessionServerID; set => FSessionServerID = value; }
         public CLSTreeInformation TreeInformation { get => FTreeInformation; set => FTreeInformation = value; }
+        public ucConnectionTree ConnectionTree { get => FConnectionTree; set => FConnectionTree = value; }
 
         private DataTable FDTSessionsTable;
         private int FFirstDisplayedRowIndex = 0;
         private Code.CLSTreeInformation FTreeInformation;
         private bool FUpdatingData = false;
         public bool ErrorOn = false;
+        public SQLDBAToolSerialNumber RegistrationInformation { get; set; }
         public ucServerMonitor()
         {
             InitializeComponent();
+
+            RegistrationInformation = new SQLDBAToolSerialNumber();
             ucDatabaseInformation1.ParentMonitor = this;
             
             dataGridView1.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
@@ -111,126 +117,204 @@ namespace SQLDBATool.Code
         }
         public void ShowServerDetails(Code.CLSTreeInformation treeInformation)
         {
+
             try
             {
+ 
                 if (treeInformation.ConnectionInformation.MonitoredServer.ServerID == ServerID)
                 {
-                    FFirstDisplayedRowIndex = dataGridView1.FirstDisplayedScrollingRowIndex;
-                    int maxNetwork = 10;
-                    int maxIO = 10;
-                    Int64 maxMemory = 10;
-                    Decimal maxRequests = 9;
-                    int maxSessions = 10;
-                    if (treeInformation.ConnectionInformation.IsOnError)
+                    if (!RegistrationInformation.IsLicensed && RegistrationInformation.TrialExpiry < DateTime.Now)
                     {
-                        ucDataLabelLastConnectionError.Show();
-                        ucDataLabelLastConnectionError.LabelData = treeInformation.ConnectionInformation.LastConnectionError;
+                        if (!FExpiredDisplayed)
+                        {
+                            FExpiredDisplayed = true;
+                            MessageBox.Show("Trial Expired");
+                            Globals.MasterForm.Close();
+                        }
                     }
                     else
                     {
-                        ucDataLabelLastConnectionError.Hide();
+
+                        FFirstDisplayedRowIndex = dataGridView1.FirstDisplayedScrollingRowIndex;
+                        int maxNetwork = 10;
+                        int maxIO = 10;
+                        Int64 maxMemory = 10;
+                        Decimal maxRequests = 9;
+                        int maxSessions = 10;
+                        if (treeInformation.ConnectionInformation.IsOnError)
+                        {
+                            ucDataLabelLastConnectionError.Show();
+                            ucDataLabelLastConnectionError.LabelData = treeInformation.ConnectionInformation.LastConnectionError;
+                        }
+                        else
+                        {
+                            ucDataLabelLastConnectionError.Hide();
+                        }
+
+                        if (treeInformation.ConnectionInformation.ServerStats.DTServerInformation.Rows.Count > 0)
+                        {
+                            ucTitleBar1.TitleText = (string)(treeInformation.ConnectionInformation.ServerStats.DTServerInformation.Rows[0]["ServerName"]);
+                            foreach (DataRow row in treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows)
+                            {
+                                if ((Int32)row["NetworkPacketsRecievedDelta"] > maxNetwork)
+                                    maxNetwork = (Int32)row["NetworkPacketsRecievedDelta"];
+                                if ((Int32)row["NetworkPacketsSentDelta"] > maxNetwork)
+                                    maxNetwork = (Int32)row["NetworkPacketsSentDelta"];
+                                if ((Int32)row["PhysicalIOTotalReadsDelta"] > maxIO)
+                                    maxIO = (Int32)row["PhysicalIOTotalReadsDelta"];
+                                if ((Int32)row["PhysicalIOTotalWritesDelta"] > maxIO)
+                                    maxIO = (Int32)row["PhysicalIOTotalWritesDelta"];
+                                if ((Int64)row["total_memory_used_kb"] > maxMemory)
+                                    maxMemory = (Int64)row["total_memory_used_kb"];
+                                if ((Decimal)row["batch_requests_sec_delta"] > maxRequests)
+                                    maxRequests = (Decimal)row["batch_requests_sec_delta"];
+                                if ((Decimal)row["sql_compilations_sec_delta"] > maxRequests)
+                                    maxRequests = (Decimal)row["sql_compilations_sec_delta"];
+                                if ((Decimal)row["sql_recompilations_sec_delta"] > maxRequests)
+                                    maxRequests = (Decimal)row["sql_recompilations_sec_delta"];
+                                //if ((Decimal)row["checkpoint_pages_sec_delta"] > maxRequests)
+                                //    maxRequests = (Decimal)row["checkpoint_pages_sec_delta"];
+                                if ((Decimal)row["lock_waits_sec_delta"] > maxRequests)
+                                    maxRequests = (Decimal)row["lock_waits_sec_delta"];
+                                if ((Int32)row["TotalSessions"] > maxSessions)
+                                    maxSessions = (Int32)row["TotalSessions"];
+
+                            }
+                            #region Server Information Table
+                            dataTableServerInformation.Rows.Clear();
+                            dataTableServerInformation.Rows.Add(treeInformation.ConnectionInformation.ServerStats.DTServerInformation.Rows[0].ItemArray);
+                            #endregion
+                            #region CPU Usage Graph
+                            ucChartCPUUsage.GraphTable = treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics;
+                            ucChartCPUUsage.Series[0].SeriesLedgendSource = "CPU Usage: " + ((Decimal)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["CpuPercentage"]).ToString("##0.0") + "%";
+                            ucChartCPUUsage.Refresh();
+                            #endregion
+                            #region Buffer Cache Hit Ratio
+                            ucChartBufferCacheHitRatio.GraphTable = treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics;
+                            ucChartBufferCacheHitRatio.Series[0].SeriesLedgendSource = "BHR: " + ((Decimal)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["BufferCacheHitRatio"]).ToString("##0.0") + "%";
+                            ucChartBufferCacheHitRatio.Refresh();
+                            #endregion
+                            #region Response Time
+                            ucChartResponseTime.GraphTable = treeInformation.ConnectionInformation.ServerStats.DTResponseTime;
+                            ucChartResponseTime.Series[0].SeriesLedgendSource = "Time (ms): " + ((long)treeInformation.ConnectionInformation.ServerStats.DTResponseTime.Rows[treeInformation.ConnectionInformation.ServerStats.DTResponseTime.Rows.Count - 1]["ResponseTimeMS"]).ToString("#,##0");
+                            ucChartResponseTime.Refresh();
+                            #endregion
+                            #region Network Traffic
+                            ucChartNetworkTraffic.GraphTable = treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics;
+                            ucChartNetworkTraffic.MaxValue = maxNetwork;
+                            ucChartNetworkTraffic.Series[0].SeriesLedgendSource = "Received: " + ((Int32)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["NetworkPacketsRecievedDelta"]).ToString("#,##0");
+                            ucChartNetworkTraffic.Series[1].SeriesLedgendSource = "Sent: " + ((Int32)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["NetworkPacketsSentDelta"]).ToString("#,##0");
+                            ucChartNetworkTraffic.Refresh();
+                            #endregion
+                            #region Physical IO
+                            ucChartPhysicalIO.GraphTable = treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics;
+                            ucChartPhysicalIO.MaxValue = maxIO;
+                            ucChartPhysicalIO.Series[0].SeriesLedgendSource = "Read: " + ((Int32)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["PhysicalIOTotalReadsDelta"]).ToString("#,##0");
+                            ucChartPhysicalIO.Series[1].SeriesLedgendSource = "Written: " + ((Int32)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["PhysicalIOTotalWritesDelta"]).ToString("#,##0");
+                            ucChartPhysicalIO.Refresh();
+                            #endregion
+                            #region Memory Usage
+
+                            ucChartMemoryUsage.GraphTable = treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics;
+                            ucChartMemoryUsage.MaxValue = maxMemory;
+                            ucSeriesDatabaseCacheMemory.SeriesLedgendSource = "Data Cache: " + FormatKbToString((Int64)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["database_cache_memory_kb"]);
+                            ucSeriesReservedServerMemory.SeriesLedgendSource = "Reserved: " + FormatKbToString((Int64)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["reserved_server_memory_kb"]);
+                            ucSeriesFreeMemory.SeriesLedgendSource = "Free: " + FormatKbToString((Int64)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["free_memory_kb"]);
+                            ucSeriesStolenMemory.SeriesLedgendSource = "Stolen: " + FormatKbToString((Int64)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["stolen_server_memory_kb"]);
+                            ucChartMemoryUsage.Refresh();
+                            #endregion
+                            #region Requests and Compilations
+
+                            ucChartRequests.GraphTable = treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics;
+                            ucChartRequests.MaxValue = (Int64)maxRequests + 1;
+                            ucSeriesBatchRequestsSec.SeriesLedgendSource = "Batch Req: " + ((Decimal)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["batch_requests_sec_delta"]).ToString("#,##0");
+                            ucSeriesSqlCompliationsSec.SeriesLedgendSource = "Sql Compl: " + ((Decimal)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["sql_compilations_sec_delta"]).ToString("#,##0");
+                            ucSeriesSqlRecompilationsSec.SeriesLedgendSource = "Sql Recompl: " + ((Decimal)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["sql_recompilations_sec_delta"]).ToString("#,##0");
+                            ucSeriesCheckpointPagesSec.SeriesLedgendSource = "Checkpoint: " + ((Decimal)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["checkpoint_pages_sec_delta"]).ToString("#,##0");
+                            ucSeriesLockWaitsSec.SeriesLedgendSource = "Lock Waits: " + ((Decimal)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["lock_waits_sec_delta"]).ToString("#,##0");
+                            ucChartRequests.Refresh();
+                            #endregion
+                            #region Users and Sessions
+                            ucChartUsersSessions.GraphTable = treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics;
+                            ucChartUsersSessions.MaxValue = maxSessions;
+                            ucSeriesTotalUsers.SeriesLedgendSource = "Users: " + ((Int32)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["TotalUsers"]).ToString("#,##0");
+                            ucSeriesTotalSessions.SeriesLedgendSource = "Sessions: " + ((Int32)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["TotalSessions"]).ToString("#,##0");
+                            ChangeRowBackgroundColors();
+                            ucChartUsersSessions.Refresh();
+
+                            #endregion
+                            //                    int index = dataGridView1.FirstDisplayedScrollingRowIndex;
+                            ////                    if (dataGridView1.Rows.Count == 0)
+
+                            if (dataGridView1.Rows.Count == 0)
+                                ChangeSessionDataTable(treeInformation);
+                            else
+                                MergeSessionDataTable(treeInformation);
+                            if (dataGridView1.Rows.Count > 0)
+                                dataGridView1.FirstDisplayedScrollingRowIndex = FFirstDisplayedRowIndex;
+                            //#endregion
+
+                        }
+                        else
+                        {
+                            #region CPU Usage Graph
+                            ucChartCPUUsage.GraphTable = null;
+                            ucChartCPUUsage.Series[0].SeriesLedgendSource = "CPU Usage: 0%";
+                            ucChartCPUUsage.Refresh();
+                            #endregion
+                            #region Buffer Cache Hit Ratio
+                            ucChartBufferCacheHitRatio.GraphTable = null;
+                            ucChartBufferCacheHitRatio.Series[0].SeriesLedgendSource = "BHR: 0%";
+                            ucChartBufferCacheHitRatio.Refresh();
+                            #endregion
+                            #region Response Time
+                            ucChartResponseTime.GraphTable = null;
+                            ucChartResponseTime.Series[0].SeriesLedgendSource = "Time (ms): 0";
+                            ucChartResponseTime.Refresh();
+                            #endregion
+                            #region Network Traffic
+                            ucChartNetworkTraffic.GraphTable = null;
+                            ucChartNetworkTraffic.MaxValue = 100;
+                            ucChartNetworkTraffic.Series[0].SeriesLedgendSource = "Received: 0";
+                            ucChartNetworkTraffic.Series[1].SeriesLedgendSource = "Sent: 0";
+                            ucChartNetworkTraffic.Refresh();
+                            #endregion
+                            #region Physical IO
+                            ucChartPhysicalIO.GraphTable = null;
+                            ucChartPhysicalIO.MaxValue = 100;
+                            ucChartPhysicalIO.Series[0].SeriesLedgendSource = "Read: 0";
+                            ucChartPhysicalIO.Series[1].SeriesLedgendSource = "Written: 0";
+                            ucChartPhysicalIO.Refresh();
+                            #endregion
+                            #region Memory Usage
+                            ucChartMemoryUsage.GraphTable = null;
+                            ucChartMemoryUsage.MaxValue = 100;
+                            ucSeriesDatabaseCacheMemory.SeriesLedgendSource = "Data Cache: 0";
+                            ucSeriesReservedServerMemory.SeriesLedgendSource = "Reserved: 0";
+                            ucSeriesFreeMemory.SeriesLedgendSource = "Free: 0";
+                            ucSeriesStolenMemory.SeriesLedgendSource = "Stolen: 0";
+                            ucChartMemoryUsage.Refresh();
+                            #endregion
+                            #region Requests and Compilations
+                            ucChartRequests.GraphTable = null;
+                            ucChartRequests.MaxValue = 100;
+                            ucSeriesBatchRequestsSec.SeriesLedgendSource = "Batch Req: 0";
+                            ucSeriesSqlCompliationsSec.SeriesLedgendSource = "Sql Compl: 0";
+                            ucSeriesSqlRecompilationsSec.SeriesLedgendSource = "Sql Recompl: 0";
+                            ucSeriesCheckpointPagesSec.SeriesLedgendSource = "Checkpoint: 0";
+                            ucSeriesLockWaitsSec.SeriesLedgendSource = "Lock Waits: 0";
+                            ucChartRequests.Refresh();
+                            #endregion
+                            #region Users and Sessions
+                            ucChartUsersSessions.GraphTable = null;
+                            ucChartUsersSessions.MaxValue = 100;
+                            ucSeriesTotalUsers.SeriesLedgendSource = "Users: 0";
+                            ucSeriesTotalSessions.SeriesLedgendSource = "Sessions: 0";
+                            ChangeRowBackgroundColors();
+                            ucChartUsersSessions.Refresh();
+                            #endregion
+                        }
                     }
-
-                    ucTitleBar1.TitleText = (string)(treeInformation.ConnectionInformation.ServerStats.DTServerInformation.Rows[0]["ServerName"]);
-                    foreach (DataRow row in treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows)
-                    {
-                        if ((Int32)row["NetworkPacketsRecievedDelta"] > maxNetwork)
-                            maxNetwork = (Int32)row["NetworkPacketsRecievedDelta"];
-                        if ((Int32)row["NetworkPacketsSentDelta"] > maxNetwork)
-                            maxNetwork = (Int32)row["NetworkPacketsSentDelta"];
-                        if ((Int32)row["PhysicalIOTotalReadsDelta"] > maxIO)
-                            maxIO = (Int32)row["PhysicalIOTotalReadsDelta"];
-                        if ((Int32)row["PhysicalIOTotalWritesDelta"] > maxIO)
-                            maxIO = (Int32)row["PhysicalIOTotalWritesDelta"];
-                        if ((Int64)row["total_memory_used_kb"] > maxMemory)
-                            maxMemory = (Int64)row["total_memory_used_kb"];
-                        if ((Decimal)row["batch_requests_sec_delta"] > maxRequests)
-                            maxRequests = (Decimal)row["batch_requests_sec_delta"];
-                        if ((Decimal)row["sql_compilations_sec_delta"] > maxRequests)
-                            maxRequests = (Decimal)row["sql_compilations_sec_delta"];
-                        if ((Decimal)row["sql_recompilations_sec_delta"] > maxRequests)
-                            maxRequests = (Decimal)row["sql_recompilations_sec_delta"];
-                        //if ((Decimal)row["checkpoint_pages_sec_delta"] > maxRequests)
-                        //    maxRequests = (Decimal)row["checkpoint_pages_sec_delta"];
-                        if ((Decimal)row["lock_waits_sec_delta"] > maxRequests)
-                            maxRequests = (Decimal)row["lock_waits_sec_delta"];
-                        if ((Int32)row["TotalSessions"] > maxSessions)
-                            maxSessions = (Int32)row["TotalSessions"];
-
-                    }
-                    #region Server Information Table
-                    dataTableServerInformation.Rows.Clear();
-                    dataTableServerInformation.Rows.Add(treeInformation.ConnectionInformation.ServerStats.DTServerInformation.Rows[0].ItemArray);
-                    #endregion
-                    #region CPU Usage Graph
-                    ucChartCPUUsage.GraphTable = treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics;
-                    ucChartCPUUsage.Series[0].SeriesLedgendSource = "CPU Usage: " + ((Decimal)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["CpuPercentage"]).ToString("##0.0") + "%";
-                    ucChartCPUUsage.Refresh();
-                    #endregion
-                    #region Buffer Cache Hit Ratio
-                    ucChartBufferCacheHitRatio.GraphTable = treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics;
-                    ucChartBufferCacheHitRatio.Series[0].SeriesLedgendSource = "BHR: " + ((Decimal)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["BufferCacheHitRatio"]).ToString("##0.0") + "%";
-                    ucChartBufferCacheHitRatio.Refresh();
-                    #endregion
-                    #region Response Time
-                    ucChartResponseTime.GraphTable = treeInformation.ConnectionInformation.ServerStats.DTResponseTime;
-                    ucChartResponseTime.Series[0].SeriesLedgendSource = "Time (ms): " + ((long)treeInformation.ConnectionInformation.ServerStats.DTResponseTime.Rows[treeInformation.ConnectionInformation.ServerStats.DTResponseTime.Rows.Count - 1]["ResponseTimeMS"]).ToString("#,##0");
-                    ucChartResponseTime.Refresh();
-                    #endregion
-                    #region Network Traffic
-                    ucChartNetworkTraffic.GraphTable = treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics;
-                    ucChartNetworkTraffic.MaxValue = maxNetwork;
-                    ucChartNetworkTraffic.Series[0].SeriesLedgendSource = "Received: " + ((Int32)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["NetworkPacketsRecievedDelta"]).ToString("#,##0");
-                    ucChartNetworkTraffic.Series[1].SeriesLedgendSource = "Sent: " + ((Int32)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["NetworkPacketsSentDelta"]).ToString("#,##0");
-                    ucChartNetworkTraffic.Refresh();
-                    #endregion
-                    #region Physical IO
-                    ucChartPhysicalIO.GraphTable = treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics;
-                    ucChartPhysicalIO.MaxValue = maxIO;
-                    ucChartPhysicalIO.Series[0].SeriesLedgendSource = "Read: " + ((Int32)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["PhysicalIOTotalReadsDelta"]).ToString("#,##0");
-                    ucChartPhysicalIO.Series[1].SeriesLedgendSource = "Written: " + ((Int32)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["PhysicalIOTotalWritesDelta"]).ToString("#,##0");
-                    ucChartPhysicalIO.Refresh();
-                    #endregion
-                    #region Memory Usage
-
-                    ucChartMemoryUsage.GraphTable = treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics;
-                    ucChartMemoryUsage.MaxValue = maxMemory;
-                    ucSeriesDatabaseCacheMemory.SeriesLedgendSource = "Data Cache: " + FormatKbToString((Int64)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["database_cache_memory_kb"]);
-                    ucSeriesReservedServerMemory.SeriesLedgendSource = "Reserved: " + FormatKbToString((Int64)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["reserved_server_memory_kb"]);
-                    ucSeriesFreeMemory.SeriesLedgendSource = "Free: " + FormatKbToString((Int64)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["free_memory_kb"]);
-                    ucSeriesStolenMemory.SeriesLedgendSource = "Stolen: " + FormatKbToString((Int64)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["stolen_server_memory_kb"]);
-                    ucChartMemoryUsage.Refresh();
-                    #endregion
-                    #region Requests and Compilations
-
-                    ucChartRequests.GraphTable = treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics;
-                    ucChartRequests.MaxValue = (Int64)maxRequests + 1;
-                    ucSeriesBatchRequestsSec.SeriesLedgendSource = "Batch Req: " + ((Decimal)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["batch_requests_sec_delta"]).ToString("#,##0");
-                    ucSeriesSqlCompliationsSec.SeriesLedgendSource = "Sql Compl: " + ((Decimal)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["sql_compilations_sec_delta"]).ToString("#,##0");
-                    ucSeriesSqlRecompilationsSec.SeriesLedgendSource = "Sql Recompl: " + ((Decimal)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["sql_recompilations_sec_delta"]).ToString("#,##0");
-                    ucSeriesCheckpointPagesSec.SeriesLedgendSource = "Checkpoint: " + ((Decimal)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["checkpoint_pages_sec_delta"]).ToString("#,##0");
-                    ucSeriesLockWaitsSec.SeriesLedgendSource = "Lock Waits: " + ((Decimal)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["lock_waits_sec_delta"]).ToString("#,##0");
-                    ucChartRequests.Refresh();
-                    #endregion
-                    #region Users and Sessions
-                    ucChartUsersSessions.GraphTable = treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics;
-                    ucChartUsersSessions.MaxValue = maxSessions;
-                    ucSeriesTotalUsers.SeriesLedgendSource = "Users: " + ((Int32)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["TotalUsers"]).ToString("#,##0");
-                    ucSeriesTotalSessions.SeriesLedgendSource = "Sessions: " + ((Int32)treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows[treeInformation.ConnectionInformation.ServerStats.DTPerformanceStatistics.Rows.Count - 1]["TotalSessions"]).ToString("#,##0");
-                    ChangeRowBackgroundColors();
-                    ucChartUsersSessions.Refresh();
-
-                    #endregion
-                    //                    int index = dataGridView1.FirstDisplayedScrollingRowIndex;
-                    ////                    if (dataGridView1.Rows.Count == 0)
-
-                    if (dataGridView1.Rows.Count == 0)
-                        ChangeSessionDataTable(treeInformation);
-                    else
-                        MergeSessionDataTable(treeInformation);
-                    if (dataGridView1.Rows.Count > 0)
-                        dataGridView1.FirstDisplayedScrollingRowIndex = FFirstDisplayedRowIndex;
-                    //#endregion
                 }
             }
             catch (Exception ex)
@@ -242,6 +326,7 @@ namespace SQLDBATool.Code
                     ErrorOn = false;
                 }
             }
+            
         }
         public void ShowDatabaseDetails(Code.CLSTreeInformation treeInformation)
         {

@@ -67,11 +67,13 @@
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ucRegistrationInformation1 = new SQLDBATool.Code.ucRegistrationInformation();
             this.contextMenuStripFolder.SuspendLayout();
             this.contextMenuStripRootMenu.SuspendLayout();
             this.contextMenuStripServerConnection.SuspendLayout();
             this.contextMenuStripServerDisabledConnection.SuspendLayout();
             this.contextMenuStripDisconnectedConnection.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // treeViewConnections
@@ -82,7 +84,7 @@
             this.treeViewConnections.Location = new System.Drawing.Point(0, 0);
             this.treeViewConnections.Name = "treeViewConnections";
             this.treeViewConnections.SelectedImageIndex = 0;
-            this.treeViewConnections.Size = new System.Drawing.Size(410, 560);
+            this.treeViewConnections.Size = new System.Drawing.Size(410, 640);
             this.treeViewConnections.TabIndex = 0;
             this.treeViewConnections.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewConnections_AfterSelect);
             // 
@@ -339,12 +341,22 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.ucRegistrationInformation1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 560);
+            this.panel1.Location = new System.Drawing.Point(0, 640);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(410, 100);
+            this.panel1.Size = new System.Drawing.Size(410, 20);
             this.panel1.TabIndex = 5;
-            this.panel1.Visible = false;
+            // 
+            // ucRegistrationInformation1
+            // 
+            this.ucRegistrationInformation1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ucRegistrationInformation1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucRegistrationInformation1.Location = new System.Drawing.Point(0, 0);
+            this.ucRegistrationInformation1.Name = "ucRegistrationInformation1";
+            this.ucRegistrationInformation1.RegistrationInformation = null;
+            this.ucRegistrationInformation1.Size = new System.Drawing.Size(410, 20);
+            this.ucRegistrationInformation1.TabIndex = 0;
             // 
             // ucConnectionTree
             // 
@@ -360,6 +372,7 @@
             this.contextMenuStripServerConnection.ResumeLayout(false);
             this.contextMenuStripServerDisabledConnection.ResumeLayout(false);
             this.contextMenuStripDisconnectedConnection.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -403,5 +416,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
         private System.Windows.Forms.Panel panel1;
+        private ucRegistrationInformation ucRegistrationInformation1;
     }
 }

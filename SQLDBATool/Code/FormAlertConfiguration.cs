@@ -17,26 +17,33 @@ namespace SQLDBATool.Code
         public FormAlertConfiguration()
         {
             InitializeComponent();
+            LoadAllAlerts();
+            
         }
 
+        private void LoadAllAlerts()
+        {
+            using (clsAlertRuleController alertRuleController = new clsAlertRuleController())
+            {
+                foreach (AlertRule rule in alertRuleController.GetAllAlertRules())
+                {
+                    object[] newRow = new object[9];
+                    newRow[0] = rule.ID;
+                    newRow[1] = rule.RuleType;
+                    newRow[2] = rule.NotificationType;
+                    newRow[3] = rule.IsEnabled;
+                    newRow[4] = rule.NotificationDelay;
+                    newRow[5] = rule.NotificationTries;
+                    newRow[6] = rule.NotificationDelayBetweenTries;
+                    newRow[7] = rule.AlertWhenFixed;
+                    newRow[8] = rule.AlertRuleID;
+                    dataTableAlerts.Rows.Add(newRow);
+                }
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            MailMessage testMsg = new MailMessage();
-            SmtpClient smtp = new SmtpClient();
-            testMsg.From = new MailAddress("daverowland1@live.com");
-            testMsg.To.Add(new MailAddress("user-database-email.kf9pduj6@sqldbatool.pagerduty.com"));
-            testMsg.Subject = "Test Alert";
-            testMsg.IsBodyHtml = false;
-            testMsg.Body = "This is a test message";
-            testMsg.From = new MailAddress("daverowland1@live.com");
-            smtp.Port = 587;
-            smtp.Host = "smtp.live.com";
-            smtp.EnableSsl = true;
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("daverowland1@live.com", "9assWord!@2020");
-            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtp.Send(testMsg);
-
+ 
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -45,5 +52,32 @@ namespace SQLDBATool.Code
             formSmtp.ShowDialog();
 
         }
+
+        private void buttonAccept_Click(object sender, EventArgs e)
+        {
+            using (clsAlertRuleController ruleController = new clsAlertRuleController())
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    AlertRule rule = new AlertRule();
+                    {
+                        rule.ID = (int)row.Cells[0].Value;
+                        rule.AlertRuleID = (Guid)row.Cells[1].Value;
+                        rule.RuleType = row.Cells[2].Value.ToString();
+                        rule.NotificationType = row.Cells[3].Value.ToString();
+                        rule.IsEnabled = (bool)row.Cells[4].Value;
+                        rule.NotificationDelay = (int)row.Cells[5].Value;
+                        rule.NotificationTries = (int)row.Cells[6].Value;
+                        rule.NotificationDelayBetweenTries = (int)row.Cells[7].Value;
+                        rule.AlertWhenFixed = (bool)row.Cells[8].Value;
+
+                        ruleController.UpdateAlertRule(rule);
+                    }
+                }
+            }
+
+            this.Close();
+        }
+
     }
 }

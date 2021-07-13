@@ -46,10 +46,13 @@ namespace EncryptString
             //}
             //rdr.Close();
             //wtr.Close();
-            byte[] key = Encoding.Default.GetBytes(Encrypt("1"));
-            Console.WriteLine(Encrypt("1"));
+            byte[] key = Encoding.Default.GetBytes(Encrypt("10-Hello-SQLDBATool"));
+            Console.WriteLine(Encrypt("10-Equifax-SQLDBATool"));
             Console.WriteLine(BitConverter.ToString(key).Replace("-", ""));
 
+            string serialNumber = BitConverter.ToString(key).Replace("-", "");
+            serialNumber = serialNumber.Substring(0, 4) + "-" + serialNumber.Substring(4, 8) + "-" + serialNumber.Substring(12, 4); ;
+            Console.WriteLine(serialNumber);
             Console.ReadKey();
         }
 

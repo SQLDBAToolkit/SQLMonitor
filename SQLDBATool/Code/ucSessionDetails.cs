@@ -242,6 +242,11 @@ namespace SQLDBATool.Code
 
                                 if (sqlText != "<Encrypted>")
                                 {
+                                    if (offset > sqlText.Length)
+                                        offset = sqlText.Length - 1;
+                                    if (offset + len > sqlText.Length)
+                                        len = (sqlText.Length - offset) + 1; ;
+                                    
                                     int lfCount = Globals.CountStringOccurances(sqlText.Substring(0, offset - 1), "\r");
                                     int lfLenCount = Globals.CountStringOccurances(sqlText.Substring((offset - 1), len), "\r");
                                     if ((richTextBoxSqlText.SelectionStart != offset - 1 - lfCount) || richTextBoxSqlText.SelectionLength != len - lfLenCount)
@@ -273,6 +278,10 @@ namespace SQLDBATool.Code
                                 }
                                 else
                                 {
+                                    if (offset > sqlText.Length)
+                                        offset = sqlText.Length - 1;
+                                    if (offset + len > sqlText.Length)
+                                        len = (sqlText.Length - offset) + 1;
                                     if (FSqlCode != sqlText.Substring((offset - 1), len))
                                     {
                                         FSqlCode = sqlText.Substring((offset - 1), len);

@@ -222,9 +222,9 @@ namespace SQLDBATool.Code
                 if (FDTServerInformation.Columns.Count == 0)
                 {
                     FDTServerInformation = dtServerInformation.Clone();
-                    FDTServerInformation.Rows.Clear();
-                    FDTServerInformation.Rows.Add(dtServerInformation.Rows[0].ItemArray);
                 }
+                FDTServerInformation.Rows.Clear();
+                FDTServerInformation.Rows.Add(dtServerInformation.Rows[0].ItemArray);
             }
         }
         public void UpdatePerformanceStatistics(DataTable dtPerformanceStatistics)

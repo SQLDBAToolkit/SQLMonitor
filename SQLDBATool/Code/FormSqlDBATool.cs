@@ -11,7 +11,9 @@ namespace SQLDBATool
             Code.Globals.MasterForm = this;
             ucConnectionTree1.ParentSqlToolsForm = this;
             ucConnectionTree1.PopulateTreeViewItems();
-
+            ucServerMonitor1.ConnectionTree = ucConnectionTree1;
+            ucConnectionTree1.ServerMonitor = ucServerMonitor1;
+            ucConnectionTree1.RegistrationInformation = ucServerMonitor1.RegistrationInformation;
         }
         //protected override CreateParams CreateParams
         //{

@@ -13,7 +13,14 @@ namespace SQLDBATool
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormSqlDBATool());
+            try
+            {
+                Application.Run(new FormSqlDBATool());
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

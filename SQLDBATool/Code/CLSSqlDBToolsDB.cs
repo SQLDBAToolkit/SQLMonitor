@@ -402,6 +402,309 @@ namespace SQLDBATool.Code
 
     }
     #endregion
+    #region clsSMTPInformationController
+    public class clsSMTPInformationController : IDisposable
+    {
+        public clsSMTPInformationController()
+        {
+
+        }
+
+        public void Dispose()
+        {
+
+        }
+        public void CheckIndexes()
+        {
+            using (LiteDatabase db = new LiteDatabase(Globals.ConnectionString))
+            {
+                var col = db.GetCollection<SMTPInformation>("SMTPInformation");
+                col.DropIndex("SMTPInformationID");
+                col.EnsureIndex("SMTPInformationID", true);
+                col.EnsureIndex("ParentTreeID", false);
+            }
+
+        }
+        public SMTPInformation AddSMTPInformation(SMTPInformation SMTPInformation)
+        {
+            using (LiteDatabase db = new LiteDatabase(Globals.ConnectionString))
+            {
+                var col = db.GetCollection<SMTPInformation>("SMTPInformation");
+                col.Insert(SMTPInformation);
+            }
+
+            return SMTPInformation;
+        }
+        public SMTPInformation AddSMTPInformation(
+            string host
+           , int port
+           , bool enableSSL
+           , bool useDefaultCredentials
+           , string userID
+           , string password
+           , string deliveryMethod
+           , string smtpPickupDirectoryLocation
+           , string fromAddress
+           , string toAddress)
+        {
+            SMTPInformation smtpInformation = new SMTPInformation
+            {
+                SMTPHost = host,
+                SMTPPort = port,
+                FromAddress = fromAddress,
+                ToAddress = toAddress,
+                EnableSSL = enableSSL,
+                UseDefaultCredentiais = useDefaultCredentials,
+                SMTPUserID = userID,
+                SMTPPassword = password,
+                SMTPDeliveryMethod = deliveryMethod,
+                SMTPPickupDirectoryLocation = smtpPickupDirectoryLocation
+
+            };
+
+            return AddSMTPInformation(smtpInformation);
+        }
+        public bool UpdateSMTPInformation(SMTPInformation SMTPInformation)
+        {
+            using (LiteDatabase db = new LiteDatabase(Globals.ConnectionString))
+            {
+                var col = db.GetCollection<SMTPInformation>("SMTPInformation");
+                col.Update(SMTPInformation);
+            }
+
+            return true;
+        }
+
+        public bool DeleteSMTPInformation(SMTPInformation SMTPInformation)
+        {
+            using (LiteDatabase db = new LiteDatabase(Globals.ConnectionString))
+            {
+                var col = db.GetCollection<SMTPInformation>("SMTPInformation");
+                col.Delete(SMTPInformation.ID);
+            }
+
+            return true;
+        }
+        public SMTPInformation GetSMTPInformation()
+        {
+            SMTPInformation ret = new SMTPInformation();
+            using (LiteDatabase db = new LiteDatabase(Globals.ConnectionString))
+            {
+
+                LiteCollection<SMTPInformation> col = (LiteCollection<SMTPInformation>)db.GetCollection<SMTPInformation>("SMTPInformation");
+                if (col.Count() > 0)
+                {
+                    SMTPInformation smtpInformation = col.FindAll().First();
+                    ret = smtpInformation;
+                }
+                else
+                    ret = null;
+
+            }
+            return ret;
+        }
+
+        public bool DoesSMTPSettingsExist()
+        {
+            bool ret = false;
+            using (LiteDatabase db = new LiteDatabase(Globals.ConnectionString))
+            {
+
+                LiteCollection<SMTPInformation> col = (LiteCollection<SMTPInformation>)db.GetCollection<SMTPInformation>("SMTPInformation");
+                ret = (col.Count() > 0);
+            }
+            return ret;
+        }
+
+    }
+    #endregion
+    #region AlertRuleController
+    public class clsAlertRuleController : IDisposable
+    {
+        public clsAlertRuleController()
+        {
+
+        }
+
+        public void Dispose()
+        {
+
+        }
+        public void CheckIndexes()
+        {
+            using (LiteDatabase db = new LiteDatabase(Globals.ConnectionString))
+            {
+                var col = db.GetCollection<AlertRule>("AlertRule");
+                col.DropIndex("AlertRuleID");
+                col.EnsureIndex("AlertRuleID", true);
+
+            }
+
+        }
+        public AlertRule AddAlertRule(AlertRule AlertRule)
+        {
+            using (LiteDatabase db = new LiteDatabase(Globals.ConnectionString))
+            {
+                var col = db.GetCollection<AlertRule>("AlertRule");
+                col.Insert(AlertRule);
+                col.EnsureIndex("AlertRuleID", true);
+            }
+
+            return AlertRule;
+        }
+        public AlertRule AddAlertRule(string ruleType, string notificationType, bool isEnabled, int notificationDelay, int notificationTries, int notificationDelayBetweenTries, bool alertWhenFixed)
+        {
+            AlertRule AlertRule = new AlertRule
+            {
+                AlertRuleID = Guid.NewGuid(),
+                RuleType = ruleType,
+                NotificationType = notificationType,
+                IsEnabled = isEnabled,
+                NotificationDelay = notificationDelay,
+                NotificationTries = notificationTries,
+                NotificationDelayBetweenTries = notificationDelayBetweenTries,
+                AlertWhenFixed = alertWhenFixed
+            };
+
+            return AddAlertRule(AlertRule);
+        }
+        public bool UpdateAlertRule(AlertRule AlertRule)
+        {
+            using (LiteDatabase db = new LiteDatabase(Globals.ConnectionString))
+            {
+                var col = db.GetCollection<AlertRule>("AlertRule");
+                col.Update(AlertRule);
+                col.DropIndex("AlertRuleID");
+                col.EnsureIndex("AlertRuleID", true);
+            }
+
+            return true;
+        }
+
+        public bool DeleteAlertRule(AlertRule AlertRule)
+        {
+            using (LiteDatabase db = new LiteDatabase(Globals.ConnectionString))
+            {
+                var col = db.GetCollection<AlertRule>("AlertRule");
+                col.Delete(AlertRule.ID);
+                col.DropIndex("AlertRuleID");
+                col.EnsureIndex("AlertRuleID", true);
+            }
+
+            return true;
+        }
+        public AlertRule GetAlertRule(int id)
+        {
+            AlertRule ret = new AlertRule();
+            using (LiteDatabase db = new LiteDatabase(Globals.ConnectionString))
+            {
+
+                LiteCollection<AlertRule> col = (LiteCollection<AlertRule>)db.GetCollection<AlertRule>("AlertRule");
+                AlertRule AlertRule = col
+                    .FindById(id);
+                ret = AlertRule;
+            }
+            return ret;
+        }
+        public AlertRule GetAlertRule(Guid AlertRuleID)
+        {
+            AlertRule ret = new AlertRule();
+            using (LiteDatabase db = new LiteDatabase(Globals.ConnectionString))
+            {
+
+                LiteCollection<AlertRule> col = (LiteCollection<AlertRule>)db.GetCollection<AlertRule>("AlertRule");
+                List<AlertRule> AlertRule = col.Find(Query.EQ("AlertRuleID", AlertRuleID)).ToList();
+                ret = AlertRule[0];
+            }
+            return ret;
+        }
+        public List<AlertRule> GetAllAlertRules()
+        {
+            List<AlertRule> ret = new List<AlertRule>();
+            using (LiteDatabase db = new LiteDatabase(Globals.ConnectionString))
+            {
+                LiteCollection<AlertRule> col = (LiteCollection<AlertRule>)db.GetCollection<AlertRule>("AlertRule");
+                ret = col.FindAll().ToList();
+            }
+            return ret;
+        }
+    }
+    #endregion
+    #region LicenseInformationController
+    public class clsLicenseInformationController : IDisposable
+    {
+        public clsLicenseInformationController()
+        {
+
+        }
+
+        public void Dispose()
+        {
+
+        }
+        public void CheckIndexes()
+        {
+            using (LiteDatabase db = new LiteDatabase(Globals.ConnectionString))
+            {
+                var col = db.GetCollection<SerialInformation>("SerialInformation");
+                col.EnsureIndex("WaitType", false);
+            }
+
+        }
+
+        public SerialInformation GetSerialInformation()
+        {
+            SerialInformation ret = new SerialInformation();
+            using (LiteDatabase db = new LiteDatabase(Globals.ConnectionString))
+            {
+                LiteCollection<SerialInformation> col = (LiteCollection<SerialInformation>)db.GetCollection<SerialInformation>("SerialInformation");
+                if (col.Count() == 0)
+                {
+                    AddSerialInformation(false, 0, "", "", DateTime.Now.AddDays(40));
+                }
+
+                ret = col.FindAll().ToList()[0];
+            }
+            return ret; 
+        }
+        public bool UpdateSerialInformation(SerialInformation serialInformation)
+        {
+            using (LiteDatabase db = new LiteDatabase(Globals.ConnectionString))
+            {
+                var col = db.GetCollection<SerialInformation>("SerialInformation");
+                col.Update(serialInformation);
+            }
+
+            return true;
+        }
+        public SerialInformation AddSerialInformation(bool isLicensed, int numLicenses, string licenseKeyString, string licenseKey, DateTime expiryDate)
+        {
+            SerialInformation serialInformation = new SerialInformation
+            {
+                IsLicensed = isLicensed,
+                NumLicenses = numLicenses,
+                LicenseKeyString = licenseKeyString,
+                LicenseKey = licenseKey,
+                ExpiryDate = expiryDate
+            };
+
+            return AddSerialInformation(serialInformation);
+        }
+
+        public SerialInformation AddSerialInformation(SerialInformation serialInformation)
+        {
+            using (LiteDatabase db = new LiteDatabase(Globals.ConnectionString))
+            {
+                var col = db.GetCollection<SerialInformation>("SerialInformation");
+                col.Insert(serialInformation);
+            }
+
+            return serialInformation;
+        }
+
+
+    }
+    #endregion
 
     #region Database Class Objects
     public class ServerTree
@@ -464,7 +767,27 @@ namespace SQLDBATool.Code
         public string SMTPPassword { get; set; }
         public string SMTPDeliveryMethod { get; set; }
         public string SMTPPickupDirectoryLocation { get; set; }
-
+    }
+    public class AlertRule
+    {
+        public int ID { get; set; }
+        public Guid AlertRuleID { get; set; }
+        public string RuleType { get; set; }
+        public string NotificationType { get; set; }
+        public bool IsEnabled { get; set; }
+        public int NotificationDelay { get; set; }
+        public int NotificationTries { get; set; }
+        public int NotificationDelayBetweenTries { get; set; }
+        public bool AlertWhenFixed { get; set; }
+    }
+    public class SerialInformation
+    {
+        public int ID { get; set; }
+        public bool IsLicensed { get; set; }
+        public int NumLicenses { get; set; }
+        public string LicenseKeyString { get; set; }
+        public string LicenseKey { get; set; }
+        public DateTime ExpiryDate { get; set; }
     }
     #endregion
 }
