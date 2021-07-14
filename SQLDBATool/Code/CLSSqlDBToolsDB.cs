@@ -655,15 +655,23 @@ namespace SQLDBATool.Code
         public SerialInformation GetSerialInformation()
         {
             SerialInformation ret = new SerialInformation();
-            using (LiteDatabase db = new LiteDatabase(Globals.ConnectionString))
+            if (Globals.ConnectionString != null)
             {
-                LiteCollection<SerialInformation> col = (LiteCollection<SerialInformation>)db.GetCollection<SerialInformation>("SerialInformation");
-                if (col.Count() == 0)
+                using (LiteDatabase db = new LiteDatabase(Globals.ConnectionString))
                 {
-                    AddSerialInformation(false, 0, "", "", DateTime.Now.AddDays(40));
-                }
+                    LiteCollection<SerialInformation> col = (LiteCollection<SerialInformation>)db.GetCollection<SerialInformation>("SerialInformation");
+                    if (col.Count() == 0)
+                    {
+                        AddSerialInformation(false, "", "", "", DateTime.Now.AddDays(40));
+                    }
 
-                ret = col.FindAll().ToList()[0];
+                    ret = col.FindAll().ToList()[0];
+                }
+            }
+            else
+            {
+                ret.IsLicensed = false;
+                ret.ExpiryDate = DateTime.Now.AddDays(1);
             }
             return ret; 
         }
@@ -677,7 +685,7 @@ namespace SQLDBATool.Code
 
             return true;
         }
-        public SerialInformation AddSerialInformation(bool isLicensed, int numLicenses, string licenseKeyString, string licenseKey, DateTime expiryDate)
+        public SerialInformation AddSerialInformation(bool isLicensed, string numLicenses, string licenseKeyString, string licenseKey, DateTime expiryDate)
         {
             SerialInformation serialInformation = new SerialInformation
             {
@@ -784,7 +792,7 @@ namespace SQLDBATool.Code
     {
         public int ID { get; set; }
         public bool IsLicensed { get; set; }
-        public int NumLicenses { get; set; }
+        public string NumLicenses { get; set; }
         public string LicenseKeyString { get; set; }
         public string LicenseKey { get; set; }
         public DateTime ExpiryDate { get; set; }

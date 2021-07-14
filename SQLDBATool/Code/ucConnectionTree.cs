@@ -18,13 +18,7 @@ namespace SQLDBATool.Code
         public SQLDBAToolSerialNumber RegistrationInformation
         {
             get => FRegistrationInformation;
-            set
-            {
-                FRegistrationInformation = value;
-                ucRegistrationInformation1.RegistrationInformation = value;
-                ucRegistrationInformation1.DisplayRegistrationInformation();
-            }
-        }
+         }
         public FormSqlDBATool ParentSqlToolsForm
         {
             get => FParentSqlToolsForm;
@@ -65,6 +59,10 @@ namespace SQLDBATool.Code
 
             Globals.ConnectionString = connString;
             //PopulateTreeViewItems();
+            FRegistrationInformation = new SQLDBAToolSerialNumber();
+            ucRegistrationInformation1.RegistrationInformation = FRegistrationInformation;
+            ucRegistrationInformation1.DisplayRegistrationInformation();
+
         }
 
         public void PopulateTreeViewItems()

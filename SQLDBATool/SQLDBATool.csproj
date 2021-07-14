@@ -110,6 +110,12 @@
     <Compile Include="Code\CLSRefreshServerStats.cs" />
     <Compile Include="Code\CLSSqlServerRefresh.cs" />
     <Compile Include="Code\CLSSqlDBToolsDB.cs" />
+    <Compile Include="Code\FormRegistration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Code\FormRegistration.Designer.cs">
+      <DependentUpon>FormRegistration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Code\FormSMTPSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -261,6 +267,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Code\FormRegistration.resx">
+      <DependentUpon>FormRegistration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Code\FormSMTPSettings.resx">
       <DependentUpon>FormSMTPSettings.cs</DependentUpon>
     </EmbeddedResource>

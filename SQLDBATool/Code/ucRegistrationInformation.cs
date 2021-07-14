@@ -29,10 +29,14 @@ namespace SQLDBATool.Code
 
         public void DisplayRegistrationInformation()
         {
-            label1.Text = FRegistrationInformation.RegistrationStatus();
-            if (!FRegistrationInformation.IsLicensed && !timerCountdown.Enabled)
+            if (FRegistrationInformation != null)
             {
-                timerCountdown.Start();
+                label1.Text = FRegistrationInformation.RegistrationStatus();
+
+                if (!FRegistrationInformation.IsLicensed && !timerCountdown.Enabled)
+                {
+                    timerCountdown.Start();
+                }
             }
 
         }

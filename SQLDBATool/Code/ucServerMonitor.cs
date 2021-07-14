@@ -15,8 +15,14 @@ namespace SQLDBATool.Code
         public Guid ServerID { get => FServerID; set => FServerID = value; }
         public Guid SessionServerID { get => FSessionServerID; set => FSessionServerID = value; }
         public CLSTreeInformation TreeInformation { get => FTreeInformation; set => FTreeInformation = value; }
-        public ucConnectionTree ConnectionTree { get => FConnectionTree; set => FConnectionTree = value; }
-
+        public ucConnectionTree ConnectionTree
+        {
+            get => FConnectionTree;
+            set
+            {
+                FConnectionTree = value;
+            }
+        }
         private DataTable FDTSessionsTable;
         private int FFirstDisplayedRowIndex = 0;
         private Code.CLSTreeInformation FTreeInformation;
@@ -27,7 +33,7 @@ namespace SQLDBATool.Code
         {
             InitializeComponent();
 
-            RegistrationInformation = new SQLDBAToolSerialNumber();
+            //RegistrationInformation = new SQLDBAToolSerialNumber();
             ucDatabaseInformation1.ParentMonitor = this;
             
             dataGridView1.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;

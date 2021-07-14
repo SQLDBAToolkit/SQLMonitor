@@ -13,7 +13,7 @@ namespace SQLDBATool
             ucConnectionTree1.PopulateTreeViewItems();
             ucServerMonitor1.ConnectionTree = ucConnectionTree1;
             ucConnectionTree1.ServerMonitor = ucServerMonitor1;
-            ucConnectionTree1.RegistrationInformation = ucServerMonitor1.RegistrationInformation;
+            ucServerMonitor1.RegistrationInformation = ucConnectionTree1.RegistrationInformation;
         }
         //protected override CreateParams CreateParams
         //{
@@ -93,6 +93,17 @@ namespace SQLDBATool
         {
             Code.FormAlertConfiguration alert = new Code.FormAlertConfiguration();
             alert.ShowDialog();
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void registrationInformaionToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            Code.FormRegistration frmReg = new Code.FormRegistration();
+            frmReg.ShowDialog();
         }
     }
 }

@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlDBAToolWebSite", "SqlDBA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlBrowser", "SqlBrowser\SqlBrowser.csproj", "{E471B638-026E-4465-B7E2-C197B07893EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegistrationKeyGenerator", "RegistrationKeyGenerator\RegistrationKeyGenerator.csproj", "{8097D9AB-AEB3-4BF4-86B1-9E078213CB6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{E471B638-026E-4465-B7E2-C197B07893EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E471B638-026E-4465-B7E2-C197B07893EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E471B638-026E-4465-B7E2-C197B07893EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8097D9AB-AEB3-4BF4-86B1-9E078213CB6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8097D9AB-AEB3-4BF4-86B1-9E078213CB6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8097D9AB-AEB3-4BF4-86B1-9E078213CB6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8097D9AB-AEB3-4BF4-86B1-9E078213CB6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

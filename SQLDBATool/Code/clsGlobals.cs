@@ -31,10 +31,10 @@ namespace SQLDBATool.Code
 
     public class SQLDBAToolSerialNumber : IDisposable
     {
-        private string FSerialNumber;
-        private int FNumberLicenses;
-        private string FLicenseString;
-        private bool FisLicensed = false;
+        //private string FSerialNumber;
+        //private int FNumberLicenses;
+        //private string FLicenseString;
+        //private bool FisLicensed = false;
         private clsLicenseInformationController LicenseController;
         private SerialInformation SerialNumber;
         public SQLDBAToolSerialNumber()
@@ -46,10 +46,49 @@ namespace SQLDBATool.Code
         {
 
         }
-        public bool IsLicensed { get => FisLicensed; set => FisLicensed = value; }
+        public bool IsLicensed
+        {
+            get
+            {
+                if (SerialNumber != null)
+                    return SerialNumber.IsLicensed;
+                else
+                    return false;
+            }
+        }
+        public string NumberLicenses
+        {
+            get
+            {
+                if (SerialNumber != null)
+                    return SerialNumber.NumLicenses;
+                else
+                    return "";
+            }
+        }
+        public string LicenseKeyString
+        {
+            get
+            {
+                if (SerialNumber != null)
+                    return SerialNumber.LicenseKeyString;
+                else
+                    return "";
+            }
+        }
+        public string LicenseKey
+        {
+            get
+            {
+                if (SerialNumber != null)
+                    return SerialNumber.LicenseKey;
+                else
+                    return "";
+            }
+        }
         public DateTime TrialExpiry { get => SerialNumber.ExpiryDate;}
 
-        static string Encrypt(string textToEncrypt)
+        string Encrypt(string textToEncrypt)
         {
             try
             {
@@ -79,17 +118,39 @@ namespace SQLDBATool.Code
             }
         }
 
-        public static bool CheckSerialNumber(string serialNumber, int numberLincenses, string licenseKey)
+        public bool CheckSerialNumber(string serialNumber, string numberLincenses, string licenseKey)
         {
             bool ret = false;
-            string serialKey = numberLincenses.ToString() + "-" + licenseKey + "-SQLDBATool";
-            byte[] key = Encoding.Default.GetBytes(Encrypt(serialKey));
-
-            string compareSerialNumber = BitConverter.ToString(key).Replace("-", "");
-            compareSerialNumber = serialNumber.Substring(0, 4) + "-" + serialNumber.Substring(4, 8) + "-" + serialNumber.Substring(12, 4); ;
+            string compareSerialNumber = GenerateSerialNumber(numberLincenses, licenseKey);  //serialNumber.Substring(0, 4) + "-" + serialNumber.Substring(4, 8) + "-" + serialNumber.Substring(12, 4); ;
 
             ret = (serialNumber == compareSerialNumber);
             return ret;
+        }
+
+        public string GenerateSerialNumber(string numberLincenses, string licenseKey)
+        {
+            if (numberLincenses.Length > 2)
+            {
+                numberLincenses = numberLincenses.Substring(0, 2);
+            }
+            string serialKey = numberLincenses + "-" + licenseKey + "-SQLDBATool";
+
+            byte[] key = Encoding.Default.GetBytes(Encrypt(serialKey));
+
+            string serialNumber = BitConverter.ToString(key).Replace("-", "");
+            serialNumber = serialNumber.Substring(0, 4) + "-" + Reverse(serialNumber).Substring(4, 8) + "-" + serialNumber.Substring(12, 4);
+
+            return serialNumber;
+
+        }
+        string Reverse(string text)
+        {
+            if (text == null) return null;
+
+            // this was posted by petebob as well 
+            char[] array = text.ToCharArray();
+            Array.Reverse(array);
+            return new String(array);
         }
 
         public string RegistrationStatus()
@@ -120,7 +181,16 @@ namespace SQLDBATool.Code
 
             return ret;
         }
-
+        public void UpdateRegistrationInformation (bool isLicensed, string numberLicenses, string licenseKeyString, string licenseKey, DateTime expiryDate)
+        {
+            SerialNumber.IsLicensed = isLicensed;
+            SerialNumber.NumLicenses = numberLicenses;
+            SerialNumber.LicenseKeyString = licenseKeyString;
+            SerialNumber.LicenseKey = licenseKey;
+            SerialNumber.ExpiryDate = expiryDate;
+            LicenseController.UpdateSerialInformation(SerialNumber);
+        }
+ 
     }
     class DBDataGridView : DataGridView
     {

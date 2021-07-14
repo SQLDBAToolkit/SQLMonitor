@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            SQLDBATool.Code.SQLDBAToolSerialNumber sqldbaToolSerialNumber1 = new SQLDBATool.Code.SQLDBAToolSerialNumber();
             this.splitContainerLayout = new System.Windows.Forms.SplitContainer();
             this.ucConnectionTree1 = new SQLDBATool.Code.ucConnectionTree();
             this.ucServerMonitor1 = new SQLDBATool.Code.ucServerMonitor();
@@ -38,6 +39,12 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundTasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alertingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.registrationInformaionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerLayout)).BeginInit();
             this.splitContainerLayout.Panel1.SuspendLayout();
             this.splitContainerLayout.Panel2.SuspendLayout();
@@ -72,6 +79,7 @@
             this.ucConnectionTree1.Location = new System.Drawing.Point(0, 0);
             this.ucConnectionTree1.Name = "ucConnectionTree1";
             this.ucConnectionTree1.ParentSqlToolsForm = null;
+            this.ucConnectionTree1.ServerMonitor = null;
             this.ucConnectionTree1.Size = new System.Drawing.Size(302, 1109);
             this.ucConnectionTree1.TabIndex = 0;
             this.ucConnectionTree1.ThisTreeInformation = null;
@@ -79,9 +87,11 @@
             // ucServerMonitor1
             // 
             this.ucServerMonitor1.BackColor = System.Drawing.Color.Silver;
+            this.ucServerMonitor1.ConnectionTree = null;
             this.ucServerMonitor1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucServerMonitor1.Location = new System.Drawing.Point(0, 0);
             this.ucServerMonitor1.Name = "ucServerMonitor1";
+            this.ucServerMonitor1.RegistrationInformation = sqldbaToolSerialNumber1;
             this.ucServerMonitor1.ServerID = new System.Guid("545bf3f1-33ad-4061-9fde-ff9628966183");
             this.ucServerMonitor1.SessionServerID = new System.Guid("545bf3f1-33ad-4061-9fde-ff9628966183");
             this.ucServerMonitor1.Size = new System.Drawing.Size(1850, 1109);
@@ -109,12 +119,14 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.backgroundTasksToolStripMenuItem});
+            this.backgroundTasksToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(2164, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // fileToolStripMenuItem
             // 
@@ -127,7 +139,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // backgroundTasksToolStripMenuItem
@@ -141,9 +153,50 @@
             // alertingToolStripMenuItem
             // 
             this.alertingToolStripMenuItem.Name = "alertingToolStripMenuItem";
-            this.alertingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.alertingToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.alertingToolStripMenuItem.Text = "Alerting";
             this.alertingToolStripMenuItem.Click += new System.EventHandler(this.alertingToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.helpToolStripMenuItem1,
+            this.toolStripMenuItem2,
+            this.registrationInformaionToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // helpToolStripMenuItem1
+            // 
+            this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(203, 22);
+            this.helpToolStripMenuItem1.Text = "Help";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(200, 6);
+            // 
+            // registrationInformaionToolStripMenuItem
+            // 
+            this.registrationInformaionToolStripMenuItem.Name = "registrationInformaionToolStripMenuItem";
+            this.registrationInformaionToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.registrationInformaionToolStripMenuItem.Text = "Registration Information";
+            this.registrationInformaionToolStripMenuItem.Click += new System.EventHandler(this.registrationInformaionToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(200, 6);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.aboutToolStripMenuItem.Text = "About";
             // 
             // FormSqlDBATool
             // 
@@ -183,5 +236,11 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem backgroundTasksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem alertingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem registrationInformaionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
     }
 }
