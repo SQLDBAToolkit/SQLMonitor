@@ -713,6 +713,33 @@ namespace SQLDBATool.Code
 
     }
     #endregion
+    public class BuildNewDatabase : IDisposable
+    {
+        public BuildNewDatabase(string applicatinStartupPath)
+        {
+            using (LiteDatabase newDatabase = new LiteDatabase(Globals.ConnectionString))
+            {
+                string sql = (@"SELECT $
+  INTO WaitTypeInformation
+  FROM $file('" + applicatinStartupPath.Replace(@"\", @"/") + @"/WaitTypeInformation.json')").Replace(@"//", @"/");
+                // Build ServerTree
+                newDatabase.Execute(sql);
+                newDatabase.Commit();
+            }
+            clsServerTreeController serverTree = new clsServerTreeController();
+            serverTree.AddServerTree("Database Groups", 0, new Guid("00000000-0000-0000-0000-000000000000"), true, new Guid("00000000-0000-0000-0000-000000000000"), true);
+        }
+        public void Dispose()
+        {
+
+        }
+
+        // Import WaitTypes
+        void ImportWaitTypes()
+        {
+        }
+
+    }
 
     #region Database Class Objects
     public class ServerTree

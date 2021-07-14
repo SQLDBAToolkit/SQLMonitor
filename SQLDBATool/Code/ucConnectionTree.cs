@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 using System.Drawing;
-
+using System.IO;
 namespace SQLDBATool.Code
 {
     public partial class ucConnectionTree : UserControl
@@ -48,6 +48,16 @@ namespace SQLDBATool.Code
             {
                 dbPath = @"E:\Projects\SQLDBATool\SQLDBATool";
             }
+            else
+            {
+                dbPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\SQLDBATool\";
+                if (!Directory.Exists(dbPath))
+                {
+                    Directory.CreateDirectory(dbPath);
+                    Directory.CreateDirectory((dbPath + @"\Data").Replace(@"\\", @"\"));
+                }
+
+            }
             if (!dbPath.EndsWith(@"\"))
                 dbPath += @"\";
             dbPath += @"Data\SqlDBTool.litedb";
@@ -56,8 +66,12 @@ namespace SQLDBATool.Code
             connString.Connection = ConnectionType.Shared;
             connString.Password = "cXWD9OKmQgwk4z95G5SI";
             connString.ReadOnly = false;
-
             Globals.ConnectionString = connString;
+
+            if (!File.Exists(dbPath))
+            {
+                BuildNewDatabase newDB = new BuildNewDatabase(Application.StartupPath);
+            }
             //PopulateTreeViewItems();
             FRegistrationInformation = new SQLDBAToolSerialNumber();
             ucRegistrationInformation1.RegistrationInformation = FRegistrationInformation;
@@ -87,6 +101,8 @@ namespace SQLDBATool.Code
             treeInformation.ConnectionTreeNode = treeViewConnections.Nodes.Add(serverTree.TreeName);
             treeInformation.ConnectionTreeNode.Tag = treeInformation;
             treeInformation.ConnectionTreeNode.ImageIndex = (serverTree.IsSubFolder ? 0 : 1);
+            treeInformation.ConnectionTreeNode.SelectedImageIndex = (serverTree.IsSubFolder ? 0 : 1);
+
             treeInformation.ConnectionTreeNode.ContextMenuStrip = contextMenuStripRootMenu;
             treeInformation.ParentTree = this;
             treeInformation.ServerDiagram = new ucServerDiagram(treeInformation);

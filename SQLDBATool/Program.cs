@@ -19,7 +19,7 @@ namespace SQLDBATool
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
         }
     }

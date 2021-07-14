@@ -79,6 +79,7 @@
             // treeViewConnections
             // 
             this.treeViewConnections.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeViewConnections.HideSelection = false;
             this.treeViewConnections.ImageIndex = 0;
             this.treeViewConnections.ImageList = this.imageList1;
             this.treeViewConnections.Location = new System.Drawing.Point(0, 0);
