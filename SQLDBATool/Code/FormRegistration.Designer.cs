@@ -29,6 +29,7 @@ namespace SQLDBATool.Code
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRegistration));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,6 +43,7 @@ namespace SQLDBATool.Code
             this.button3 = new System.Windows.Forms.Button();
             this.panelUnregistered = new System.Windows.Forms.Panel();
             this.panelRegistered = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -49,7 +51,6 @@ namespace SQLDBATool.Code
             this.label9 = new System.Windows.Forms.Label();
             this.textBoxRegLicenseKey = new System.Windows.Forms.TextBox();
             this.textBoxRegLiceses = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.panelUnregistered.SuspendLayout();
             this.panelRegistered.SuspendLayout();
             this.SuspendLayout();
@@ -148,6 +149,7 @@ namespace SQLDBATool.Code
             this.button3.TabIndex = 10;
             this.button3.Text = "Purchase";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // panelUnregistered
             // 
@@ -180,6 +182,16 @@ namespace SQLDBATool.Code
             this.panelRegistered.Name = "panelRegistered";
             this.panelRegistered.Size = new System.Drawing.Size(365, 133);
             this.panelRegistered.TabIndex = 12;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(265, 107);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 15;
+            this.button4.Text = "Close";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // label6
             // 
@@ -241,16 +253,6 @@ namespace SQLDBATool.Code
             this.textBoxRegLiceses.Size = new System.Drawing.Size(115, 20);
             this.textBoxRegLiceses.TabIndex = 12;
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(265, 107);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 15;
-            this.button4.Text = "Close";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
             // FormRegistration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -259,6 +261,7 @@ namespace SQLDBATool.Code
             this.Controls.Add(this.panelUnregistered);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panelRegistered);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormRegistration";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "SQL Monitor Registration";

@@ -29,6 +29,7 @@ namespace SQLDBATool.Code
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormConnectionProperties));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
@@ -608,6 +609,7 @@ namespace SQLDBATool.Code
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormConnectionProperties";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Connection Properties";

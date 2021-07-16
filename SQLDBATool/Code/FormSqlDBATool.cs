@@ -104,6 +104,15 @@ namespace SQLDBATool
         {
             Code.FormRegistration frmReg = new Code.FormRegistration();
             frmReg.ShowDialog();
+            ucConnectionTree1.RegistrationInformation.RefreshRegistrationInformation();
+            ucServerMonitor1.RegistrationInformation.RefreshRegistrationInformation();
+            ucConnectionTree1.RefreshRegistrationInformation();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            Code.FormAbout frmAbout = new Code.FormAbout();
+            frmAbout.ShowDialog();
         }
     }
 }

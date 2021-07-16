@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             SQLDBATool.Code.SQLDBAToolSerialNumber sqldbaToolSerialNumber1 = new SQLDBATool.Code.SQLDBAToolSerialNumber();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSqlDBATool));
             this.splitContainerLayout = new System.Windows.Forms.SplitContainer();
             this.ucConnectionTree1 = new SQLDBATool.Code.ucConnectionTree();
             this.ucServerMonitor1 = new SQLDBATool.Code.ucServerMonitor();
@@ -197,6 +198,7 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // FormSqlDBATool
             // 
@@ -207,6 +209,7 @@
             this.Controls.Add(this.statusStripBottom);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormSqlDBATool";
             this.Text = "FormSqlDBATool";

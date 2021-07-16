@@ -78,7 +78,11 @@ namespace SQLDBATool.Code
             ucRegistrationInformation1.DisplayRegistrationInformation();
 
         }
+        public void RefreshRegistrationInformation()
+        {
+            ucRegistrationInformation1.RegistrationInformation = FRegistrationInformation;
 
+        }
         public void PopulateTreeViewItems()
         {
             clsServerTreeController serverTreeController = new clsServerTreeController();

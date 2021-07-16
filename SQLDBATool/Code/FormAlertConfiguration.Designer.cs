@@ -29,6 +29,7 @@ namespace SQLDBATool.Code
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAlertConfiguration));
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.dataSetAlerts = new System.Data.DataSet();
@@ -41,15 +42,18 @@ namespace SQLDBATool.Code
             this.dataColumn6 = new System.Data.DataColumn();
             this.dataColumn7 = new System.Data.DataColumn();
             this.dataColumn8 = new System.Data.DataColumn();
+            this.dataColumn9 = new System.Data.DataColumn();
+            this.dataColumn10 = new System.Data.DataColumn();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
             this.buttonAccept = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.dataColumn9 = new System.Data.DataColumn();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AlertRuleID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ruleTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.notificationTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.AlertRuleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ruleTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.notificationTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isEnabledDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.notificationDelayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.notificationTriesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,7 +77,7 @@ namespace SQLDBATool.Code
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(12, 5);
+            this.button2.Location = new System.Drawing.Point(12, 6);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(101, 23);
             this.button2.TabIndex = 1;
@@ -98,7 +102,8 @@ namespace SQLDBATool.Code
             this.dataColumn6,
             this.dataColumn7,
             this.dataColumn8,
-            this.dataColumn9});
+            this.dataColumn9,
+            this.dataColumn10});
             this.dataTableAlerts.TableName = "Alerts";
             // 
             // dataColumn1
@@ -154,6 +159,15 @@ namespace SQLDBATool.Code
             this.dataColumn8.DataType = typeof(bool);
             this.dataColumn8.DefaultValue = true;
             // 
+            // dataColumn9
+            // 
+            this.dataColumn9.ColumnName = "AlertRuleID";
+            this.dataColumn9.DataType = typeof(System.Guid);
+            // 
+            // dataColumn10
+            // 
+            this.dataColumn10.ColumnName = "AlertRuleName";
+            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -163,6 +177,7 @@ namespace SQLDBATool.Code
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn,
             this.AlertRuleID,
+            this.AlertRuleName,
             this.ruleTypeDataGridViewTextBoxColumn,
             this.notificationTypeDataGridViewTextBoxColumn,
             this.isEnabledDataGridViewCheckBoxColumn,
@@ -174,26 +189,39 @@ namespace SQLDBATool.Code
             this.dataGridView1.DataSource = this.dataSetAlerts;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(780, 163);
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(878, 160);
             this.dataGridView1.TabIndex = 2;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.buttonAccept);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 163);
+            this.panel1.Location = new System.Drawing.Point(0, 160);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(780, 40);
+            this.panel1.Size = new System.Drawing.Size(878, 40);
             this.panel1.TabIndex = 3;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(237, 6);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(94, 23);
+            this.button4.TabIndex = 4;
+            this.button4.Text = "Add New Alert";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // buttonAccept
             // 
-            this.buttonAccept.Location = new System.Drawing.Point(612, 6);
+            this.buttonAccept.Location = new System.Drawing.Point(710, 6);
             this.buttonAccept.Name = "buttonAccept";
             this.buttonAccept.Size = new System.Drawing.Size(75, 23);
             this.buttonAccept.TabIndex = 3;
@@ -203,23 +231,20 @@ namespace SQLDBATool.Code
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(693, 6);
+            this.button3.Location = new System.Drawing.Point(791, 6);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 2;
             this.button3.Text = "Cancel";
             this.button3.UseVisualStyleBackColor = true;
-            // 
-            // dataColumn9
-            // 
-            this.dataColumn9.ColumnName = "AlertRuleID";
-            this.dataColumn9.DataType = typeof(System.Guid);
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // iDDataGridViewTextBoxColumn
             // 
             this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
             this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
             this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
             this.iDDataGridViewTextBoxColumn.Visible = false;
             // 
             // AlertRuleID
@@ -227,72 +252,77 @@ namespace SQLDBATool.Code
             this.AlertRuleID.DataPropertyName = "AlertRuleID";
             this.AlertRuleID.HeaderText = "AlertRuleID";
             this.AlertRuleID.Name = "AlertRuleID";
+            this.AlertRuleID.ReadOnly = true;
             this.AlertRuleID.Visible = false;
+            // 
+            // AlertRuleName
+            // 
+            this.AlertRuleName.DataPropertyName = "AlertRuleName";
+            this.AlertRuleName.HeaderText = "AlertRuleName";
+            this.AlertRuleName.Name = "AlertRuleName";
+            this.AlertRuleName.ReadOnly = true;
             // 
             // ruleTypeDataGridViewTextBoxColumn
             // 
             this.ruleTypeDataGridViewTextBoxColumn.DataPropertyName = "RuleType";
             this.ruleTypeDataGridViewTextBoxColumn.HeaderText = "Rule Type";
-            this.ruleTypeDataGridViewTextBoxColumn.Items.AddRange(new object[] {
-            "Server Down",
-            "Suspect Databases",
-            "Excessive Locking",
-            "Rapid Data Growth",
-            "High CPU Usage"});
             this.ruleTypeDataGridViewTextBoxColumn.MinimumWidth = 150;
             this.ruleTypeDataGridViewTextBoxColumn.Name = "ruleTypeDataGridViewTextBoxColumn";
+            this.ruleTypeDataGridViewTextBoxColumn.ReadOnly = true;
             this.ruleTypeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ruleTypeDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.ruleTypeDataGridViewTextBoxColumn.Width = 150;
             // 
             // notificationTypeDataGridViewTextBoxColumn
             // 
             this.notificationTypeDataGridViewTextBoxColumn.DataPropertyName = "NotificationType";
             this.notificationTypeDataGridViewTextBoxColumn.HeaderText = "Method";
-            this.notificationTypeDataGridViewTextBoxColumn.Items.AddRange(new object[] {
-            "SMTP",
-            "PagerDuty"});
             this.notificationTypeDataGridViewTextBoxColumn.Name = "notificationTypeDataGridViewTextBoxColumn";
+            this.notificationTypeDataGridViewTextBoxColumn.ReadOnly = true;
             this.notificationTypeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.notificationTypeDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // isEnabledDataGridViewCheckBoxColumn
             // 
             this.isEnabledDataGridViewCheckBoxColumn.DataPropertyName = "IsEnabled";
             this.isEnabledDataGridViewCheckBoxColumn.HeaderText = "Enabled";
             this.isEnabledDataGridViewCheckBoxColumn.Name = "isEnabledDataGridViewCheckBoxColumn";
+            this.isEnabledDataGridViewCheckBoxColumn.ReadOnly = true;
             // 
             // notificationDelayDataGridViewTextBoxColumn
             // 
             this.notificationDelayDataGridViewTextBoxColumn.DataPropertyName = "NotificationDelay";
             this.notificationDelayDataGridViewTextBoxColumn.HeaderText = "Delay";
             this.notificationDelayDataGridViewTextBoxColumn.Name = "notificationDelayDataGridViewTextBoxColumn";
+            this.notificationDelayDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // notificationTriesDataGridViewTextBoxColumn
             // 
             this.notificationTriesDataGridViewTextBoxColumn.DataPropertyName = "NotificationTries";
             this.notificationTriesDataGridViewTextBoxColumn.HeaderText = "Tries";
             this.notificationTriesDataGridViewTextBoxColumn.Name = "notificationTriesDataGridViewTextBoxColumn";
+            this.notificationTriesDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // notificationDelayBetweenTriesDataGridViewTextBoxColumn
             // 
             this.notificationDelayBetweenTriesDataGridViewTextBoxColumn.DataPropertyName = "NotificationDelayBetweenTries";
             this.notificationDelayBetweenTriesDataGridViewTextBoxColumn.HeaderText = "Try Delay";
             this.notificationDelayBetweenTriesDataGridViewTextBoxColumn.Name = "notificationDelayBetweenTriesDataGridViewTextBoxColumn";
+            this.notificationDelayBetweenTriesDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // alertWhenFixedDataGridViewCheckBoxColumn
             // 
             this.alertWhenFixedDataGridViewCheckBoxColumn.DataPropertyName = "AlertWhenFixed";
             this.alertWhenFixedDataGridViewCheckBoxColumn.HeaderText = "Alert When Fixed";
             this.alertWhenFixedDataGridViewCheckBoxColumn.Name = "alertWhenFixedDataGridViewCheckBoxColumn";
+            this.alertWhenFixedDataGridViewCheckBoxColumn.ReadOnly = true;
             // 
             // FormAlertConfiguration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(780, 203);
+            this.ClientSize = new System.Drawing.Size(878, 200);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormAlertConfiguration";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Alert Configuration";
@@ -323,10 +353,13 @@ namespace SQLDBATool.Code
         private System.Windows.Forms.Button buttonAccept;
         private System.Windows.Forms.Button button3;
         private System.Data.DataColumn dataColumn9;
+        private System.Data.DataColumn dataColumn10;
+        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn AlertRuleID;
-        private System.Windows.Forms.DataGridViewComboBoxColumn ruleTypeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn notificationTypeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AlertRuleName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ruleTypeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn notificationTypeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isEnabledDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn notificationDelayDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn notificationTriesDataGridViewTextBoxColumn;

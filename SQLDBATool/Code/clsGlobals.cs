@@ -46,6 +46,10 @@ namespace SQLDBATool.Code
         {
 
         }
+        public void RefreshRegistrationInformation()
+        {
+            SerialNumber = LicenseController.GetSerialInformation();
+        }
         public bool IsLicensed
         {
             get

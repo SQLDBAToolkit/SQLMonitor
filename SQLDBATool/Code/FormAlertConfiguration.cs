@@ -23,11 +23,12 @@ namespace SQLDBATool.Code
 
         private void LoadAllAlerts()
         {
+            dataTableAlerts.Rows.Clear();
             using (clsAlertRuleController alertRuleController = new clsAlertRuleController())
             {
                 foreach (AlertRule rule in alertRuleController.GetAllAlertRules())
                 {
-                    object[] newRow = new object[9];
+                    object[] newRow = new object[10];
                     newRow[0] = rule.ID;
                     newRow[1] = rule.RuleType;
                     newRow[2] = rule.NotificationType;
@@ -37,6 +38,7 @@ namespace SQLDBATool.Code
                     newRow[6] = rule.NotificationDelayBetweenTries;
                     newRow[7] = rule.AlertWhenFixed;
                     newRow[8] = rule.AlertRuleID;
+                    newRow[9] = rule.AlertRuleName;
                     dataTableAlerts.Rows.Add(newRow);
                 }
             }
@@ -63,13 +65,14 @@ namespace SQLDBATool.Code
                     {
                         rule.ID = (int)row.Cells[0].Value;
                         rule.AlertRuleID = (Guid)row.Cells[1].Value;
-                        rule.RuleType = row.Cells[2].Value.ToString();
-                        rule.NotificationType = row.Cells[3].Value.ToString();
-                        rule.IsEnabled = (bool)row.Cells[4].Value;
-                        rule.NotificationDelay = (int)row.Cells[5].Value;
-                        rule.NotificationTries = (int)row.Cells[6].Value;
-                        rule.NotificationDelayBetweenTries = (int)row.Cells[7].Value;
-                        rule.AlertWhenFixed = (bool)row.Cells[8].Value;
+                        rule.AlertRuleName = row.Cells[2].Value.ToString();
+                        rule.RuleType = row.Cells[3].Value.ToString();
+                        rule.NotificationType = row.Cells[4].Value.ToString();
+                        rule.IsEnabled = (bool)row.Cells[5].Value;
+                        rule.NotificationDelay = (int)row.Cells[6].Value;
+                        rule.NotificationTries = (int)row.Cells[7].Value;
+                        rule.NotificationDelayBetweenTries = (int)row.Cells[8].Value;
+                        rule.AlertWhenFixed = (bool)row.Cells[9].Value;
 
                         ruleController.UpdateAlertRule(rule);
                     }
@@ -79,5 +82,16 @@ namespace SQLDBATool.Code
             this.Close();
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            FormNewAlert newAlert = new FormNewAlert();
+            newAlert.Show();
+            LoadAllAlerts();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

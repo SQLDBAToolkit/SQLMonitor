@@ -552,18 +552,23 @@ namespace SQLDBATool.Code
 
             return AlertRule;
         }
-        public AlertRule AddAlertRule(string ruleType, string notificationType, bool isEnabled, int notificationDelay, int notificationTries, int notificationDelayBetweenTries, bool alertWhenFixed)
+        public AlertRule AddAlertRule(string alertRuleName, string ruleType, string notificationType, bool isEnabled, int notificationDelay, int notificationTries, int notificationDelayBetweenTries, bool alertWhenFixed, int cpuUsageTriggerPercent, int rapidDBGrowthPercentage, bool suspectRecoveryPending, int highLockingTrigger)
         {
             AlertRule AlertRule = new AlertRule
             {
                 AlertRuleID = Guid.NewGuid(),
+                AlertRuleName = alertRuleName,
                 RuleType = ruleType,
                 NotificationType = notificationType,
                 IsEnabled = isEnabled,
                 NotificationDelay = notificationDelay,
                 NotificationTries = notificationTries,
                 NotificationDelayBetweenTries = notificationDelayBetweenTries,
-                AlertWhenFixed = alertWhenFixed
+                AlertWhenFixed = alertWhenFixed,
+                CPUUsageTriggerPercentage = cpuUsageTriggerPercent,
+                RapidDatabaseGrowthGrowthPercentage = rapidDBGrowthPercentage,
+                SuspectDatabaseDetectionIncludeRecoveryPending=suspectRecoveryPending,
+                HighLockingDetectionLocksDetected = highLockingTrigger
             };
 
             return AddAlertRule(AlertRule);
@@ -807,6 +812,7 @@ namespace SQLDBATool.Code
     {
         public int ID { get; set; }
         public Guid AlertRuleID { get; set; }
+        public string AlertRuleName { get; set; }
         public string RuleType { get; set; }
         public string NotificationType { get; set; }
         public bool IsEnabled { get; set; }
@@ -814,6 +820,10 @@ namespace SQLDBATool.Code
         public int NotificationTries { get; set; }
         public int NotificationDelayBetweenTries { get; set; }
         public bool AlertWhenFixed { get; set; }
+        public int CPUUsageTriggerPercentage { get; set; }
+        public int RapidDatabaseGrowthGrowthPercentage { get; set; }
+        public bool SuspectDatabaseDetectionIncludeRecoveryPending{ get; set; }
+        public int HighLockingDetectionLocksDetected { get; set; }
     }
     public class SerialInformation
     {

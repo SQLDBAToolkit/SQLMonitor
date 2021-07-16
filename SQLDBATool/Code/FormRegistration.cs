@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace SQLDBATool.Code
 {
@@ -50,7 +51,7 @@ namespace SQLDBATool.Code
             else
             {
                 RegistrationInformation.UpdateRegistrationInformation(true, textBoxLicenses.Text, textBoxLicenseKey.Text, textBoxSerialNumber.Text, DateTime.Now.AddYears(99));
-                MessageBox.Show("SQL Monitor Toolkit is now licensed.  Please restart the application.");
+                MessageBox.Show("SQL Monitor Toolkit is now licensed. Thank you for your purchase.");
                 textBoxRegLiceses.Text = RegistrationInformation.NumberLicenses;
                 textBoxRegLicenseKey.Text = RegistrationInformation.LicenseKeyString;
                 textBoxRegSerialNumber.Text = RegistrationInformation.LicenseKey;
@@ -67,6 +68,12 @@ namespace SQLDBATool.Code
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ProcessStartInfo sInfo = new ProcessStartInfo("http://www.sqldbatoolkit.net/");
+            Process.Start(sInfo);
         }
     }
 }

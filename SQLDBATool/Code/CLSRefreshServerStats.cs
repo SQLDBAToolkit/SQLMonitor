@@ -408,7 +408,7 @@ namespace SQLDBATool.Code
                     else
                     {
                         int timeLoop = 500;
-                        while (timeLoop < 360000 && !CancelRefresh)
+                        while (timeLoop < 300000 && !CancelRefresh)
                         {
                             Thread.Sleep(500);
                             timeLoop += 500;
@@ -1637,7 +1637,18 @@ select
    ,cast(databases.collation_name as varchar(128)) as collation_name
    ,cast(databases.user_access_desc as varchar(60)) as user_access_desc
    ,databases.is_read_only
-   ,cast(databases.state_desc as varchar(60)) as state_desc
+   ,case when databases.state_desc = 'RECOVERY_PENDING' 
+         and exists (select 1
+		             from sys.dm_hadr_availability_group_states States
+                          inner join master.sys.availability_groups Groups 
+								on States.group_id = Groups.group_id	
+						  inner join sys.availability_databases_cluster AGDatabases 
+						        on Groups.group_id = AGDatabases.group_id
+                     where primary_replica != @@Servername
+					 and AGDatabases.database_name = outpt.Database_Name)
+		 then 'RECOVERY_PENDING (H/A)'
+		 else cast(databases.state_desc as varchar(60)) 
+    end as state_desc
    ,cast(databases.recovery_model_desc as varchar(60)) as recovery_model_desc
    ,backupResults.restore_date
    ,backupResults.last_full_backup
