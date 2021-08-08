@@ -351,7 +351,6 @@
             // 
             // ucRegistrationInformation1
             // 
-            this.ucRegistrationInformation1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.ucRegistrationInformation1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucRegistrationInformation1.Location = new System.Drawing.Point(0, 0);
             this.ucRegistrationInformation1.Name = "ucRegistrationInformation1";
@@ -418,5 +417,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
         private System.Windows.Forms.Panel panel1;
         private ucRegistrationInformation ucRegistrationInformation1;
+        //private ucRegistrationInformation ucRegistrationInformation1;
     }
 }

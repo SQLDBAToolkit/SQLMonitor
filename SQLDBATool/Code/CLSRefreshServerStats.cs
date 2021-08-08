@@ -1010,6 +1010,14 @@ where exists (select 1
               from #SessionsCurrentValues CurrentSessions
 			  where currentSessions.session_id = dm_exec_requests.session_id)
 
+declare @isResumable table (session_id smallint, request_id int, is_resumable bit, page_server_reads bigint)
+
+if cast(left(isnull(cast(serverproperty('ProductVersion') as varchar(100)),''),2) as int) >= 14
+begin
+    insert into @isResumable
+    exec ('select session_id, request_id, is_resumable, page_server_reads from sys.dm_exec_requests')
+end
+
 select *
 from (
 SELECT 
@@ -1230,8 +1238,8 @@ select
 	,[dm_exec_requests].[executing_managed_code]
 	,[dm_exec_requests].[dop]
 	,[dm_exec_requests].[parallel_worker_count]
-	,[dm_exec_requests].[is_resumable]
---	,[dm_exec_requests].[page_server_reads]
+	,[IsResumable].[is_resumable]
+--	,[IsResumable].[page_server_reads]
 	,requeststats.wait_time_delta
 	,requeststats.open_transaction_count_delta
 	,requeststats.percent_complete_delta
@@ -1242,6 +1250,9 @@ select
 	,requeststats.logical_reads_delta
 	,requeststats.granted_query_memory_delta
 from sys.dm_exec_requests
+    left outer join @isResumable [IsResumable]
+        on dm_exec_requests.session_id = [IsResumable].session_id
+        and dm_exec_requests.request_id = [IsResumable].request_id
 	cross apply (
 				 select 
 				    currentValues.wait_time

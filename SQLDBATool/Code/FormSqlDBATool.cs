@@ -114,5 +114,10 @@ namespace SQLDBATool
             Code.FormAbout frmAbout = new Code.FormAbout();
             frmAbout.ShowDialog();
         }
+
+        private void exitToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
