@@ -54,10 +54,12 @@ namespace SQLDBATool.Code
         {
             get
             {
-                if (SerialNumber != null)
-                    return SerialNumber.IsLicensed;
-                else
-                    return false;
+                //    if (SerialNumber != null)
+                //        return SerialNumber.IsLicensed;
+                //    else
+                //        return false;
+
+                return true;
             }
         }
         public string NumberLicenses

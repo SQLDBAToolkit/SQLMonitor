@@ -15,7 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_0F18D5642F8E4802A7DB8B832A968D08"
+        "MsmKey" = "8:_0AEE423CAC5446B0B318BBA753C047CA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -27,19 +27,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8D32AFC919A445CD95B5DD334D32377F"
+        "MsmKey" = "8:_2C1134A668DC41E686834490CA55545D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_92F6FB27F195410F8F89917AC578388E"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B4382B219D9444CABA1DA971F8EB4806"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -58,7 +52,7 @@
         "Entry"
         {
         "MsmKey" = "8:_E04C528C297B545E592F93A9E61664A5"
-        "OwnerKey" = "8:_0F18D5642F8E4802A7DB8B832A968D08"
+        "OwnerKey" = "8:_2C1134A668DC41E686834490CA55545D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -70,19 +64,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8D32AFC919A445CD95B5DD334D32377F"
+        "OwnerKey" = "8:_2C1134A668DC41E686834490CA55545D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_D5B9959BB8884FB7ADEF8D84B9D21F63"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0F18D5642F8E4802A7DB8B832A968D08"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -148,6 +136,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -178,21 +174,10 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0F18D5642F8E4802A7DB8B832A968D08"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0AEE423CAC5446B0B318BBA753C047CA"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SQLDBATool, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64"
-                "ScatterAssemblies"
-                {
-                    "_0F18D5642F8E4802A7DB8B832A968D08"
-                    {
-                    "Name" = "8:SQLDBATool.exe"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\SQLDBATool\\bin\\Debug\\SQLDBATool.exe"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\SQLDBATool\\bin\\Debug\\SQLDBATool.exe.config"
+            "TargetName" = "8:SQLDBATool.exe.config"
             "Tag" = "8:"
             "Folder" = "8:_0A9CF673AE4C4F2E85C02D273B121121"
             "Condition" = "8:"
@@ -229,20 +214,20 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8D32AFC919A445CD95B5DD334D32377F"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2C1134A668DC41E686834490CA55545D"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:LiteDB, Version=5.0.10.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:SQLDBATool, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_8D32AFC919A445CD95B5DD334D32377F"
+                    "_2C1134A668DC41E686834490CA55545D"
                     {
-                    "Name" = "8:LiteDB.dll"
+                    "Name" = "8:SQLDBATool.exe"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:..\\SQLDBATool\\bin\\Debug\\LiteDB.dll"
+            "SourcePath" = "8:..\\SQLDBATool\\bin\\Debug\\SQLDBATool.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_0A9CF673AE4C4F2E85C02D273B121121"
@@ -264,26 +249,6 @@
             {
             "SourcePath" = "8:..\\SQLDBATool\\WaitTypeInformation.json"
             "TargetName" = "8:WaitTypeInformation.json"
-            "Tag" = "8:"
-            "Folder" = "8:_0A9CF673AE4C4F2E85C02D273B121121"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B4382B219D9444CABA1DA971F8EB4806"
-            {
-            "SourcePath" = "8:..\\SQLDBATool\\bin\\Debug\\SQLDBATool.exe.config"
-            "TargetName" = "8:SQLDBATool.exe.config"
             "Tag" = "8:"
             "Folder" = "8:_0A9CF673AE4C4F2E85C02D273B121121"
             "Condition" = "8:"
@@ -469,15 +434,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Sql Server Monitor"
-        "ProductCode" = "8:{8832EB75-616E-4888-BA94-45B55B0E6B87}"
-        "PackageCode" = "8:{2D3E5749-A8A4-49B9-B912-822BCC059BD8}"
+        "ProductCode" = "8:{7855C773-2464-4516-9363-DEC89B6E1AA8}"
+        "PackageCode" = "8:{863A66FF-D95B-4E3E-BCC4-94C69A191434}"
         "UpgradeCode" = "8:{DAD092BC-17B8-4858-9AEE-D40EF132D2F4}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.1"
         "Manufacturer" = "8:SQL DBA Toolkit"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.sqldbatoolkit.net"
@@ -598,7 +563,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_0F18D5642F8E4802A7DB8B832A968D08"
+            "Target" = "8:_2C1134A668DC41E686834490CA55545D"
             "Folder" = "8:_64899CC455ED4622A6A51398AED3279E"
             "WorkingFolder" = "8:_0A9CF673AE4C4F2E85C02D273B121121"
             "Icon" = "8:"
@@ -612,7 +577,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_0F18D5642F8E4802A7DB8B832A968D08"
+            "Target" = "8:_2C1134A668DC41E686834490CA55545D"
             "Folder" = "8:_2B561C0616534392A0BCDFB4877178C0"
             "WorkingFolder" = "8:_0A9CF673AE4C4F2E85C02D273B121121"
             "Icon" = "8:"
