@@ -104,6 +104,7 @@
   <ItemGroup>
     <Compile Include="clsConnectionInformation.cs" />
     <Compile Include="clsServerInfoXML.cs" />
+    <Compile Include="Code\clsAlertAncestor.cs" />
     <Compile Include="Code\CLSAlerts.cs" />
     <Compile Include="Code\CLSConnectionInformation.cs" />
     <Compile Include="Code\clsGlobals.cs" />
