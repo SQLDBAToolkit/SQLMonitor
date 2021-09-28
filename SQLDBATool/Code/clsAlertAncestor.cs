@@ -8,6 +8,8 @@ namespace SQLDBATool.Code
 {
     class clsAlertAncestor
     {
+        private bool FActive = false;
+
         public clsAlertAncestor()
         {
 
